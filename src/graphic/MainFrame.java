@@ -2,6 +2,7 @@ package graphic;
 
 import graphic.east.MainPanel;
 
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,7 +23,7 @@ public class MainFrame extends JFrame {
         south = new graphic.south.MainPanel();
         center = new graphic.center.MainPanel();
 
-        iconFrame = Toolkit.getDefaultToolkit().getImage("C:\\Users\\01RAYANEH\\Pictures\\Screenshots\\photo_2019-05-17_15-51-50.jpg");
+        iconFrame = Toolkit.getDefaultToolkit().getImage("D:\\Jpotify\\src\\graphic\\photo_2019-05-17_15-51-50.jpg");
 
 
         getContentPane().add(east , BorderLayout.EAST);
