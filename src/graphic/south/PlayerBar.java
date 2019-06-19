@@ -1,8 +1,5 @@
 package graphic.south;
 
-import graphic.west.NorthOfPlayBar;
-import graphic.west.SouthOfPlayBar;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,7 +18,7 @@ public class PlayerBar extends JPanel {
         southOfPlayBar = new SouthOfPlayBar();
 
         add(southOfPlayBar , BorderLayout.SOUTH);
-        add(northOfPlayBar , BorderLayout.NORTH);
+        add(northOfPlayBar , BorderLayout.CENTER);
 
         setVisible(true);
     }
