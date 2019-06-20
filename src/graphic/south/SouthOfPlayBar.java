@@ -1,5 +1,8 @@
 package graphic.south;
 
+import MusicHandler.MusicPause;
+import MusicHandler.MusicPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,6 +27,14 @@ public class SouthOfPlayBar extends JPanel {
         add(addToShare);
 
         setVisible(true);
+
+        MusicPlayer musicPlayer = new MusicPlayer("G:/flash mashin/dar ham/hayede/(3).MP3");
+
+        paly.addActionListener(musicPlayer);
+
+        MusicPause musicPause = new MusicPause(musicPlayer.getUrl());
+
+        pause.addActionListener(musicPause);
 
     }
 

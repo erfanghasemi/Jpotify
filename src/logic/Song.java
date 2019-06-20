@@ -11,6 +11,8 @@ public class Song implements Serializable {
     private String albumName;
     private String title;
     private long lengthOfSong;
+    // this variable shows true if the song is playing
+    private boolean isPlaying = false;
 
 
     public Song(String address) {
@@ -56,5 +58,13 @@ public class Song implements Serializable {
     public String getTitle() { return title; }
 
     public void setTitle(String title) { this.title = title; }
+
+    public void setPlaying (boolean playing){
+        this.isPlaying = playing;
+    }
+
+    public boolean getPlaying(){
+        return this.isPlaying;
+    }
 
 }
