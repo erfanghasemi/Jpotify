@@ -9,28 +9,24 @@ public class Song implements Serializable {
     private Image artWork;
     private String artistName;
     private String albumName;
-    private String musicName;
-    private int lengthOfSong;
+    private String title;
+    private long lengthOfSong;
 
 
     public Song(String address) {
         this.address = address;
     }
 
-	public int getLengthOfSong() {
+	public long getLengthOfSong() {
 		return lengthOfSong;
 	}
 
-	public void setLengthOfSong(int lengthOfSong) {
+	public void setLengthOfSong(long lengthOfSong) {
 		this.lengthOfSong = lengthOfSong;
 	}
 
 	public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Image getArtWork() {
@@ -57,11 +53,8 @@ public class Song implements Serializable {
         this.albumName = albumName;
     }
 
-    public String getMusicName() {
-        return musicName;
-    }
+    public String getTitle() { return title; }
 
-    public void setMusicName(String musicName) {
-        this.musicName = musicName;
-    }
+    public void setTitle(String title) { this.title = title; }
+
 }

@@ -1,22 +1,16 @@
 package logic.Controller.libraryControlller;
 
-import graphic.west.FileChooserFrame;
-import logic.Song;
 
-import java.io.File;
+import logic.Song;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class SongsController {
 
     protected ArrayList<Song> songs;
-	protected File aviableSongs;
 
-
-
-
-
-
-
+    public SongsController() {
+        this.songs = new ArrayList<>();
+    }
 
 }
