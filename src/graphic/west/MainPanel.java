@@ -9,7 +9,7 @@ public class MainPanel extends JPanel {
     PlaylistPanel playlistPanel;
     LibraryPanel libraryPanel;
 
-    public MainPanel() {
+    public MainPanel(JFrame mainFrame) {
 
         setPreferredSize(new Dimension(200 , 250));
         setBackground(Color.white);
@@ -24,7 +24,7 @@ public class MainPanel extends JPanel {
         add(imagePanel);
 
 
-
+        mainFrame.add(this , BorderLayout.WEST);
         setVisible(true);
     }
 }

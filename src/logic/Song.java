@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Song implements Serializable {
 
     private String address;
-    private Image artWork;
+    private byte[] artWork;
     private String artistName;
     private String albumName;
     private String title;
@@ -31,11 +31,11 @@ public class Song implements Serializable {
         return address;
     }
 
-    public Image getArtWork() {
+    public byte[] getArtWork() {
         return artWork;
     }
 
-    public void setArtWork(Image artWork) {
+    public void setArtWork(byte[] artWork) {
         this.artWork = artWork;
     }
 

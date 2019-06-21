@@ -6,21 +6,21 @@ import java.awt.*;
 
 public class ImagePanel extends JPanel {
 
-    JLabel artWorklabel;
+    JLabel artWorkLabel;
 
     public ImagePanel() {
 
 
-        artWorklabel = new JLabel();
+        artWorkLabel = new JLabel();
         ImageIcon imageIcon = new ImageIcon("C:\\Users\\01RAYANEH\\Desktop\\Taylor_Swift_-_1989.png");
         Image image = imageIcon.getImage();
         Image newImg = image.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newImg);
 
-        artWorklabel.setIcon(imageIcon);
+        artWorkLabel.setIcon(imageIcon);
 
-        artWorklabel.setPreferredSize(new Dimension(200 , 200));
-        add(artWorklabel);
+        artWorkLabel.setPreferredSize(new Dimension(200 , 200));
+        add(artWorkLabel);
 
         setVisible(true);
     }

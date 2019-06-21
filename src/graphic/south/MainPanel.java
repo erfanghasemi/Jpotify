@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 
-    public MainPanel() {
+    public MainPanel(JFrame mainFrame) {
 
         setPreferredSize(new Dimension(150 , 100));
         setLayout(new BoxLayout(this , BoxLayout.LINE_AXIS));
@@ -19,6 +19,8 @@ public class MainPanel extends JPanel {
         add(playerBar);
         add(valumeBar);
 
+
+        mainFrame.add(this , BorderLayout.SOUTH);
         setVisible(true);
     }
 }

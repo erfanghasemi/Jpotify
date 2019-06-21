@@ -11,7 +11,7 @@ public class PlayerBar extends JPanel {
     public PlayerBar() {
 
         setPreferredSize(new Dimension(250, 250));
-        setBackground(Color.LIGHT_GRAY);
+            setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
 
         northOfPlayBar= new NorthOfPlayBar();

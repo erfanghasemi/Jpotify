@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 
-    public MainPanel() {
+    public MainPanel(JFrame mainFrame) {
 
         setPreferredSize(new Dimension(150 , 50));
         setLayout(new FlowLayout(1 , 350, 8));
@@ -17,6 +17,8 @@ public class MainPanel extends JPanel {
         add(searchPanel);
         add(profilePanel);
 
+
+        mainFrame.add(this , BorderLayout.NORTH);
         setVisible(true);
     }
 }

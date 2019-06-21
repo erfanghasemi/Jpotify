@@ -1,4 +1,4 @@
-package graphic.west;
+package graphic.variouspart;
 
 import logic.Controller.libraryControlller.SaveFileController;
 
@@ -32,5 +32,8 @@ public class FileChooserFrame extends JFrame {
 
     public String getJTextFieldText() {
         return textField.getText();
+    }
+
+    public static class SingleSongView {
     }
 }

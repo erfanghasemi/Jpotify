@@ -6,7 +6,7 @@ import com.mpatric.mp3agic.Mp3File;
 
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-import graphic.west.FileChooserFrame;
+import graphic.variouspart.FileChooserFrame;
 import logic.Song;
 
 import javax.swing.*;
@@ -15,13 +15,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class SaveFileController  extends SongsController implements  ActionListener {
+public class SaveFileController  implements  ActionListener {
 
     FileChooserFrame fileChooserFrame;
 	private static final String FILE_PATH = "D:\\avi.bin";
 
     public SaveFileController() {
-    	super();
         this.fileChooserFrame = new FileChooserFrame(this);
 
     }
@@ -33,7 +32,6 @@ public class SaveFileController  extends SongsController implements  ActionListe
     	String address = fileChooserFrame.getJTextFieldText();
     	Song addedSong = new Song(address);
     	attachInformation(addedSong);
-    	addSongToArrray(addedSong);
 		writeObjectToFile(addedSong);
 
     }
@@ -49,7 +47,7 @@ public class SaveFileController  extends SongsController implements  ActionListe
 			song.setAlbumName(id3v2Tag.getAlbum());
 			song.setArtistName(id3v2Tag.getArtist());
 			song.setLengthOfSong(mp3file.getLengthInSeconds());
-			song.setArtWork(getImageFromByte(id3v2Tag.getAlbumImage()));
+			song.setArtWork(id3v2Tag.getAlbumImage());
 
 		}
     	catch (InvalidDataException | IOException | UnsupportedTagException e){
@@ -58,21 +56,21 @@ public class SaveFileController  extends SongsController implements  ActionListe
 
 	}
 
-
-	public void addSongToArrray(Song addedSong){
-    	songs.add(addedSong);
-    	//handle the ahang tekrari ba method equals baraye Song
-    }
-
-
 	public void writeObjectToFile(Song song) {
 		if(true){
 			try {
-				FileOutputStream fileOut = new FileOutputStream(FILE_PATH  ,true);
-				ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-				objectOut.writeObject(song);
-				objectOut.close();
-				System.out.println("The Object  was succesfully written to a file");
+                if((new File(FILE_PATH).exists())) {
+                    FileOutputStream fileOut = new FileOutputStream(FILE_PATH, true);
+                    AppendingObjectOutputStream objectOut = new AppendingObjectOutputStream(fileOut);
+                    objectOut.writeObject(song);
+                }
+                else{
+                    FileOutputStream fileOut = new FileOutputStream(FILE_PATH, true);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+                    objectOut.writeObject(song);
+                }
+
+
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -80,14 +78,22 @@ public class SaveFileController  extends SongsController implements  ActionListe
 		}
 	}
 
-	public Image getImageFromByte(byte[] imageBytes){
-		byte[] byteArray = imageBytes;
-		ImageIcon imageIcon = new ImageIcon(byteArray);
-		Image image = imageIcon.getImage();
-    	return image;
-	}
 
+    public class AppendingObjectOutputStream extends ObjectOutputStream {
 
+        public AppendingObjectOutputStream(OutputStream out) throws IOException {
+            super(out);
+        }
+
+        @Override
+        protected void writeStreamHeader() throws IOException {
+            // do not write a header, but reset:
+            // this line added after another question
+            // showed a problem with the original
+            reset();
+        }
+
+    }
 
 
 }
