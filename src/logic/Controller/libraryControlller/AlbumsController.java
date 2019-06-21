@@ -1,28 +1,74 @@
 package logic.Controller.libraryControlller;
 
 import graphic.center.MainPanel;
+import graphic.variouspart.singlealbum.SingleAlbumPanel;
 import logic.Album;
+import logic.Song;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class AlbumsController  {
+public class AlbumsController extends SongsController{
 
     protected ArrayList<Album> albums;
+    private static final String FILE_PATH = "D:\\avi.bin";
+
+    public AlbumsController(MainPanel view) {
+        super();
+        view.removeAll();
+
+        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 
 
-    public AlbumsController(MainPanel albumView) {
-        albumView.removeAll();
+
+        albums = new ArrayList<>();
+
+        classifyAlbum(songs , albums);
 
 
-        //code
+        System.out.println(albums.get(0).getTitle());
+        System.out.println(albums.get(1).getTitle());
+
+        for (Album album : albums) {
+            Song firstSong = album.getAlbumSongs().get(0);
+            SingleAlbumPanel singleAlbumPanel = new SingleAlbumPanel(firstSong.getAlbumName() , firstSong.getArtistName() , getImageFromByte(firstSong.getArtWork()));
+            view.add(singleAlbumPanel);
+        }
 
 
-        albumView.repaint();
-        albumView.validate();
-        albumView.setVisible(true);
-
+        view.repaint();
+        view.validate();
+        view.setVisible(true);
 
     }
+
+
+    public void classifyAlbum(ArrayList<Song> songs , ArrayList<Album> albums) {
+
+        Boolean newSong = true;
+
+        for (Song song : songs) {
+            if (!(albums.isEmpty())) {
+                for (Album album : albums) {
+                    if (song.getAlbumName().equals(album.getTitle())) {
+                        album.getAlbumSongs().add(song);
+                        newSong = false;
+                    }
+                }
+                if(newSong){
+                        Album newAlbum = new Album(song.getAlbumName());
+                        albums.add(newAlbum);
+                }
+                newSong = true;
+            }
+            else{
+                Album newAlbum = new Album(song.getAlbumName());
+                albums.add(newAlbum);
+                System.out.println("first albim created");
+            }
+        }
+    }
+
+
 }

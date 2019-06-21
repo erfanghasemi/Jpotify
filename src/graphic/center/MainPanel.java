@@ -13,13 +13,10 @@ public class MainPanel extends JPanel {
 
     public MainPanel(JFrame mainFrame) {
 
-        setBackground(Color.darkGray);
-        setLayout(new BoxLayout(this , BoxLayout.Y_AXIS));
+        setBackground(Color.LIGHT_GRAY);
         JScrollPane scrollPane = new JScrollPane(this);
         mainFrame.add( scrollPane, BorderLayout.CENTER);
         setVisible(true);
 
     }
-
-
 }

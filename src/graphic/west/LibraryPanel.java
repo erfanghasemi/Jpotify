@@ -47,9 +47,6 @@ public class LibraryPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(songs);
                 MainPanel mainPanel = myFrame.getCenter();
                 new SongsController(mainPanel);
-
-//                new MainPanel((JFrame) SwingUtilities.getWindowAncestor(songs));
-
             }
         });
 
@@ -59,9 +56,6 @@ public class LibraryPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(songs);
                 MainPanel mainPanel = myFrame.getCenter();
                 new AlbumsController(mainPanel);
-
-//                new MainPanel((JFrame) SwingUtilities.getWindowAncestor(songs));
-
             }
         });
 

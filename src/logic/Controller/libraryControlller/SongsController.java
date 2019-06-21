@@ -17,8 +17,17 @@ public class SongsController {
     private static final String FILE_PATH = "D:\\avi.bin";
     protected ArrayList<Song> songs = null;
 
-    public SongsController(MainPanel songView) {
-        songView.removeAll();
+    public SongsController() {
+
+        songs = new ArrayList<>();
+
+        songs = readObjecFromFile(FILE_PATH , songs);
+
+    }
+
+    public SongsController(MainPanel view) {
+        view.removeAll();
+        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 
         songs = new ArrayList<>();
 
@@ -26,13 +35,13 @@ public class SongsController {
 
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()));
-            songView.add(singleSongPanel);
-
+            view.add(singleSongPanel);
         }
 
-        songView.repaint();
-        songView.validate();
-        songView.setVisible(true);
+
+        view.repaint();
+        view.validate();
+        view.setVisible(true);
 
     }
 

@@ -23,8 +23,6 @@ public class StatusOfSongPanel extends JPanel {
         add(play);
 
 
-
-
         setVisible(true);
     }
 }

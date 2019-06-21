@@ -18,7 +18,7 @@ public class SingleSongPanel extends JPanel {
         setMaximumSize(new Dimension(1300, 120));
 
         setLayout(new BorderLayout());
-        setBackground(Color.LIGHT_GRAY  );
+        setBackground(Color.LIGHT_GRAY );
 
         labelOfSongPanel = new LabelOfSongPanel(artistName , albumName , titleName);
         imageOfSongPanel = new ImageOfSongPanel(artWork);
@@ -28,8 +28,6 @@ public class SingleSongPanel extends JPanel {
         add(imageOfSongPanel , BorderLayout.WEST);
         add(labelOfSongPanel , BorderLayout.CENTER);
         add(statusOfSongPanel , BorderLayout.EAST);
-
-
 
         setVisible(true);
     }

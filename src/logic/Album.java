@@ -5,29 +5,15 @@ import java.util.ArrayList;
 
 public class Album {
 
-    private String address;
     private Image artWork;
     private String artistName;
-    private String albumName;
-    private String musicName;
+    private String title;
 
     private ArrayList<Song> albumSongs;
 
-    public Album(String address, Image artWork, String artistName, String albumName, String musicName, ArrayList<Song> albumSongs) {
-        this.address = address;
-        this.artWork = artWork;
-        this.artistName = artistName;
-        this.albumName = albumName;
-        this.musicName = musicName;
-        this.albumSongs = albumSongs;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public Album(String albumName) {
+        this.title = albumName;
+        albumSongs = new ArrayList<>();
     }
 
     public Image getArtWork() {
@@ -46,27 +32,16 @@ public class Album {
         this.artistName = artistName;
     }
 
-    public String getAlbumName() {
-        return albumName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
-    }
-
-    public String getMusicName() {
-        return musicName;
-    }
-
-    public void setMusicName(String musicName) {
-        this.musicName = musicName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public ArrayList<Song> getAlbumSongs() {
         return albumSongs;
     }
 
-    public void setAlbumSongs(ArrayList<Song> albumSongs) {
-        this.albumSongs = albumSongs;
-    }
 }
