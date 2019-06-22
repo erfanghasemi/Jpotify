@@ -1,13 +1,20 @@
 package graphic.variouspart.singlealbum;
 
+import graphic.MainFrame;
+import graphic.center.MainPanel;
+import logic.Album;
+import logic.Controller.libraryControlller.SongsController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SongsOfAlbumPanel extends JPanel {
 
     JButton more , delete;
 
-    public SongsOfAlbumPanel() {
+    public SongsOfAlbumPanel(Album album) {
 
         setLayout(new FlowLayout(1 , 25, 42));
 
@@ -18,6 +25,16 @@ public class SongsOfAlbumPanel extends JPanel {
         delete.setPreferredSize(new Dimension(73 , 30));
 
         add(more);
+
+        more.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new SongsController(mainPanel , album);
+
+            }
+        });
         add(delete);
 
         setVisible(true);

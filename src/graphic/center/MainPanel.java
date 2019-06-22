@@ -9,8 +9,6 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 
-
-
     public MainPanel(JFrame mainFrame) {
 
         setBackground(Color.LIGHT_GRAY);

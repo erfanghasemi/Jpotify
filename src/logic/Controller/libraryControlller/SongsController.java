@@ -4,6 +4,7 @@ package logic.Controller.libraryControlller;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
+import logic.Album;
 import logic.Song;
 
 import javax.swing.*;
@@ -25,6 +26,24 @@ public class SongsController {
         songs = readObjecFromFile(FILE_PATH , songs);
 
     }
+
+
+    public SongsController(MainPanel view , Album album) {
+        view.removeAll();
+        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
+
+        songs = album.getAlbumSongs();
+
+        for (Song song: songs) {
+            SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song);
+            view.add(singleSongPanel);
+        }
+
+        view.repaint();
+        view.validate();
+        view.setVisible(true);
+    }
+
 
     public SongsController(MainPanel view) {
         view.removeAll();

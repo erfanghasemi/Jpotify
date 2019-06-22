@@ -32,7 +32,7 @@ public class AlbumsController extends SongsController{
 
         for (Album album : albums) {
             Song firstSong = album.getAlbumSongs().get(0);
-            SingleAlbumPanel singleAlbumPanel = new SingleAlbumPanel(firstSong.getAlbumName() , firstSong.getArtistName() , getImageFromByte(firstSong.getArtWork()));
+            SingleAlbumPanel singleAlbumPanel = new SingleAlbumPanel(firstSong.getAlbumName() , firstSong.getArtistName() , getImageFromByte(firstSong.getArtWork()), album);
             view.add(singleAlbumPanel);
         }
 
