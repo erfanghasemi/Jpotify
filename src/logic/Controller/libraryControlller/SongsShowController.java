@@ -13,13 +13,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class SongsController {
+public class SongsShowController {
 
 
     private static final String FILE_PATH = "D:\\avi.bin";
     protected ArrayList<Song> songs = null;
 
-    public SongsController() {
+    public SongsShowController() {
 
         songs = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class SongsController {
     }
 
 
-    public SongsController(MainPanel view , Album album) {
+    public SongsShowController(MainPanel view , Album album) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 
@@ -45,7 +45,7 @@ public class SongsController {
     }
 
 
-    public SongsController(MainPanel view) {
+    public SongsShowController(MainPanel view) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 

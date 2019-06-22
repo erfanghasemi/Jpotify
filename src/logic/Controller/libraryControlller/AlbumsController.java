@@ -6,10 +6,9 @@ import logic.Album;
 import logic.Song;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
-public class AlbumsController extends SongsController{
+public class AlbumsController extends SongsShowController {
 
     protected ArrayList<Album> albums;
     private static final String FILE_PATH = "D:\\avi.bin";

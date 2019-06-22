@@ -4,7 +4,7 @@ import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Controller.libraryControlller.AlbumsController;
 import logic.Controller.libraryControlller.SaveFileController;
-import logic.Controller.libraryControlller.SongsController;
+import logic.Controller.libraryControlller.SongsShowController;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -46,7 +46,7 @@ public class LibraryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(songs);
                 MainPanel mainPanel = myFrame.getCenter();
-                new SongsController(mainPanel);
+                new SongsShowController(mainPanel);
             }
         });
 

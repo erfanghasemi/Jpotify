@@ -3,7 +3,7 @@ package graphic.variouspart.singlealbum;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Album;
-import logic.Controller.libraryControlller.SongsController;
+import logic.Controller.libraryControlller.SongsShowController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +31,7 @@ public class SongsOfAlbumPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new SongsController(mainPanel , album);
+                new SongsShowController(mainPanel , album);
 
             }
         });

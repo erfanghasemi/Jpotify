@@ -6,22 +6,20 @@ import com.mpatric.mp3agic.Mp3File;
 
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-import graphic.variouspart.FileChooserFrame;
+import graphic.variouspart.additem.AddSongPanel;
 import logic.Song;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
 public class SaveFileController  implements  ActionListener {
 
-    FileChooserFrame fileChooserFrame;
+    AddSongPanel fileChooserFrame;
 	private static final String FILE_PATH = "D:\\avi.bin";
 
     public SaveFileController() {
-        this.fileChooserFrame = new FileChooserFrame(this);
+        this.fileChooserFrame = new AddSongPanel(this);
 
     }
 

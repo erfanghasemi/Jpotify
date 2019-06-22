@@ -1,11 +1,11 @@
-package graphic.variouspart;
+package graphic.variouspart.additem;
 
 import logic.Controller.libraryControlller.SaveFileController;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class FileChooserFrame extends JFrame {
+public class AddSongPanel extends JFrame {
     private static final String BTN_TXT = "Enter";
     private static final String LABEL_TXT = "Enter Your File Path: ";
     private static final int WIDTH = 300, HEIGHT = 100;
@@ -13,7 +13,7 @@ public class FileChooserFrame extends JFrame {
     private JTextField textField;
     private JButton btn;
 
-    public FileChooserFrame(SaveFileController controller){
+    public AddSongPanel(SaveFileController controller){
         super();
         this.setLayout(new BorderLayout());
         JLabel label = new JLabel(LABEL_TXT);

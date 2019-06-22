@@ -29,7 +29,7 @@ public class DeleteSongController {
                 e.printStackTrace();
             }
 
-        new SongsController(view);
+        new SongsShowController(view);
     }
 
     public void removeSong(Song targetSong , ArrayList<Song> songs){
