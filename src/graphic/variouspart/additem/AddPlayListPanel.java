@@ -7,6 +7,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AddPlayListPanel extends JPanel {
 
@@ -43,7 +44,15 @@ public class AddPlayListPanel extends JPanel {
         addPlayList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SubmitNewPlayListController();
+                ArrayList<String> addesSongs = new ArrayList<>();
+
+                addesSongs.add(firstSong.getText());
+                addesSongs.add(secondSong.getText());
+                addesSongs.add(thirdSong.getText());
+                addesSongs.add(forthSong.getText());
+                addesSongs.add(fifthSong.getText());
+
+                new SubmitNewPlayListController( addesSongs , playListName.getText());
             }
         });
 

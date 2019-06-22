@@ -15,7 +15,7 @@ public class PlaylistPanel extends JPanel {
     TitledBorder titledBorder;
     JButton newPlayList;
     JList playLists;
-    String[] playListNames = {"Share" , "Favourite" , "Pop" , "Rap" , "Jazz" , "HipHop" ,"HipHop","HipHop","HipHop","HipHop","HipHop","HipHop","HipHop"};
+    String[] playListNames = {"Share" , "Favourite"};
 
     public PlaylistPanel() {
 
