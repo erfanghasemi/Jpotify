@@ -1,6 +1,7 @@
 package logic.Controller.libraryControlller;
 
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
 import logic.Song;
@@ -34,15 +35,13 @@ public class SongsController {
         songs = readObjecFromFile(FILE_PATH , songs);
 
         for (Song song: songs) {
-            SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()));
+            SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song);
             view.add(singleSongPanel);
         }
-
 
         view.repaint();
         view.validate();
         view.setVisible(true);
-
     }
 
 

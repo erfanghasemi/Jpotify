@@ -27,15 +27,14 @@ public class AlbumsController extends SongsController{
         classifyAlbum(songs , albums);
 
 
-        System.out.println(albums.get(0).getTitle());
-        System.out.println(albums.get(1).getTitle());
+
+
 
         for (Album album : albums) {
             Song firstSong = album.getAlbumSongs().get(0);
             SingleAlbumPanel singleAlbumPanel = new SingleAlbumPanel(firstSong.getAlbumName() , firstSong.getArtistName() , getImageFromByte(firstSong.getArtWork()));
             view.add(singleAlbumPanel);
         }
-
 
         view.repaint();
         view.validate();
@@ -58,14 +57,16 @@ public class AlbumsController extends SongsController{
                 }
                 if(newSong){
                         Album newAlbum = new Album(song.getAlbumName());
+                        newAlbum.getAlbumSongs().add(song);
                         albums.add(newAlbum);
                 }
                 newSong = true;
             }
             else{
                 Album newAlbum = new Album(song.getAlbumName());
+                newAlbum.getAlbumSongs().add(song);
                 albums.add(newAlbum);
-                System.out.println("first albim created");
+
             }
         }
     }
