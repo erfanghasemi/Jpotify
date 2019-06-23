@@ -5,11 +5,8 @@ import graphic.center.MainPanel;
 
 import graphic.variouspart.additem.AddSongPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
-import logic.Controller.libraryControlller.DeletePlayListController;
-import logic.Controller.libraryControlller.DeleteSongController;
+import logic.Controller.libraryControlller.*;
 
-import logic.Controller.libraryControlller.RenamePlayListController;
-import logic.Controller.libraryControlller.SongsShowController;
 import logic.PlayList;
 
 import javax.swing.*;
@@ -77,7 +74,7 @@ public class OptionOfPlayListPanel extends JPanel {
         addSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new AddSongPlayListController(playList);
             }
         });
 

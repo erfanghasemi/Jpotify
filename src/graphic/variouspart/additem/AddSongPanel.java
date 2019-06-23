@@ -1,5 +1,6 @@
 package graphic.variouspart.additem;
 
+import logic.Controller.libraryControlller.AddSongPlayListController;
 import logic.Controller.libraryControlller.RenamePlayListController;
 import logic.Controller.libraryControlller.SaveFileController;
 import logic.PlayList;
@@ -18,6 +19,24 @@ public class AddSongPanel extends JFrame {
     private JButton btn;
 
     public AddSongPanel(RenamePlayListController controller, String labelText){
+        super();
+        this.setLayout(new BorderLayout());
+        JLabel label = new JLabel(labelText);
+        add(label, BorderLayout.PAGE_START);
+        textField = new JTextField();
+        textField.addActionListener(controller);
+        add(textField, BorderLayout.CENTER);
+        btn = new JButton(BTN_TXT);
+        btn.addActionListener(controller);
+        add(btn, BorderLayout.PAGE_END);
+        setSize(WIDTH, HEIGHT);
+        this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().width / 2 - this.getSize().getWidth() / 2)
+                , (int) (Toolkit.getDefaultToolkit().getScreenSize().height / 2 - this.getSize().getHeight() / 2));
+        setVisible(true);
+    }
+
+
+    public AddSongPanel(AddSongPlayListController controller, String labelText){
         super();
         this.setLayout(new BorderLayout());
         JLabel label = new JLabel(labelText);

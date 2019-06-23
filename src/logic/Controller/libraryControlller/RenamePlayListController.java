@@ -30,9 +30,6 @@ public class RenamePlayListController implements ActionListener {
 
         playLists = new ArrayList<>();
 
-
-
-
     }
 
     @Override
