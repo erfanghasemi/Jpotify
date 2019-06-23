@@ -5,6 +5,7 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 import logic.Song;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MusicThread implements Runnable {
@@ -57,5 +58,13 @@ public class MusicThread implements Runnable {
         }
     }
 
+    public void seekTo(int frame) throws JavaLayerException, FileNotFoundException {
+        synchronized (player){
+            player.close();
+            player = new AdvancedPlayer(new FileInputStream(this.song.getAddress()));
+            player.play(frame, frame + 1);
+            this.isPaused = false;
+        }
+    }
 
 }
