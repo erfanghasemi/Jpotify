@@ -20,7 +20,7 @@ public class MusicThread implements Runnable {
 
     public void run() {
 
-        //System.out.println("thread is running");
+        System.out.println("thread is running");
 
         try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())) {
 
@@ -28,10 +28,10 @@ public class MusicThread implements Runnable {
 
             while (player.play(1)){
 
-                //System.out.println("music is playing");
+                System.out.println("music is playing");
 
                 if (isPaused){
-                    //System.out.println("music stopped");
+                    System.out.println("music stopped");
                     synchronized (player){
                         player.wait();
                     }
@@ -49,7 +49,13 @@ public class MusicThread implements Runnable {
         this.isPaused = true;
     }
 
+    public void mp3Resume(){
 
+        this.isPaused = false;
+        synchronized (player){
+            player.notifyAll();
+        }
+    }
 
 
 }

@@ -39,7 +39,7 @@ public class SouthOfPlayBar extends JPanel {
 
         Thread thread = new Thread(musicThread);
 
-        PlayListener playListener = new PlayListener(thread);
+        PlayListener playListener = new PlayListener(thread, musicThread);
 
         play.addActionListener(playListener);
 
