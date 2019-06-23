@@ -1,40 +1,47 @@
 package graphic.south;
 
-import MusicHandler.MusicPause;
-//import MusicHandler.MusicPlayer;
+
+import MusicHandler.MusicThread;
+import MusicHandler.PlayListener;
+import logic.Song;
 
 import javax.swing.*;
 import java.awt.*;
 
+//import MusicHandler.MusicPlayer;
+
 public class SouthOfPlayBar extends JPanel {
 
-    JButton paly , addToShare , addToFavourite , pause;
+    JButton play , addToShare , addToFavourite , pause;
 
     public SouthOfPlayBar() {
         setBackground(Color.WHITE);
         setLayout(new BoxLayout(this , BoxLayout.LINE_AXIS));
 
 
-        paly = new JButton("Play");
+        play = new JButton("Play");
         addToFavourite = new JButton("Favourite");
         addToShare = new JButton("Share");
         pause = new JButton("Pause");
 
 
         add(addToFavourite , BoxLayout.X_AXIS);
-        add(paly);
+        add(play);
         add(pause);
         add(addToShare);
 
         setVisible(true);
 
-       // MusicPlayer musicPlayer = new MusicPlayer("G:/flash mashin/dar ham/hayede/(3).MP3");
+        Song song = new Song("G:/flash mashin/dar ham/hayede/(3).MP3");
 
-     ////   paly.addActionListener(musicPlayer);
+        MusicThread musicThread = new MusicThread(song);
 
-      //  MusicPause musicPause = new MusicPause(musicPlayer.getUrl());
+        Thread thread = new Thread(musicThread);
 
-     ///   pause.addActionListener(musicPause);
+        PlayListener playListener = new PlayListener(thread);
+
+        play.addActionListener(playListener);
+
 
     }
 
