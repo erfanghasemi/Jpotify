@@ -16,6 +16,23 @@ public class Album {
         albumSongs = new ArrayList<>();
     }
 
+
+    public boolean equals(Album other){
+        boolean result;
+        if((other == null) || (getClass() != other.getClass())){
+            result = false;
+        }
+        else{
+            Album otherAlbum = (Album)other;
+            result = artistName.equals(other.artistName) &&  title.equals(other.title);
+        }
+
+        return result;
+    }
+
+
+
+
     public Image getArtWork() {
         return artWork;
     }

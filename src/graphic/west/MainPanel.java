@@ -27,4 +27,8 @@ public class MainPanel extends JPanel {
         mainFrame.add(this , BorderLayout.WEST);
         setVisible(true);
     }
+
+    public PlaylistPanel getPlaylistPanel() {
+        return playlistPanel;
+    }
 }

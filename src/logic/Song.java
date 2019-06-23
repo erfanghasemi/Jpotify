@@ -3,7 +3,8 @@ package logic;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Song implements Serializable {
+public class
+Song implements Serializable {
 
     private String address;
     private byte[] artWork;

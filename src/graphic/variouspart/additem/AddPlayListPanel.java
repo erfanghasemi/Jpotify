@@ -1,6 +1,11 @@
 package graphic.variouspart.additem;
 
+import graphic.MainFrame;
+import graphic.west.LibraryPanel;
+import graphic.west.MainPanel;
+import graphic.west.PlaylistPanel;
 import logic.Controller.libraryControlller.SubmitNewPlayListController;
+import logic.PlayList;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -41,18 +46,25 @@ public class AddPlayListPanel extends JPanel {
 
         addPlayList  = new JButton("Add");
 
+
         addPlayList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<String> addesSongs = new ArrayList<>();
+                ArrayList<String> addeSongs = new ArrayList<>();
 
-                addesSongs.add(firstSong.getText());
-                addesSongs.add(secondSong.getText());
-                addesSongs.add(thirdSong.getText());
-                addesSongs.add(forthSong.getText());
-                addesSongs.add(fifthSong.getText());
+                addeSongs.add(firstSong.getText());
+                addeSongs.add(secondSong.getText());
+                addeSongs.add(thirdSong.getText());
+                addeSongs.add(forthSong.getText());
+                addeSongs.add(fifthSong.getText());
 
-                new SubmitNewPlayListController( addesSongs , playListName.getText());
+               SubmitNewPlayListController submitNewPlayListController =  new SubmitNewPlayListController( addeSongs , playListName.getText());
+
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(addPlayList);
+                MainPanel mainPanel = myFrame.getWest();
+                PlaylistPanel playlistPanel = mainPanel.getPlaylistPanel();
+
+                submitNewPlayListController.refreshPlayListTitleBar("D:\\kia.bin" , playlistPanel.getPlayLists());
             }
         });
 
@@ -92,5 +104,7 @@ public class AddPlayListPanel extends JPanel {
 
         setVisible(true);
     }
+
+
 
 }

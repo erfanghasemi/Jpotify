@@ -3,19 +3,20 @@ package graphic.west;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Controller.libraryControlller.AddPlayListShowController;
+import logic.Controller.libraryControlller.SubmitNewPlayListController;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PlaylistPanel extends JPanel {
 
     TitledBorder titledBorder;
     JButton newPlayList;
     JList playLists;
-    String[] playListNames = {"Share" , "Favourite"};
 
     public PlaylistPanel() {
 
@@ -23,7 +24,11 @@ public class PlaylistPanel extends JPanel {
         setLayout(new BorderLayout());
 
         newPlayList = new JButton(" New Playlist");
-        playLists = new JList(playListNames);
+        playLists = new JList();
+
+        new SubmitNewPlayListController(null , "Favourite");
+        new SubmitNewPlayListController(null , "Share").refreshPlayListTitleBar("D:\\kia.bin" , playLists);
+
         JScrollPane scrollPane = new JScrollPane(playLists);
 
         add(newPlayList, BorderLayout.NORTH);
@@ -48,5 +53,9 @@ public class PlaylistPanel extends JPanel {
         setBorder(titledBorder);
 
         setVisible(true);
+    }
+
+    public JList getPlayLists() {
+        return playLists;
     }
 }

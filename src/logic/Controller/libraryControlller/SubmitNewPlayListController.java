@@ -3,6 +3,7 @@ package logic.Controller.libraryControlller;
 import logic.PlayList;
 import logic.Song;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class SubmitNewPlayListController {
     public ArrayList<Song> readObjecFromFile(String path , ArrayList<Song> songs) {
 
         try {
-            FileInputStream fileIn = new FileInputStream(FILE_PATH_SONGS);
+            FileInputStream fileIn = new FileInputStream(path);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             try {
                 while (true) {
@@ -48,13 +49,18 @@ public class SubmitNewPlayListController {
 
 
     public void findAddedSong(ArrayList<Song> songs , ArrayList<String> addedSongTitle , PlayList newPlayLIst ){
-        for (String songTitle: addedSongTitle) {
-            if(songTitle.equals("")){
-                continue;
-            }
-            for (Song addedSong : songs){
-                if(songTitle.equals(addedSong.getTitle())){
-                    newPlayLIst.getSongsOfPlayList().add(addedSong);
+        if(addedSongTitle == null){
+            return;
+        }
+        else {
+            for (String songTitle : addedSongTitle) {
+                if (songTitle.equals("")) {
+                    continue;
+                }
+                for (Song addedSong : songs) {
+                    if (songTitle.equals(addedSong.getTitle())) {
+                        newPlayLIst.getSongsOfPlayList().add(addedSong);
+                    }
                 }
             }
         }
@@ -98,6 +104,40 @@ public class SubmitNewPlayListController {
             reset();
         }
     }
+
+
+    public void refreshPlayListTitleBar(String path , JList list) {
+
+        ArrayList<String> playListTitles= new ArrayList<>();
+
+        try {
+            FileInputStream fileIn = new FileInputStream(path);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            try {
+                while (true) {
+                    PlayList playList = (PlayList) objectIn.readObject();
+                    if(!(playListTitles.contains(playList.getTitle())))
+                        playListTitles.add(playList.getTitle());
+                }
+            }
+            catch(EOFException e){
+                String[] playListTitlesArr = new String[playListTitles.size()];
+                playListTitlesArr = playListTitles.toArray(playListTitlesArr);
+                list.setListData(playListTitlesArr);
+
+                return;
+            }
+        }
+        catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+
 
 
 
