@@ -11,7 +11,6 @@ public class LabelOfPlayListPanel extends JPanel {
 
         setLayout(new FlowLayout(1 , 5 , 42));
 
-
         titleOfPlayList = new JLabel(title);
 
         titleOfPlayList.setFont(new Font("Serif", Font.BOLD, 20));

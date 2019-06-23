@@ -2,7 +2,11 @@ package graphic.variouspart.singleplaylist;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
-import logic.Album;
+
+import graphic.variouspart.singlesong.SingleSongPanel;
+import logic.Controller.libraryControlller.DeletePlayListController;
+import logic.Controller.libraryControlller.DeleteSongController;
+
 import logic.Controller.libraryControlller.SongsShowController;
 import logic.PlayList;
 
@@ -10,7 +14,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.management.PlatformLoggingMXBean;
+
+import static logic.Controller.libraryControlller.SubmitNewPlayListController.refreshPlayListTitleBar;
+
 
 public class OptionOfPlayListPanel extends JPanel {
 
@@ -36,7 +42,9 @@ public class OptionOfPlayListPanel extends JPanel {
         more.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new SongsShowController(mainPanel , playList);
             }
         });
 
@@ -45,7 +53,10 @@ public class OptionOfPlayListPanel extends JPanel {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new DeletePlayListController(playList , mainPanel);
+                refreshPlayListTitleBar("D:\\kia.bin" , myFrame.getWest().getPlaylistPanel().getPlayLists());
             }
         });
 

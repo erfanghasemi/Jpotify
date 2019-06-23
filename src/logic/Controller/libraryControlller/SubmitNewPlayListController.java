@@ -106,7 +106,7 @@ public class SubmitNewPlayListController {
     }
 
 
-    public void refreshPlayListTitleBar(String path , JList list) {
+    public static void refreshPlayListTitleBar(String path , JList list) {
 
         ArrayList<String> playListTitles= new ArrayList<>();
 

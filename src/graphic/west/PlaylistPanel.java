@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static logic.Controller.libraryControlller.SubmitNewPlayListController.refreshPlayListTitleBar;
+
 public class PlaylistPanel extends JPanel {
 
     TitledBorder titledBorder;
@@ -30,7 +32,8 @@ public class PlaylistPanel extends JPanel {
         playLists = new JList();
 
         new SubmitNewPlayListController(null , "Favourite");
-        new SubmitNewPlayListController(null , "Share").refreshPlayListTitleBar("D:\\kia.bin" , playLists);
+        new SubmitNewPlayListController(null , "Share");
+        refreshPlayListTitleBar("D:\\kia.bin" , playLists);
 
         JScrollPane scrollPane = new JScrollPane(playLists);
 

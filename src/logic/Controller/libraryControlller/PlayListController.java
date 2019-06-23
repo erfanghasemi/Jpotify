@@ -28,8 +28,6 @@ public class PlayListController {
 
         readObjecFromFile(FILE_PATH_PLAYLIST , playLists);
 
-        System.out.println(playLists.get(0).getSongsOfPlayList().get(0).getTitle());
-
         for (PlayList playList : playLists) {
             if(!(playList.getTitle().equals("Favourite") || playList.getTitle().equals("Share"))) {
                 SinglePlayListPanel singlePlayListPanel = new SinglePlayListPanel(playList.getTitle(), getImageFromByte(playList.getSongsOfPlayList().get(0).getArtWork()), playList);

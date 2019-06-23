@@ -5,6 +5,7 @@ import graphic.MainFrame;
 import graphic.center.MainPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
 import logic.Album;
+import logic.PlayList;
 import logic.Song;
 
 import javax.swing.*;
@@ -33,6 +34,23 @@ public class SongsShowController {
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 
         songs = album.getAlbumSongs();
+
+        for (Song song: songs) {
+            SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song);
+            view.add(singleSongPanel);
+        }
+
+        view.repaint();
+        view.validate();
+        view.setVisible(true);
+    }
+
+
+    public SongsShowController(MainPanel view , PlayList playList) {
+        view.removeAll();
+        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
+
+        songs = playList.getSongsOfPlayList();
 
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song);
