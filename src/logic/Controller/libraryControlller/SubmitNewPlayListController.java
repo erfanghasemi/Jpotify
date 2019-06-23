@@ -132,9 +132,6 @@ public class SubmitNewPlayListController {
             e.printStackTrace();
         }
 
-
-
-
     }
 
 

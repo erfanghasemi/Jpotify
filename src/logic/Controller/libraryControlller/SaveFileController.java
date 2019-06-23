@@ -19,7 +19,7 @@ public class SaveFileController  implements  ActionListener {
 	private static final String FILE_PATH = "D:\\avi.bin";
 
     public SaveFileController() {
-        this.fileChooserFrame = new AddSongPanel(this);
+        fileChooserFrame = new AddSongPanel(this ,"Please Enter Your File Path: ");
 
     }
 

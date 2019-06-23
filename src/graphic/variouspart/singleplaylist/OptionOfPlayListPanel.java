@@ -3,10 +3,12 @@ package graphic.variouspart.singleplaylist;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 
+import graphic.variouspart.additem.AddSongPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
 import logic.Controller.libraryControlller.DeletePlayListController;
 import logic.Controller.libraryControlller.DeleteSongController;
 
+import logic.Controller.libraryControlller.RenamePlayListController;
 import logic.Controller.libraryControlller.SongsShowController;
 import logic.PlayList;
 
@@ -65,7 +67,8 @@ public class OptionOfPlayListPanel extends JPanel {
         rename.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                new RenamePlayListController(playList , myFrame);
             }
         });
 
