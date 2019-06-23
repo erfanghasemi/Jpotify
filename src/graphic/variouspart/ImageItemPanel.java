@@ -1,15 +1,15 @@
-package graphic.variouspart.singlesong;
+package graphic.variouspart;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.jar.JarEntry;
 
-public class ImageOfSongPanel extends JPanel {
+public class ImageItemPanel extends JPanel {
 
     JLabel artWorkLabel;
     ImageIcon imageIcon;
 
-    public ImageOfSongPanel(Image artWork) {
+    public ImageItemPanel(Image artWork) {
 
 
         artWorkLabel = new JLabel();

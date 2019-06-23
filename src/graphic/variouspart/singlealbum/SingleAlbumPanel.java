@@ -1,5 +1,6 @@
 package graphic.variouspart.singlealbum;
 
+import graphic.variouspart.ImageItemPanel;
 import logic.Album;
 
 import javax.swing.*;
@@ -7,8 +8,8 @@ import java.awt.*;
 
 public class SingleAlbumPanel extends JPanel {
 
-    AlbumImagePanel albumImagePanel;
-    SongsOfAlbumPanel songsOfAlbumPanel;
+    ImageItemPanel albumImagePanel;
+    OptionOfAlbumPanel songsOfAlbumPanel;
     LabelOfAlbumPanel labelOfAlbumPanel;
     private Album album;
 
@@ -20,12 +21,10 @@ public class SingleAlbumPanel extends JPanel {
         setMinimumSize(new Dimension(620 , 120));
         setMaximumSize(new Dimension(1300, 120));
 
-        setBackground(Color.black);
-
         setLayout(new BorderLayout());
 
-        albumImagePanel = new AlbumImagePanel(artWork);
-        songsOfAlbumPanel = new SongsOfAlbumPanel(album);
+        albumImagePanel = new ImageItemPanel(artWork);
+        songsOfAlbumPanel = new OptionOfAlbumPanel(album);
         labelOfAlbumPanel = new LabelOfAlbumPanel(artist , title);
 
         add(albumImagePanel , BorderLayout.WEST);

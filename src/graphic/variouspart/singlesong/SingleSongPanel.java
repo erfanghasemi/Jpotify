@@ -1,16 +1,16 @@
 package graphic.variouspart.singlesong;
 
+import graphic.variouspart.ImageItemPanel;
 import logic.Song;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class SingleSongPanel extends JPanel {
 
     LabelOfSongPanel labelOfSongPanel;
-    ImageOfSongPanel imageOfSongPanel;
-    StatusOfSongPanel statusOfSongPanel;
+    ImageItemPanel imageOfSongPanel;
+    OptionOfSongPanel statusOfSongPanel;
     private  Song song;
 
     public SingleSongPanel(String artistName , String albumName , String titleName , Image artWork , Song song) {
@@ -25,8 +25,8 @@ public class SingleSongPanel extends JPanel {
         setBackground(Color.LIGHT_GRAY );
 
         labelOfSongPanel = new LabelOfSongPanel(artistName , albumName , titleName);
-        imageOfSongPanel = new ImageOfSongPanel(artWork);
-        statusOfSongPanel = new StatusOfSongPanel(song);
+        imageOfSongPanel = new ImageItemPanel(artWork);
+        statusOfSongPanel = new OptionOfSongPanel(song);
 
 
         add(imageOfSongPanel , BorderLayout.WEST);

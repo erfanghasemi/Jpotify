@@ -1,41 +1,44 @@
-package graphic.variouspart.singlealbum;
+package graphic.variouspart.singlesong;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
-import logic.Album;
-import logic.Controller.libraryControlller.SongsShowController;
+import logic.Controller.libraryControlller.DeleteSongController;
+import logic.Song;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SongsOfAlbumPanel extends JPanel {
+public class OptionOfSongPanel extends JPanel {
 
-    JButton more , delete;
+    JButton delete , play;
 
-    public SongsOfAlbumPanel(Album album) {
+    public OptionOfSongPanel(Song song) {
 
         setLayout(new FlowLayout(1 , 25, 42));
 
-        more = new JButton("More");
+
+
         delete = new JButton("Delete");
+        play = new JButton("Play");
 
-        more.setPreferredSize(new Dimension(70 , 30));
-        delete.setPreferredSize(new Dimension(73 , 30));
+        delete.setPreferredSize(new Dimension(70 , 30));
+        play.setPreferredSize(new Dimension(60 , 30));
 
-        add(more);
 
-        more.addActionListener(new ActionListener() {
+        add(delete);
+        delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new SongsShowController(mainPanel , album);
-
+                new DeleteSongController( song , mainPanel);
             }
         });
-        add(delete);
+
+        add(play);
+
 
         setVisible(true);
     }
