@@ -9,9 +9,9 @@ public class MainPanel extends JPanel {
 
         setPreferredSize(new Dimension(150 , 100));
         setLayout(new BoxLayout(this , BoxLayout.LINE_AXIS));
-        setBackground(Color.YELLOW);
+        setBackground(Color.white);
 
-        PlayListOption playListOption = new PlayListOption();
+        SongInfoPanel playListOption = new SongInfoPanel();
         PlayerBar playerBar = new PlayerBar();
         ValumeBar valumeBar = new ValumeBar();
 

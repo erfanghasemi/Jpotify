@@ -1,5 +1,7 @@
 package graphic.variouspart.singlesong;
 
+import MusicHandler.MusicThread;
+import MusicHandler.PlayListener;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Controller.libraryControlller.DeleteSongController;
@@ -34,10 +36,15 @@ public class OptionOfSongPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
                 new DeleteSongController( song , mainPanel);
+
             }
         });
 
         add(play);
+        MusicThread musicThread = new MusicThread(song);
+        Thread thread = new Thread(musicThread);
+        PlayListener playListener = new PlayListener(thread, musicThread);
+        play.addActionListener(playListener);
 
 
         setVisible(true);

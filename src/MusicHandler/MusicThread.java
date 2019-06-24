@@ -16,7 +16,6 @@ public class MusicThread implements Runnable {
     private int frame;
 
     public MusicThread(Song song) {
-
         this.song = song;
     }
 
