@@ -30,17 +30,17 @@ public class SongsShowController {
 
 
     public SongsShowController(MainPanel view , Album album) {
-        System.out.println("salam1");
+
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
-        System.out.println("salam2");
+
         songs = album.getAlbumSongs();
-        System.out.println("salam3");
+
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song , album);
             view.add(singleSongPanel);
         }
-        System.out.println("salam4");
+
         view.repaint();
         view.validate();
         view.setVisible(true);

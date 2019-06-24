@@ -31,8 +31,8 @@ public class PlaylistPanel extends JPanel {
 
         playLists = new JList();
 
-        new SubmitNewPlayListController(null , "Favourite");
-        new SubmitNewPlayListController(null , "Share");
+        new SubmitNewPlayListController( "Favourite");
+        new SubmitNewPlayListController( "Share");
         refreshPlayListTitleBar("D:\\kia.bin" , playLists);
 
         JScrollPane scrollPane = new JScrollPane(playLists);

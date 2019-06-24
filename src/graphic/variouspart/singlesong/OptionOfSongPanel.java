@@ -6,6 +6,7 @@ import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Album;
 import logic.Controller.libraryControlller.DeleteSongController;
+import logic.Controller.libraryControlller.DeleteSongPlayListController;
 import logic.PlayList;
 import logic.Song;
 
@@ -110,8 +111,7 @@ public class OptionOfSongPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new DeleteSongController( song , mainPanel);
-
+                new DeleteSongPlayListController(myFrame , mainPanel ,playList, song);
             }
         });
 

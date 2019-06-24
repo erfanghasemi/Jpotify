@@ -20,9 +20,20 @@ public class SubmitNewPlayListController {
         PlayList newPlayList = new PlayList(title);
         findAddedSong(songs , addedSongTitle , newPlayList);
         writeObjectToFile(newPlayList);
-
     }
 
+    public SubmitNewPlayListController(String title) {
+        if(new File(FILE_PATH_PLAYLIST).exists()) {
+            if (checkOldPlayList(FILE_PATH_PLAYLIST, title)) {
+                PlayList newPlayList = new PlayList(title);
+                writeObjectToFile(newPlayList);
+            }
+        }
+        else{
+            PlayList newPlayList = new PlayList(title);
+            writeObjectToFile(newPlayList);
+        }
+    }
 
 
     public ArrayList<Song> readObjecFromFile(String path , ArrayList<Song> songs) {
@@ -135,10 +146,42 @@ public class SubmitNewPlayListController {
     }
 
 
+    public ArrayList<PlayList> readPlayListFromFile(String path, ArrayList<PlayList> playLists) {
+
+        try {
+            FileInputStream fileIn = new FileInputStream(path);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            try {
+                while (true) {
+                    PlayList playList = (PlayList) objectIn.readObject();
+                    playLists.add(playList);
+                }
+            } catch (EOFException e) {
+                return playLists;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return playLists;
+    }
 
 
 
+    public boolean checkOldPlayList(String path , String playListName){
 
+        ArrayList<PlayList> playLists = new ArrayList<>();
+
+        readPlayListFromFile(path , playLists);
+
+        for (PlayList playList: playLists) {
+            if(playList.getTitle().equals(playListName)){
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 
 }
