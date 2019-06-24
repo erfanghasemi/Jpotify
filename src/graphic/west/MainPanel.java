@@ -31,4 +31,9 @@ public class MainPanel extends JPanel {
     public PlaylistPanel getPlaylistPanel() {
         return playlistPanel;
     }
+
+    public ImagePanel getImagePanel() {
+        return imagePanel;
+    }
+
 }

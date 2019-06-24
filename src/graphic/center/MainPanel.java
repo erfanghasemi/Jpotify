@@ -11,7 +11,8 @@ public class MainPanel extends JPanel {
 
     public MainPanel(JFrame mainFrame) {
 
-        setBackground(Color.LIGHT_GRAY);
+        setBackground(Color.WHITE);
+        setBorder(null);
         JScrollPane scrollPane = new JScrollPane(this);
         mainFrame.add( scrollPane, BorderLayout.CENTER);
         setVisible(true);

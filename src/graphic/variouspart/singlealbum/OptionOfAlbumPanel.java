@@ -20,6 +20,8 @@ public class OptionOfAlbumPanel extends JPanel {
     public OptionOfAlbumPanel(Album album) {
 
         setLayout(new FlowLayout(1 , 25, 42));
+        setBackground(Color.white);
+
 
         more = new JButton("More");
         delete = new JButton("Delete");

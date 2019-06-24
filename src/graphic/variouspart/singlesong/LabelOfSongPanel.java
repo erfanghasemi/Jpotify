@@ -10,6 +10,8 @@ public class LabelOfSongPanel extends JPanel {
     public LabelOfSongPanel(String artistName , String albumName , String titleName) {
 
         setLayout(new GridLayout(3 , 1 , 5 , 5));
+        setBackground(Color.white);
+
 
         titleLabel = new JLabel(titleName);
         albumLabel = new JLabel(albumName);

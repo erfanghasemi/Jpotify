@@ -7,6 +7,7 @@ import graphic.center.MainPanel;
 import logic.Album;
 import logic.Controller.libraryControlller.DeleteSongController;
 import logic.Controller.libraryControlller.DeleteSongPlayListController;
+import logic.Controller.libraryControlller.PlaySongController;
 import logic.PlayList;
 import logic.Song;
 
@@ -22,6 +23,7 @@ public class OptionOfSongPanel extends JPanel {
     public OptionOfSongPanel(Song song) {
 
         setLayout(new FlowLayout(1 , 25, 42));
+        setBackground(Color.white);
 
         delete = new JButton("Delete");
         play = new JButton("Play");
@@ -46,7 +48,8 @@ public class OptionOfSongPanel extends JPanel {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println();
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                new PlaySongController(myFrame ,song);
             }
         });
 
@@ -60,6 +63,7 @@ public class OptionOfSongPanel extends JPanel {
     public OptionOfSongPanel(Song song , Album album) {
 
         setLayout(new FlowLayout(1 , 25, 42));
+        setBackground(Color.white);
 
         delete = new JButton("Delete");
         play = new JButton("Play");
@@ -83,7 +87,8 @@ public class OptionOfSongPanel extends JPanel {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println();
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                new PlaySongController(myFrame ,song);
             }
         });
 
@@ -97,6 +102,7 @@ public class OptionOfSongPanel extends JPanel {
     public OptionOfSongPanel(Song song , PlayList playList) {
 
         setLayout(new FlowLayout(1 , 25, 42));
+        setBackground(Color.white);
 
         delete = new JButton("Delete");
         play = new JButton("Play");
@@ -119,19 +125,13 @@ public class OptionOfSongPanel extends JPanel {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println();
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                new PlaySongController(myFrame ,song);
             }
         });
 
         setVisible(true);
     }
-
-
-
-
-
-
-
 
 
 }

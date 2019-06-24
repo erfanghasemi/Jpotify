@@ -49,11 +49,6 @@ public class MusicThread implements Runnable {
             }
         }while (seekTo);
 
-
-
-
-
-
     }
 
     public void mp3Pause(){

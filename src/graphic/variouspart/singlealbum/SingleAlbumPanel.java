@@ -22,6 +22,7 @@ public class SingleAlbumPanel extends JPanel {
         setMaximumSize(new Dimension(1300, 120));
 
         setLayout(new BorderLayout());
+        setBackground(Color.white);
 
         albumImagePanel = new ImageItemPanel(artWork);
         songsOfAlbumPanel = new OptionOfAlbumPanel(album);

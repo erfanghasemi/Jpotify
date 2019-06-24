@@ -6,7 +6,7 @@ import graphic.west.PlaylistPanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerBar extends JPanel {
+public class PlayerBarPanel extends JPanel {
 
     JPanel optionOfPlayPanel , playSliderPanel;
     JSlider bar;
@@ -15,7 +15,7 @@ public class PlayerBar extends JPanel {
     JButton play , addToShare , addToFavourite , pause , nextSong , previousSong;
 
 
-    public PlayerBar() {
+    public PlayerBarPanel() {
 
         setPreferredSize(new Dimension(250, 250));
         setBackground(Color.white);
@@ -51,6 +51,7 @@ public class PlayerBar extends JPanel {
         nextSong = new JButton("Next");
         previousSong = new JButton("Pervious");
 
+
         optionOfPlayPanel.add(addToFavourite);
         optionOfPlayPanel.add(previousSong);
         optionOfPlayPanel.add(pause);
@@ -63,5 +64,29 @@ public class PlayerBar extends JPanel {
         add(optionOfPlayPanel);
 
         setVisible(true);
+    }
+
+    public JButton getPlay() {
+        return play;
+    }
+
+    public JButton getAddToShare() {
+        return addToShare;
+    }
+
+    public JButton getAddToFavourite() {
+        return addToFavourite;
+    }
+
+    public JButton getPause() {
+        return pause;
+    }
+
+    public JButton getNextSong() {
+        return nextSong;
+    }
+
+    public JButton getPreviousSong() {
+        return previousSong;
     }
 }

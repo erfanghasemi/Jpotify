@@ -23,7 +23,6 @@ public class SongsShowController {
     public SongsShowController() {
 
         songs = new ArrayList<>();
-
         songs = readObjecFromFile(FILE_PATH , songs);
 
     }
@@ -33,6 +32,7 @@ public class SongsShowController {
 
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
+        view.setBackground(Color.white);
 
         songs = album.getAlbumSongs();
 
@@ -50,6 +50,8 @@ public class SongsShowController {
     public SongsShowController(MainPanel view , PlayList playList) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
+        view.setBackground(Color.white);
+
 
         songs = playList.getSongsOfPlayList();
 
@@ -67,6 +69,8 @@ public class SongsShowController {
     public SongsShowController(MainPanel view) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
+        view.setBackground(Color.white);
+
 
         songs = new ArrayList<>();
 
@@ -107,12 +111,12 @@ public class SongsShowController {
 
 
 
-    public Image getImageFromByte(byte[] imageBytes){
-        byte[] byteArray = imageBytes;
-        ImageIcon imageIcon = new ImageIcon(byteArray);
-        Image image = imageIcon.getImage();
-        return image;
-    }
+        public Image getImageFromByte(byte[] imageBytes){
+            byte[] byteArray = imageBytes;
+            ImageIcon imageIcon = new ImageIcon(byteArray);
+            Image image = imageIcon.getImage();
+            return image;
+        }
 
 
 }

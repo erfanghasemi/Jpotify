@@ -10,6 +10,7 @@ public class LabelOfPlayListPanel extends JPanel {
     public LabelOfPlayListPanel(String title) {
 
         setLayout(new FlowLayout(1 , 5 , 42));
+        setBackground(Color.white);
 
         titleOfPlayList = new JLabel(title);
 

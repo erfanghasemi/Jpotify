@@ -10,7 +10,7 @@ public class LabelOfAlbumPanel extends JPanel {
     public LabelOfAlbumPanel(String artistName , String albumName) {
 
         setLayout(new GridLayout(2 , 1 , 5 , 5));
-
+        setBackground(Color.white);
 
         titleLabel = new JLabel(albumName);
         artistLabel = new JLabel(artistName);

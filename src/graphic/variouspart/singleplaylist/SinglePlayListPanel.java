@@ -23,7 +23,7 @@ public class SinglePlayListPanel extends JPanel {
         setMaximumSize(new Dimension(1300, 120));
 
         setLayout(new BorderLayout());
-        setBackground(Color.LIGHT_GRAY );
+        setBackground(Color.white );
 
         labelOfPlayListPanel = new LabelOfPlayListPanel(title);
         optionOfPlayListPanel = new OptionOfPlayListPanel(playList);

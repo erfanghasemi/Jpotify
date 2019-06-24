@@ -15,8 +15,6 @@ public class MainFrame extends JFrame {
     private Image iconFrame;
 
 
-
-
     public MainFrame(){
 
         east = new graphic.east.MainPanel(this);

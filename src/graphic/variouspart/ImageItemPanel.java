@@ -11,6 +11,7 @@ public class ImageItemPanel extends JPanel {
 
     public ImageItemPanel(Image artWork) {
 
+        setBackground(Color.white);
 
         artWorkLabel = new JLabel();
         Image image = artWork;

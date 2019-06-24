@@ -4,14 +4,14 @@ import javax.swing.*;
 import javax.swing.JSlider;
 import java.awt.*;
 
-public class ValumeBar extends JPanel {
+public class ValumeBarPanel extends JPanel {
 
     JPanel topPanel , bottompanel;
     JSlider valumeBar;
     JLabel minimumValue, maximumValue;
     JButton mute;
 
-    public ValumeBar() {
+    public ValumeBarPanel() {
 
         setPreferredSize(new Dimension(120 , 250));
         setMaximumSize(new Dimension(60 , 250));
@@ -29,8 +29,8 @@ public class ValumeBar extends JPanel {
         bottompanel.setBackground(Color.WHITE);
 
         valumeBar = new JSlider(0 , 100 , 50);
-        maximumValue = new JLabel("0");
-        minimumValue = new JLabel("100");
+        maximumValue = new JLabel("100");
+        minimumValue = new JLabel("0");
         mute = new JButton("Mute");
 
         valumeBar.setMinimumSize(new Dimension(90 ,25));

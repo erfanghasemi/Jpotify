@@ -25,6 +25,7 @@ public class OptionOfPlayListPanel extends JPanel {
     public OptionOfPlayListPanel(PlayList playList) {
 
         setLayout(new GridLayout(2 , 2 , 5 , 5));
+        setBackground(Color.white);
 
         more = new JButton("More");
         delete = new JButton("Delete");

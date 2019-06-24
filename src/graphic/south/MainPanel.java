@@ -5,17 +5,22 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 
+    SongInfoPanel songInfoPanel;
+    PlayerBarPanel playerBar;
+    ValumeBarPanel valumeBar;
     public MainPanel(JFrame mainFrame) {
+
+
 
         setPreferredSize(new Dimension(150 , 100));
         setLayout(new BoxLayout(this , BoxLayout.LINE_AXIS));
         setBackground(Color.white);
 
-        SongInfoPanel playListOption = new SongInfoPanel();
-        PlayerBar playerBar = new PlayerBar();
-        ValumeBar valumeBar = new ValumeBar();
+        songInfoPanel = new SongInfoPanel();
+        playerBar = new PlayerBarPanel();
+        valumeBar = new ValumeBarPanel();
 
-        add(playListOption);
+        add(songInfoPanel);
         add(playerBar);
         add(valumeBar);
 
@@ -23,4 +28,14 @@ public class MainPanel extends JPanel {
         mainFrame.add(this , BorderLayout.SOUTH);
         setVisible(true);
     }
+
+    public SongInfoPanel getSongInfoPanel() {
+        return songInfoPanel;
+    }
+
+    public PlayerBarPanel getPlayerBar() {
+        return playerBar;
+    }
+
+
 }
