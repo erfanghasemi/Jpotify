@@ -89,6 +89,10 @@ public class SingleSongPanel extends JPanel {
         setVisible(true);
     }
 
+    public OptionOfSongPanel getStatusOfSongPanel() {
+        return statusOfSongPanel;
+    }
+
     public Song getSong() {
         return song;
     }

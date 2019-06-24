@@ -88,7 +88,7 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
-                new PlaySongController(myFrame ,song);
+                new PlaySongController(myFrame ,song ,album);
             }
         });
 
@@ -126,7 +126,7 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
-                new PlaySongController(myFrame ,song);
+                new PlaySongController(myFrame ,song ,playList);
             }
         });
 
@@ -134,4 +134,7 @@ public class OptionOfSongPanel extends JPanel {
     }
 
 
+    public JButton getPlay() {
+        return play;
+    }
 }

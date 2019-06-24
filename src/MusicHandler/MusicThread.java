@@ -14,8 +14,11 @@ public class MusicThread implements Runnable {
     private AdvancedPlayer player;
     private boolean seekTo = false;
     private int frame;
+    Boolean exit;
 
     public MusicThread(Song song) {
+
+        exit = false;
         this.song = song;
     }
 
@@ -31,7 +34,7 @@ public class MusicThread implements Runnable {
                 if (seekTo)
                     player.play(frame, frame + 1);
 
-                while (player.play(1)){
+                while (player.play(1) && !(exit)){
 
 //                    System.out.println("music is playing");
 
@@ -53,6 +56,10 @@ public class MusicThread implements Runnable {
 
     public void mp3Pause(){
         this.isPaused = true;
+    }
+
+    public void exitThread(){
+        exit  = true;
     }
 
     public void mp3Resume(){
