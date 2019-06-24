@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ShareListener implements ActionListener {
+public class FavouriteListener implements ActionListener {
 
     private static final String FILE_PATH_PLAYLIST = "D:\\kia.bin";
     private static final String FILE_PATH = "D:\\avi.bin";
@@ -17,7 +17,7 @@ public class ShareListener implements ActionListener {
     private ArrayList<Song> songs;
     private Song addedSong;
 
-    public ShareListener(Song song) {
+    public FavouriteListener(Song song) {
 
         addedSong = song;
         playLists = new ArrayList<>();
@@ -28,17 +28,17 @@ public class ShareListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
 
-        PlayList sharePlayList = null;
-        Song shareSong = null;
+        PlayList favouritePlayList = null;
+        Song favouriteSong = null;
 
         readObjecFromFile(FILE_PATH_PLAYLIST , playLists);
-        sharePlayList = findShare(playLists);
+        favouritePlayList = findShare(playLists);
 
         songs = readSongFromFile(FILE_PATH , songs);
-        shareSong = searchSong(songs , addedSong.getTitle());
+        favouriteSong = searchSong(songs , addedSong.getTitle());
 
 
-        sharePlayList.getSongsOfPlayList().add(shareSong);
+        favouritePlayList.getSongsOfPlayList().add(favouriteSong);
 
         try {
             FileOutputStream fileOut = new FileOutputStream(FILE_PATH_PLAYLIST);
@@ -79,7 +79,7 @@ public class ShareListener implements ActionListener {
 
     public PlayList findShare(ArrayList<PlayList> playLists){
         for ( PlayList playList : playLists) {
-            if(playList.getTitle().equals("Share")){
+            if(playList.getTitle().equals("Favourite")){
                 return playList;
             }
         }

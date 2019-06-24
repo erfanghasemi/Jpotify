@@ -1,9 +1,6 @@
 package logic.Controller.libraryControlller;
 
-import MusicHandler.MusicThread;
-import MusicHandler.PauseListener;
-import MusicHandler.PlayListener;
-import MusicHandler.ShareListener;
+import MusicHandler.*;
 import graphic.MainFrame;
 import graphic.south.SongInfoPanel;
 import graphic.west.ImagePanel;
@@ -25,7 +22,7 @@ public class PlaySongController {
         myFrame.getSouth().getPlayerBar().getPlay().addActionListener(new PlayListener(thread , musicThread));
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
         myFrame.getSouth().getPlayerBar().getPause().addActionListener(new PauseListener(musicThread));
-//        myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener();
+        myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
         myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
 
     }
