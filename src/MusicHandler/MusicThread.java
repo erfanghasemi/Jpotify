@@ -5,7 +5,6 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 import logic.Song;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MusicThread implements Runnable {
@@ -13,6 +12,8 @@ public class MusicThread implements Runnable {
     private boolean isPaused = false;
     private Song song;
     private AdvancedPlayer player;
+    private boolean seekTo = false;
+    private int frame;
 
     public MusicThread(Song song) {
 
@@ -21,27 +22,37 @@ public class MusicThread implements Runnable {
 
     public void run() {
 
-        System.out.println("thread is running");
+        do {
 
-        try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())) {
+            System.out.println("thread is running");
+            try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())) {
 
-            player = new AdvancedPlayer(fileInputStream);
+                player = new AdvancedPlayer(fileInputStream);
 
-            while (player.play(1)){
+                if (seekTo)
+                    player.play(frame, frame + 1);
 
-                System.out.println("music is playing");
+                while (player.play(1)){
 
-                if (isPaused){
-                    System.out.println("music stopped");
-                    synchronized (player){
-                        player.wait();
+                    System.out.println("music is playing");
+
+                    if (isPaused){
+                        System.out.println("music stopped");
+                        synchronized (player){
+                            player.wait();
+                        }
                     }
                 }
-            }
+                System.out.println("thread is running out of loop");
 
-        } catch (IOException | JavaLayerException | InterruptedException e) {
-            e.printStackTrace();
-        }
+            } catch (IOException | JavaLayerException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }while (seekTo);
+
+
+
+
 
 
     }
@@ -58,13 +69,10 @@ public class MusicThread implements Runnable {
         }
     }
 
-    public void seekTo(int frame) throws JavaLayerException, FileNotFoundException {
-        synchronized (player){
-            player.close();
-            player = new AdvancedPlayer(new FileInputStream(this.song.getAddress()));
-            player.play(frame, frame + 1);
-            this.isPaused = false;
-        }
+    public void seekTo(int frame) throws JavaLayerException, IOException {
+        this.frame = frame;
+        seekTo = true;
+        player.close();
     }
 
 }

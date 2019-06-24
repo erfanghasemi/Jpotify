@@ -4,6 +4,7 @@ package graphic.south;
 import MusicHandler.MusicThread;
 import MusicHandler.PauseListener;
 import MusicHandler.PlayListener;
+import MusicHandler.TempListener;
 import logic.Song;
 
 import javax.swing.*;
@@ -46,6 +47,10 @@ public class SouthOfPlayBar extends JPanel {
         PauseListener pauseListener = new PauseListener(musicThread);
 
         pause.addActionListener(pauseListener);
+
+        TempListener tempListener = new TempListener(musicThread);
+
+        addToFavourite.addActionListener(tempListener);
 
 
     }
