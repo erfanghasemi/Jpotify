@@ -10,6 +10,7 @@ public class ImagePanel extends JPanel {
 
     public ImagePanel() {
 
+        setBackground(Color.WHITE);
 
         artWorkLabel = new JLabel();
         ImageIcon imageIcon = new ImageIcon("C:\\Users\\01RAYANEH\\Desktop\\Taylor_Swift_-_1989.png");

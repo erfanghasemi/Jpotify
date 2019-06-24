@@ -4,7 +4,9 @@ import MusicHandler.MusicThread;
 import MusicHandler.PlayListener;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
+import logic.Album;
 import logic.Controller.libraryControlller.DeleteSongController;
+import logic.PlayList;
 import logic.Song;
 
 import javax.swing.*;
@@ -20,7 +22,80 @@ public class OptionOfSongPanel extends JPanel {
 
         setLayout(new FlowLayout(1 , 25, 42));
 
+        delete = new JButton("Delete");
+        play = new JButton("Play");
 
+        delete.setPreferredSize(new Dimension(70 , 30));
+        play.setPreferredSize(new Dimension(60 , 30));
+
+
+        add(delete);
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new DeleteSongController( song , mainPanel);
+
+            }
+        });
+
+
+        add(play);
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println();
+            }
+        });
+
+        setVisible(true);
+    }
+
+
+
+
+
+    public OptionOfSongPanel(Song song , Album album) {
+
+        setLayout(new FlowLayout(1 , 25, 42));
+
+        delete = new JButton("Delete");
+        play = new JButton("Play");
+
+        delete.setPreferredSize(new Dimension(70 , 30));
+        play.setPreferredSize(new Dimension(60 , 30));
+
+
+        add(delete);
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new DeleteSongController( song , album ,  mainPanel);
+
+            }
+        });
+
+        add(play);
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println();
+            }
+        });
+
+        setVisible(true);
+    }
+
+
+
+
+
+    public OptionOfSongPanel(Song song , PlayList playList) {
+
+        setLayout(new FlowLayout(1 , 25, 42));
 
         delete = new JButton("Delete");
         play = new JButton("Play");
@@ -41,12 +116,22 @@ public class OptionOfSongPanel extends JPanel {
         });
 
         add(play);
-        MusicThread musicThread = new MusicThread(song);
-        Thread thread = new Thread(musicThread);
-        PlayListener playListener = new PlayListener(thread, musicThread);
-        play.addActionListener(playListener);
-
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println();
+            }
+        });
 
         setVisible(true);
     }
+
+
+
+
+
+
+
+
+
 }

@@ -33,7 +33,7 @@ public class ValumeBar extends JPanel {
         minimumValue = new JLabel("100");
         mute = new JButton("Mute");
 
-        valumeBar.setMinimumSize(new Dimension(90 ,30));
+        valumeBar.setMinimumSize(new Dimension(90 ,25));
         mute.setMaximumSize(new Dimension(30 , 25));
 
         valumeBar.setEnabled(true);

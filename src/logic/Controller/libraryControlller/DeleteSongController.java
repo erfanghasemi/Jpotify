@@ -1,6 +1,7 @@
 package logic.Controller.libraryControlller;
 
 import graphic.center.MainPanel;
+import logic.Album;
 import logic.Song;
 
 import java.io.*;
@@ -31,6 +32,29 @@ public class DeleteSongController {
 
         new SongsShowController(view);
     }
+
+    public DeleteSongController(Song song , Album album , MainPanel view) {
+
+        songs = new ArrayList<>();
+
+        readObjecFromFile(FILE_PATH , songs);
+
+        removeSong(song , songs);
+        album.getAlbumSongs().remove(song);
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FILE_PATH);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            for (Song music: songs) {
+                objectOut.writeObject(music);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        new SongsShowController(view,album);
+    }
+
 
     public void removeSong(Song targetSong , ArrayList<Song> songs){
         int removeIndex = 0;
