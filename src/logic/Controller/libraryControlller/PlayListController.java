@@ -33,6 +33,12 @@ public class PlayListController {
                 SinglePlayListPanel singlePlayListPanel = new SinglePlayListPanel(playList.getTitle(), getImageFromByte(playList.getSongsOfPlayList().get(0).getArtWork()), playList);
                 view.add(singlePlayListPanel);
             }
+
+            System.out.println(playList.getTitle());
+            for (Song song:playList.getSongsOfPlayList()) {
+
+                System.out.println(song.getTitle());
+            }
         }
 
         view.repaint();

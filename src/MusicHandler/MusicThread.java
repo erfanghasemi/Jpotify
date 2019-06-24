@@ -23,7 +23,7 @@ public class MusicThread implements Runnable {
 
         do {
 
-            System.out.println("thread is running");
+//            System.out.println("thread is running");
             try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())) {
 
                 player = new AdvancedPlayer(fileInputStream);
@@ -33,16 +33,16 @@ public class MusicThread implements Runnable {
 
                 while (player.play(1)){
 
-                    System.out.println("music is playing");
+//                    System.out.println("music is playing");
 
                     if (isPaused){
-                        System.out.println("music stopped");
+//                        System.out.println("music stopped");
                         synchronized (player){
                             player.wait();
                         }
                     }
                 }
-                System.out.println("thread is running out of loop");
+//                System.out.println("thread is running out of loop");
 
             } catch (IOException | JavaLayerException | InterruptedException e) {
                 e.printStackTrace();

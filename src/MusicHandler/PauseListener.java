@@ -11,6 +11,7 @@ public class PauseListener implements ActionListener {
         this.musicThread = musicThread;
     }
 
+    @Override
     public void actionPerformed (ActionEvent event){
         musicThread.mp3Pause();
     }
