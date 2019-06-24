@@ -52,8 +52,6 @@ public class DeleteSongPlayListController {
     }
 
 
-
-
     public ArrayList<PlayList> readPlayListFromFile(String path, ArrayList<PlayList> playLists) {
 
         try {
