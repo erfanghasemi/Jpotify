@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class
@@ -14,6 +13,7 @@ Song implements Serializable {
     private long lengthOfSong;
     // this variable shows true if the song is playing
     private boolean isPlaying = false;
+    private int frames;
 
 
     public Song(String address) {
@@ -66,6 +66,14 @@ Song implements Serializable {
 
     public boolean getPlaying(){
         return this.isPlaying;
+    }
+
+    public void setFrames(int frames){
+        this.frames = frames;
+    }
+
+    public int getFrames(){
+        return frames;
     }
 
 }

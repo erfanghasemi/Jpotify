@@ -1,9 +1,5 @@
 package graphic.south;
 
-import graphic.variouspart.singleplaylist.OptionOfPlayListPanel;
-import graphic.west.PlaylistPanel;
-
-import javax.crypto.spec.OAEPParameterSpec;
 import javax.swing.*;
 import java.awt.*;
 
@@ -99,5 +95,9 @@ public class PlayerBarPanel extends JPanel {
 
     public JButton getRepeat() {
         return repeat;
+    }
+
+    public JSlider getBar(){
+        return bar;
     }
 }

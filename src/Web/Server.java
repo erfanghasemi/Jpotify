@@ -1,6 +1,7 @@
 package Web;
 
 import MusicHandler.MusicThread;
+import logic.Song;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -25,10 +26,13 @@ public class Server implements Runnable{
             in.read(bytes);
             System.out.println(bytes);
 
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\Mahdi\\Desktop\\New folder (2)");
+            File file = new File("C:\\Users\\Mahdi\\Desktop\\New folder (2)");
+            FileOutputStream fos = new FileOutputStream(file);
             fos.write(bytes);
 
-            MusicThread musicThread = new MusicThread(new FileInputStream("C:\\Users\\Mahdi\\Desktop\\New folder (2)"));
+            Song song = new Song(file.getPath());
+
+            MusicThread musicThread = new MusicThread(song);
             Thread thread = new Thread(musicThread);
             thread.start();
         } catch (IOException e) {

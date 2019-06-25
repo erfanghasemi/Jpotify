@@ -46,6 +46,7 @@ public class SaveFileController  implements  ActionListener {
 			song.setArtistName(id3v2Tag.getArtist());
 			song.setLengthOfSong(mp3file.getLengthInSeconds());
 			song.setArtWork(id3v2Tag.getAlbumImage());
+			song.setFrames(mp3file.getFrameCount());
 
 		}
     	catch (InvalidDataException | IOException | UnsupportedTagException e){

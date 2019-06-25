@@ -4,7 +4,6 @@ import MusicHandler.*;
 import graphic.MainFrame;
 import graphic.south.MainPanel;
 import graphic.south.SongInfoPanel;
-import graphic.variouspart.singlesong.SingleSongPanel;
 import graphic.west.ImagePanel;
 import logic.Album;
 import logic.PlayList;
@@ -47,6 +46,7 @@ public class PlaySongController {
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
         myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
         myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
+        myFrame.getSouth().getPlayerBar().getBar().addChangeListener(new SliderListener(musicThread));
 
         myFrame.getSouth().getPlayerBar().getNextSong().addActionListener(new ActionListener() {
             @Override
