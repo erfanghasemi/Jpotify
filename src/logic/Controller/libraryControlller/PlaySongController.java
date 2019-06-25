@@ -4,6 +4,7 @@ import MusicHandler.*;
 import graphic.MainFrame;
 import graphic.south.MainPanel;
 import graphic.south.SongInfoPanel;
+import graphic.variouspart.singlesong.SingleSongPanel;
 import graphic.west.ImagePanel;
 import logic.Album;
 import logic.PlayList;
@@ -37,7 +38,7 @@ public class PlaySongController {
             activeThreads.add(musicThread);
             Thread thread = new Thread(musicThread);
         if(activeThreads.size() == 2){
-            activeThreads.get(0).exitThread();
+            activeThreads.get(0).setExitThread();
             activeThreads.remove(0);
         }
 
@@ -56,8 +57,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , songsList.get(findNextSong(song ,songsList)));
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -72,8 +73,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , songsList.get(findPerviousSong(song , songsList)));
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -91,8 +92,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , songsList.get(randomIndex));
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -111,8 +112,8 @@ public class PlaySongController {
                     myFrame.setSouth(newMainSouth);
                     try {
                         new PlaySongController(myFrame, song);
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                     }
                     myFrame.repaint();
                     myFrame.validate();
@@ -125,7 +126,7 @@ public class PlaySongController {
     }
 
 
-    public PlaySongController(MainFrame myFrame , Song song , Album album) throws FileNotFoundException {
+    public PlaySongController(MainFrame myFrame , Song song , Album album) throws  FileNotFoundException{
 
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
         resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
@@ -135,7 +136,7 @@ public class PlaySongController {
         activeThreads.add(musicThread);
 
         if(activeThreads.size() == 2){
-            activeThreads.get(0).exitThread();
+            activeThreads.get(0).setExitThread();
             activeThreads.remove(0);
         }
 
@@ -155,8 +156,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , album.getAlbumSongs().get(findNextSong(song , album.getAlbumSongs())) , album);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -171,8 +172,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , album.getAlbumSongs().get(findPerviousSong(song,album.getAlbumSongs())) , album);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -190,8 +191,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , album.getAlbumSongs().get((randomIndex)) , album);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -209,8 +210,8 @@ public class PlaySongController {
                     myFrame.setSouth(newMainSouth);
                     try {
                         new PlaySongController(myFrame, song);
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                     }
                     myFrame.repaint();
                     myFrame.validate();
@@ -232,7 +233,7 @@ public class PlaySongController {
         activeThreads.add(musicThread);
 
         if(activeThreads.size() == 2){
-            activeThreads.get(0).exitThread();
+            activeThreads.get(0).setExitThread();
             activeThreads.remove(0);
         }
 
@@ -252,8 +253,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , playList.getSongsOfPlayList().get(findNextSong(song , playList.getSongsOfPlayList())) , playList);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -268,8 +269,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame , playList.getSongsOfPlayList().get(findPerviousSong(song,playList.getSongsOfPlayList())) , playList);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -288,8 +289,8 @@ public class PlaySongController {
                 myFrame.setSouth(newMainSouth);
                 try {
                     new PlaySongController(myFrame ,playList.getSongsOfPlayList().get(randomIndex) , playList);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
                 }
                 myFrame.repaint();
                 myFrame.validate();
@@ -307,8 +308,8 @@ public class PlaySongController {
                     myFrame.setSouth(newMainSouth);
                     try {
                         new PlaySongController(myFrame, song);
-                    } catch (FileNotFoundException e1) {
-                        e1.printStackTrace();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                     }
                     myFrame.repaint();
                     myFrame.validate();

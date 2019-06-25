@@ -75,4 +75,12 @@ public class MainFrame extends JFrame {
     public void setCenter(graphic.center.MainPanel center) {
         this.center = center;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

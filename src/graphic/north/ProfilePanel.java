@@ -5,15 +5,19 @@ import java.awt.*;
 
 public class ProfilePanel extends JPanel {
 
-    JLabel userName;
+    JLabel userNameLabel;
 
     public ProfilePanel() {
         setPreferredSize(new Dimension(120 , 25));
         setBackground(Color.white);
 
-        userName = new JLabel("Erfan Ghasemi");
+        userNameLabel = new JLabel();
 
-        add(userName);
+        add(userNameLabel);
         setVisible(true);
+    }
+
+    public void setUserName(String username){
+        userNameLabel.setText(username);
     }
 }

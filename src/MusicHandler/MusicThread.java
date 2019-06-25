@@ -15,9 +15,10 @@ public class MusicThread implements Runnable {
     private AdvancedPlayer player;
     private boolean seekTo = false;
     private int frame;
-    Boolean exit;
+    private Boolean exit;
 
     public MusicThread(Song song) throws FileNotFoundException {
+
 
         exit = false;
         this.inputStream = new FileInputStream(song.getAddress());
@@ -57,15 +58,17 @@ public class MusicThread implements Runnable {
             }
         }while (seekTo);
 
+
     }
 
     public void mp3Pause(){
         this.isPaused = true;
     }
 
-    public void exitThread(){
+    public void setExitThread(){
         exit  = true;
     }
+
 
     public void mp3Resume(){
 

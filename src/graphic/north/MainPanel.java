@@ -27,4 +27,8 @@ public class MainPanel extends JPanel {
         mainFrame.add(this , BorderLayout.NORTH);
         setVisible(true);
     }
+
+    public ProfilePanel getProfilePanel() {
+        return profilePanel;
+    }
 }

@@ -34,11 +34,6 @@ public class PlayListController {
                 view.add(singlePlayListPanel);
             }
 
-            System.out.println(playList.getTitle());
-            for (Song song:playList.getSongsOfPlayList()) {
-
-                System.out.println(song.getTitle());
-            }
         }
 
         view.repaint();
