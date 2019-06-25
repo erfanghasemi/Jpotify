@@ -43,14 +43,20 @@ public class SongsShowController {
         }
 
 
+        JScrollPane scrollPane = new JScrollPane(view);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        view.repaint();
-        view.validate();
-        view.setVisible(true);
+        myFrame.add(scrollPane , BorderLayout.CENTER);
+
+        scrollPane.repaint();
+        scrollPane.validate();
+        myFrame.repaint();
+        myFrame.validate();
+        scrollPane.setVisible(true);
     }
 
 
-    public SongsShowController( MainFrame nyFrame, MainPanel view , PlayList playList) {
+    public SongsShowController( MainFrame myFrame, MainPanel view , PlayList playList) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
         view.setBackground(Color.white);
@@ -65,9 +71,16 @@ public class SongsShowController {
 
         view.add(new SortPlayListSong());
 
-        view.repaint();
-        view.validate();
-        view.setVisible(true);
+        JScrollPane scrollPane = new JScrollPane(view);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        myFrame.add(scrollPane , BorderLayout.CENTER);
+
+        scrollPane.repaint();
+        scrollPane.validate();
+        myFrame.repaint();
+        myFrame.validate();
+        scrollPane.setVisible(true);
     }
 
 
@@ -86,9 +99,15 @@ public class SongsShowController {
             view.add(singleSongPanel);
         }
 
-        view.repaint();
-        view.validate();
-        view.setVisible(true);
+        JScrollPane scrollPane = new JScrollPane(view);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        myFrame.add(scrollPane , BorderLayout.CENTER);
+
+        scrollPane.repaint();
+        scrollPane.validate();
+        myFrame.repaint();
+        myFrame.validate();
+        scrollPane.setVisible(true);
     }
 
 

@@ -19,6 +19,7 @@ public class AddSongPlayListController implements ActionListener {
     private PlayList playList;
     private MainPanel view;
 
+
     private static final String FILE_PATH = "D:\\avi.bin";
     private static final String FILE_PATH_PLAYLIST = "D:\\kia.bin";
 
