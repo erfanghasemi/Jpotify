@@ -38,7 +38,7 @@ public class OptionOfSongPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new DeleteSongController( song , mainPanel);
+                new DeleteSongController( song , mainPanel , myFrame);
 
             }
         });
@@ -82,7 +82,7 @@ public class OptionOfSongPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new DeleteSongController( song , album ,  mainPanel);
+                new DeleteSongController( song , album ,  mainPanel , myFrame);
 
             }
         });

@@ -1,5 +1,7 @@
 package graphic.west;
 
+import graphic.MainFrame;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -9,7 +11,7 @@ public class MainPanel extends JPanel {
     PlaylistPanel playlistPanel;
     LibraryPanel libraryPanel;
 
-    public MainPanel(JFrame mainFrame) {
+    public MainPanel(MainFrame mainFrame) {
 
         setPreferredSize(new Dimension(200 , 250));
         setBackground(Color.white);

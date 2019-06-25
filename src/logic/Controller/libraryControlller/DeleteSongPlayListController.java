@@ -48,7 +48,7 @@ public class DeleteSongPlayListController {
 
         playList.getSongsOfPlayList().remove(song);
         refreshPlayListTitleBar("D:\\kia.bin" , myFarme.getWest().getPlaylistPanel().getPlayLists());
-        new SongsShowController(view , playList);
+        new SongsShowController(myFarme , view , playList);
     }
 
 

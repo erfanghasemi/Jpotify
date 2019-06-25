@@ -19,15 +19,9 @@ public class AlbumsController extends SongsShowController {
 
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
 
-
-
         albums = new ArrayList<>();
 
         classifyAlbum(songs , albums);
-
-
-
-
 
         for (Album album : albums) {
             Song firstSong = album.getAlbumSongs().get(0);

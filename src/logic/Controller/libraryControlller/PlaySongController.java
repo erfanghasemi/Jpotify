@@ -98,7 +98,7 @@ public class PlaySongController {
         });
 */
 
-        new SongsShowController(myFrame.getCenter());
+        new SongsShowController(myFrame , myFrame.getCenter());
 
     }
 

@@ -1,6 +1,7 @@
 package logic.Controller.libraryControlller;
 
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Song;
 
@@ -16,9 +17,9 @@ public class SignUpController {
 
     private static final String LOGIN_FILE_PATH = "D:\\olk.bin";
 
-    public SignUpController(String userName , MainPanel view) {
+    public SignUpController(String userName , MainPanel view ,MainFrame myFrame) {
         writeObjectToFile(userName);
-        new SongsShowController(view);
+        new SongsShowController( myFrame ,view);
     }
 
     public void writeObjectToFile(String string) {

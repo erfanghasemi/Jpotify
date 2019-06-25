@@ -166,7 +166,6 @@ public class PlayerBarPanel extends JPanel {
 
 
 
-
     public PlayerBarPanel(MainFrame myFrame ,  Song song , Thread thread , MusicThread  musicThread, Album album) {
 
         setPreferredSize(new Dimension(250, 250));

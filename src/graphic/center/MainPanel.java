@@ -60,7 +60,7 @@ public class MainPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.getNorth().getProfilePanel().setUserName(textField.getText());
-                    new SignUpController(textField.getText() , mainFrame.getCenter());
+                    new SignUpController(textField.getText() , mainFrame.getCenter() , mainFrame);
                     textField.setText("");
 
                 }
@@ -71,7 +71,7 @@ public class MainPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.getNorth().getProfilePanel().setUserName(textField.getText());
-                    new SignUpController(textField.getText(), mainFrame.getCenter());
+                    new SignUpController(textField.getText(), mainFrame.getCenter() , mainFrame);
                     textField.setText("");
                 }
             });

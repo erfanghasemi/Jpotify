@@ -1,5 +1,7 @@
 package graphic.north;
 
+import graphic.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,7 @@ public class MainPanel extends JPanel {
     ProfilePanel profilePanel;
     JpotyfyIconPanel jpotyfyIconPanel;
 
-    public MainPanel(JFrame mainFrame) {
+    public MainPanel(MainFrame mainFrame) {
 
         setPreferredSize(new Dimension(150 , 60));
         setLayout(new FlowLayout(6 , 150 , 8));

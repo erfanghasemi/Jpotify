@@ -3,6 +3,7 @@ package logic.Controller.libraryControlller;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
+import graphic.variouspart.SortPlayListSong;
 import graphic.variouspart.singlesong.SingleSongPanel;
 import logic.Album;
 import logic.PlayList;
@@ -28,7 +29,7 @@ public class SongsShowController {
     }
 
 
-    public SongsShowController(MainPanel view , Album album) {
+    public SongsShowController(MainFrame myFrame , MainPanel view , Album album) {
 
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
@@ -41,13 +42,15 @@ public class SongsShowController {
             view.add(singleSongPanel);
         }
 
+
+
         view.repaint();
         view.validate();
         view.setVisible(true);
     }
 
 
-    public SongsShowController(MainPanel view , PlayList playList) {
+    public SongsShowController( MainFrame nyFrame, MainPanel view , PlayList playList) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
         view.setBackground(Color.white);
@@ -60,13 +63,15 @@ public class SongsShowController {
             view.add(singleSongPanel);
         }
 
+        view.add(new SortPlayListSong());
+
         view.repaint();
         view.validate();
         view.setVisible(true);
     }
 
 
-    public SongsShowController(MainPanel view) {
+    public SongsShowController(MainFrame myFrame , MainPanel view) {
         view.removeAll();
         view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
         view.setBackground(Color.white);

@@ -36,7 +36,7 @@ public class OptionOfAlbumPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new SongsShowController(mainPanel , album);
+                new SongsShowController(myFrame , mainPanel , album);
 
 
             }
@@ -49,7 +49,7 @@ public class OptionOfAlbumPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
                 for (Song song : album.getAlbumSongs()) {
-                    new DeleteSongController(song , mainPanel);
+                    new DeleteSongController(song , mainPanel , myFrame);
                 }
                 new AlbumsController(mainPanel);
             }

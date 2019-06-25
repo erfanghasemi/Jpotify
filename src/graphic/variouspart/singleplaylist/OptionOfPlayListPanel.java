@@ -44,7 +44,7 @@ public class OptionOfPlayListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new SongsShowController(mainPanel , playList);
+                new SongsShowController( myFrame , mainPanel , playList);
             }
         });
 
@@ -75,7 +75,10 @@ public class OptionOfPlayListPanel extends JPanel {
         addSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddSongPlayListController(playList);
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+                MainPanel mainPanel = myFrame.getCenter();
+                new AddSongPlayListController( mainPanel , playList);
+
             }
         });
 

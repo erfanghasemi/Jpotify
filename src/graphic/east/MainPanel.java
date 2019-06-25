@@ -1,10 +1,12 @@
 package graphic.east;
 
+import graphic.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainPanel extends JPanel {
-    public MainPanel(JFrame mainFrame) {
+    public MainPanel(MainFrame mainFrame) {
 
         setPreferredSize(new Dimension(120 , 250));
 

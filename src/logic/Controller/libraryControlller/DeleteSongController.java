@@ -1,5 +1,6 @@
 package logic.Controller.libraryControlller;
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Album;
 import logic.Song;
@@ -12,7 +13,7 @@ public class DeleteSongController {
     private ArrayList<Song> songs = null;
     private static final String FILE_PATH = "D:\\avi.bin";
 
-    public DeleteSongController(Song song , MainPanel view) {
+    public DeleteSongController(Song song , MainPanel view , MainFrame myFrame) {
 
         songs = new ArrayList<>();
 
@@ -30,10 +31,10 @@ public class DeleteSongController {
                 e.printStackTrace();
             }
 
-        new SongsShowController(view);
+        new SongsShowController(myFrame , view);
     }
 
-    public DeleteSongController(Song song , Album album , MainPanel view) {
+    public DeleteSongController(Song song , Album album , MainPanel view , MainFrame myframe) {
 
         songs = new ArrayList<>();
 
@@ -52,7 +53,7 @@ public class DeleteSongController {
             e.printStackTrace();
         }
 
-        new SongsShowController(view,album);
+        new SongsShowController(myframe ,view,album);
     }
 
 
