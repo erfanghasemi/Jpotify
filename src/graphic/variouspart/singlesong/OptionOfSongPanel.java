@@ -1,7 +1,5 @@
 package graphic.variouspart.singlesong;
 
-import MusicHandler.MusicThread;
-import MusicHandler.PlayListener;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Album;
@@ -15,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class OptionOfSongPanel extends JPanel {
 
@@ -49,7 +48,11 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
-                new PlaySongController(myFrame ,song);
+                try {
+                    new PlaySongController(myFrame ,song);
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -88,7 +91,11 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
-                new PlaySongController(myFrame ,song ,album);
+                try {
+                    new PlaySongController(myFrame ,song ,album);
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -126,7 +133,11 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
-                new PlaySongController(myFrame ,song ,playList);
+                try {
+                    new PlaySongController(myFrame ,song ,playList);
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

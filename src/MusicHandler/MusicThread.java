@@ -5,31 +5,36 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 import logic.Song;
 
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class MusicThread implements Runnable {
 
     private boolean isPaused = false;
-    private Song song;
+    private InputStream inputStream;
     private AdvancedPlayer player;
     private boolean seekTo = false;
     private int frame;
     Boolean exit;
 
-    public MusicThread(Song song) {
+    public MusicThread(Song song) throws FileNotFoundException {
 
         exit = false;
-        this.song = song;
+        this.inputStream = new FileInputStream(song.getAddress());
+    }
+
+    public MusicThread (InputStream inputStream){
+        this.inputStream = inputStream;
     }
 
     public void run() {
 
         do {
 
-//            System.out.println("thread is running");
-            try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())) {
+//
+            try{
 
-                player = new AdvancedPlayer(fileInputStream);
+                player = new AdvancedPlayer(this.inputStream);
 
                 if (seekTo)
                     player.play(frame, frame + 1);
@@ -47,7 +52,7 @@ public class MusicThread implements Runnable {
                 }
 //                System.out.println("thread is running out of loop");
 
-            } catch (IOException | JavaLayerException | InterruptedException e) {
+            } catch (JavaLayerException | InterruptedException e) {
                 e.printStackTrace();
             }
         }while (seekTo);
@@ -70,7 +75,7 @@ public class MusicThread implements Runnable {
         }
     }
 
-    public void seekTo(int frame) throws JavaLayerException, IOException {
+    public void seekTo(int frame) {
         this.frame = frame;
         seekTo = true;
         player.close();
