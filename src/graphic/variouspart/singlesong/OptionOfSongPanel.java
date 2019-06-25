@@ -21,6 +21,7 @@ public class OptionOfSongPanel extends JPanel {
 
     public OptionOfSongPanel(Song song) {
 
+
         setLayout(new FlowLayout(1 , 25, 42));
         setBackground(Color.white);
 
@@ -133,6 +134,7 @@ public class OptionOfSongPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
+
                 try {
                     new PlaySongController(myFrame ,song ,playList);
                 } catch (FileNotFoundException e1) {

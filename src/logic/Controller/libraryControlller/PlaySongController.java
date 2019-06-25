@@ -22,13 +22,15 @@ public class PlaySongController {
 
     private static ArrayList<MusicThread> activeThreads = new ArrayList<>();
     private static final String FILE_PATH = "D:\\avi.bin";
-    private ArrayList<Song> songsList;
+    ArrayList<Song> songsList;
 
 
     public PlaySongController(MainFrame myFrame , Song song) throws FileNotFoundException {
 
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
-        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
+
+//        sortLastPlay(song);
+
 
         songsList = new ArrayList<>();
         songsList = readSongFromFile(FILE_PATH , songsList);
@@ -41,47 +43,20 @@ public class PlaySongController {
             activeThreads.remove(0);
         }
 
-        myFrame.getSouth().getPlayerBar().getPause().addActionListener(new PauseListener(musicThread));
-        myFrame.getSouth().getPlayerBar().getPlay().addActionListener(new PlayListener(thread , musicThread));
+
+        myFrame.remove(myFrame.getSouth());
+        MainPanel newMainSouth = new MainPanel(myFrame , songsList ,song , musicThread , thread);
+        myFrame.setSouth(newMainSouth);
+
+        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
+
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
-        myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
-        myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
-        myFrame.getSouth().getPlayerBar().getBar().addChangeListener(new SliderListener(musicThread));
 
-        myFrame.getSouth().getPlayerBar().getNextSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , songsList.get(findNextSong(song ,songsList)));
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
-
-        myFrame.getSouth().getPlayerBar().getPreviousSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , songsList.get(findPerviousSong(song , songsList)));
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
+        myFrame.repaint();
+        myFrame.validate();
 
 
+/*
         myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,16 +95,21 @@ public class PlaySongController {
                 }
             }
         });
+*/
 
-
+//        new SongsShowController(myFrame.getCenter());
 
     }
 
 
     public PlaySongController(MainFrame myFrame , Song song , Album album) throws  FileNotFoundException{
 
+
+
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
-        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
+
+
+//        sortLastPlay(song);
 
         MusicThread musicThread = new MusicThread(song);
         Thread thread = new Thread(musicThread);
@@ -140,46 +120,19 @@ public class PlaySongController {
             activeThreads.remove(0);
         }
 
-        myFrame.getSouth().getPlayerBar().getPlay().addActionListener(new PlayListener(thread , activeThreads.get(0)));
-        myFrame.getSouth().getPlayerBar().getPause().addActionListener(new PauseListener(musicThread));
-        myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
-        myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
+
+        myFrame.remove(myFrame.getSouth());
+        MainPanel newMainSouth = new MainPanel(myFrame ,song , musicThread , thread , album);
+        myFrame.setSouth(newMainSouth);
+
+        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
 
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
 
-        myFrame.getSouth().getPlayerBar().getNextSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        myFrame.repaint();
+        myFrame.validate();
 
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , album.getAlbumSongs().get(findNextSong(song , album.getAlbumSongs())) , album);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-             }
-        });
-
-        myFrame.getSouth().getPlayerBar().getPreviousSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , album.getAlbumSongs().get(findPerviousSong(song,album.getAlbumSongs())) , album);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
-
+/*
 
         myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
             @Override
@@ -219,6 +172,7 @@ public class PlaySongController {
             }
         });
 
+*/
 
 
     }
@@ -226,7 +180,9 @@ public class PlaySongController {
     public PlaySongController(MainFrame myFrame , Song song , PlayList playList) throws FileNotFoundException {
 
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
-        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
+
+
+//        sortLastPlay(song);
 
         MusicThread musicThread = new MusicThread(song);
         Thread thread = new Thread(musicThread);
@@ -237,49 +193,21 @@ public class PlaySongController {
             activeThreads.remove(0);
         }
 
-        myFrame.getSouth().getPlayerBar().getPlay().addActionListener(new PlayListener(thread , activeThreads.get(0)));
-        myFrame.getSouth().getPlayerBar().getPause().addActionListener(new PauseListener(musicThread));
-        myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
-        myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
+
+
+        myFrame.remove(myFrame.getSouth());
+        MainPanel newMainSouth = new MainPanel(myFrame ,song , musicThread , thread , playList);
+        myFrame.setSouth(newMainSouth);
+
+        resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
 
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
 
-        myFrame.getSouth().getPlayerBar().getNextSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , playList.getSongsOfPlayList().get(findNextSong(song , playList.getSongsOfPlayList())) , playList);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
-
-        myFrame.getSouth().getPlayerBar().getPreviousSong().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , playList.getSongsOfPlayList().get(findPerviousSong(song,playList.getSongsOfPlayList())) , playList);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
+        myFrame.repaint();
+        myFrame.validate();
 
 
-
-        myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
+   /*     myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Random random = new Random();
@@ -316,50 +244,10 @@ public class PlaySongController {
                 }
             }
         });
-
+*/
     }
 
 
-    public int findNextSong(Song song , ArrayList<Song> songs){
-
-        int indexOfThisSong = 0;
-
-        for ( Song song1: songs) {
-            if(song.getTitle().equals(song1.getTitle())){
-                break;
-            }
-            indexOfThisSong++;
-        }
-
-        if(indexOfThisSong == (songs.size() - 1)){
-            return 0;
-        }
-        else {
-           return indexOfThisSong + 1;
-        }
-    }
-
-
-
-
-    public int findPerviousSong(Song song , ArrayList<Song> songs){
-
-        int indexOfThisSong = 0;
-
-        for ( Song song1: songs) {
-            if(song.getTitle().equals(song1.getTitle())){
-                break;
-            }
-            indexOfThisSong++;
-        }
-
-        if(indexOfThisSong == 0){
-            return songs.size() - 1;
-        }
-        else {
-            return indexOfThisSong - 1;
-        }
-    }
 
 
 
@@ -442,5 +330,39 @@ public class PlaySongController {
         songInfoPanel.validate();
         songInfoPanel.setVisible(true);
     }
+
+
+    public void sortLastPlay(Song song){
+
+        ArrayList<Song> songs = new ArrayList<>();
+        ArrayList<Song> sortedSongs = new ArrayList<>();
+
+        readSongFromFile(FILE_PATH , songs);
+
+        for ( Song song1 : songs) {
+            if(song1.getTitle().equals(song.getTitle())){
+                sortedSongs.add(song1);
+            }
+        }
+
+        for ( Song song1: songs) {
+            if(!(song1.getTitle().equals(song.getTitle()))){
+                sortedSongs.add(song1);
+            }
+        }
+
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FILE_PATH);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            for (Song song1 : sortedSongs) {
+                objectOut.writeObject(song1);
+            }
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
 
 }
