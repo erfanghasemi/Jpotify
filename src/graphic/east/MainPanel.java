@@ -8,10 +8,9 @@ public class MainPanel extends JPanel {
 
         setPreferredSize(new Dimension(120 , 250));
 
-        setBackground(Color.GREEN);
+        setBackground(Color.green);
         mainFrame.add(this , BorderLayout.EAST);
         setVisible(true);
-
 
     }
 }

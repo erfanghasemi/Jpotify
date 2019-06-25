@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
         center = new graphic.center.MainPanel(this);
 
 
-        iconFrame = Toolkit.getDefaultToolkit().getImage("D:\\Jpotify\\src\\graphic\\photo_2019-05-17_15-51-50.jpg");
+        iconFrame = Toolkit.getDefaultToolkit().getImage("C:\\\\Users\\\\01RAYANEH\\\\Desktop\\\\iconfinder_spotify_216744.png");
 
         setTitle("Jpotify");
         setLocation(new Point(300 , 50));

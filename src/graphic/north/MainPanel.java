@@ -5,15 +5,21 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 
+    SearchPanel searchPanel;
+    ProfilePanel profilePanel;
+    JpotyfyIconPanel jpotyfyIconPanel;
+
     public MainPanel(JFrame mainFrame) {
 
-        setPreferredSize(new Dimension(150 , 50));
-        setLayout(new FlowLayout(1 , 350, 8));
-        setBackground(Color.lightGray);
+        setPreferredSize(new Dimension(150 , 60));
+        setLayout(new FlowLayout(6 , 150 , 8));
+        setBackground(Color.white);
 
-        SearchPanel searchPanel= new SearchPanel();
-        ProfilePanel profilePanel = new ProfilePanel();
+        searchPanel= new SearchPanel();
+        profilePanel = new ProfilePanel();
+        jpotyfyIconPanel = new JpotyfyIconPanel();
 
+        add(jpotyfyIconPanel);
         add(searchPanel);
         add(profilePanel);
 
