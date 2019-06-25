@@ -14,19 +14,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Random;
+
 
 public class PlaySongController {
 
     private static ArrayList<MusicThread> activeThreads = new ArrayList<>();
+    private static final String FILE_PATH = "D:\\avi.bin";
+    private ArrayList<Song> songsList;
 
-
-    Song songp;
 
     public PlaySongController(MainFrame myFrame , Song song) {
 
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
         resetInfoSong(myFrame.getSouth().getSongInfoPanel() , song);
+
+        songsList = new ArrayList<>();
+        songsList = readSongFromFile(FILE_PATH , songsList);
 
             MusicThread musicThread = new MusicThread(song);
             activeThreads.add(musicThread);
@@ -41,6 +50,65 @@ public class PlaySongController {
         myFrame.getSouth().getPlayerBar().getPlay().doClick();
         myFrame.getSouth().getPlayerBar().getAddToFavourite().addActionListener(new FavouriteListener(song));
         myFrame.getSouth().getPlayerBar().getAddToShare().addActionListener(new ShareListener(song));
+
+        myFrame.getSouth().getPlayerBar().getNextSong().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                new PlaySongController(myFrame , songsList.get(findNextSong(song ,songsList)));
+                myFrame.repaint();
+                myFrame.validate();
+            }
+        });
+
+        myFrame.getSouth().getPlayerBar().getPreviousSong().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                new PlaySongController(myFrame , songsList.get(findPerviousSong(song , songsList)));
+                myFrame.repaint();
+                myFrame.validate();
+            }
+        });
+
+
+        myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(songsList.size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                new PlaySongController(myFrame , songsList.get(randomIndex));
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
+
+
+        myFrame.getSouth().getPlayerBar().getRepeat().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                while (true && (activeThreads.size() == 0)) {
+                    myFrame.remove(myFrame.getSouth());
+                    MainPanel newMainSouth = new MainPanel(myFrame);
+                    myFrame.setSouth(newMainSouth);
+                    new PlaySongController(myFrame, song);
+                    myFrame.repaint();
+                    myFrame.validate();
+                }
+            }
+        });
+
+
 
     }
 
@@ -91,10 +159,40 @@ public class PlaySongController {
             }
         });
 
+
+        myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(album.getAlbumSongs().size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                new PlaySongController(myFrame , album.getAlbumSongs().get((randomIndex)) , album);
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
+
+        myFrame.getSouth().getPlayerBar().getRepeat().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                while (true) {
+                    myFrame.remove(myFrame.getSouth());
+                    MainPanel newMainSouth = new MainPanel(myFrame);
+                    myFrame.setSouth(newMainSouth);
+                    new PlaySongController(myFrame, song);
+                    myFrame.repaint();
+                    myFrame.validate();
+                }
+            }
+        });
+
+
+
     }
-
-
-
 
     public PlaySongController(MainFrame myFrame , Song song , PlayList playList) {
 
@@ -142,9 +240,39 @@ public class PlaySongController {
             }
         });
 
+
+
+        myFrame.getSouth().getPlayerBar().getShuffle().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(playList.getSongsOfPlayList().size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                new PlaySongController(myFrame ,playList.getSongsOfPlayList().get(randomIndex) , playList);
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
+
+        myFrame.getSouth().getPlayerBar().getRepeat().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(true) {
+                    myFrame.remove(myFrame.getSouth());
+                    MainPanel newMainSouth = new MainPanel(myFrame);
+                    myFrame.setSouth(newMainSouth);
+                    new PlaySongController(myFrame, song);
+                    myFrame.repaint();
+                    myFrame.validate();
+                }
+            }
+        });
+
     }
-
-
 
 
     public int findNextSong(Song song , ArrayList<Song> songs){
@@ -190,18 +318,24 @@ public class PlaySongController {
 
 
 
+    public ArrayList<Song> readSongFromFile(String path, ArrayList<Song> songs) {
 
-
-
-
-
-
-
-
-
-
-
-
+        try {
+            FileInputStream fileIn = new FileInputStream(FILE_PATH);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            try {
+                while (true) {
+                    Song song = (Song) objectIn.readObject();
+                    songs.add(song);
+                }
+            } catch (EOFException e) {
+                return songs;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return songs;
+    }
 
 
     public Image getImageFromByte(byte[] imageBytes){
@@ -263,6 +397,5 @@ public class PlaySongController {
         songInfoPanel.validate();
         songInfoPanel.setVisible(true);
     }
-
 
 }

@@ -3,6 +3,7 @@ package graphic.south;
 import graphic.variouspart.singleplaylist.OptionOfPlayListPanel;
 import graphic.west.PlaylistPanel;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +13,7 @@ public class PlayerBarPanel extends JPanel {
     JSlider bar;
     JLabel endLabelTime;
     JLabel startlabelTime;
-    JButton play , addToShare , addToFavourite , pause , nextSong , previousSong;
+    JButton play , addToShare , addToFavourite , pause , nextSong , previousSong ,shuffle , repeat;
 
 
     public PlayerBarPanel() {
@@ -50,15 +51,17 @@ public class PlayerBarPanel extends JPanel {
         pause = new JButton("Pause");
         nextSong = new JButton("Next");
         previousSong = new JButton("Pervious");
+        repeat =new JButton("Repeat");
+        shuffle = new JButton("Shuffle");
 
-
+        optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
         optionOfPlayPanel.add(previousSong);
         optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(play);
         optionOfPlayPanel.add(nextSong);
         optionOfPlayPanel.add(addToShare);
-
+        optionOfPlayPanel.add(repeat);
 
         add(playSliderPanel);
         add(optionOfPlayPanel);
@@ -88,5 +91,13 @@ public class PlayerBarPanel extends JPanel {
 
     public JButton getPreviousSong() {
         return previousSong;
+    }
+
+    public JButton getShuffle() {
+        return shuffle;
+    }
+
+    public JButton getRepeat() {
+        return repeat;
     }
 }

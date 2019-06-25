@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     private graphic.south.MainPanel south;
     private graphic.center.MainPanel center;
     private Image iconFrame;
+    private String userName;
 
 
     public MainFrame(){
