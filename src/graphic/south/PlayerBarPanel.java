@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayerBarPanel extends JPanel {
 
@@ -28,6 +29,7 @@ public class PlayerBarPanel extends JPanel {
         setPreferredSize(new Dimension(250, 250));
         setBackground(Color.white);
         setLayout(new BoxLayout(this , BoxLayout.Y_AXIS));
+/*
 
         optionOfPlayPanel = new JPanel();
         playSliderPanel = new JPanel();
@@ -72,6 +74,7 @@ public class PlayerBarPanel extends JPanel {
 
         add(playSliderPanel);
         add(optionOfPlayPanel);
+*/
 
         setVisible(true);
     }
@@ -122,53 +125,34 @@ public class PlayerBarPanel extends JPanel {
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
 
-        nextSong = new JButton("Next");
-        nextSong.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-
-                    new PlaySongController(myFrame ,songs.get(findNextSong(song ,songs)) );
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
-
-
-
-        previousSong = new JButton("Pervious");
-        previousSong.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myFrame.remove(myFrame.getSouth());
-                MainPanel newMainSouth = new MainPanel(myFrame);
-                myFrame.setSouth(newMainSouth);
-                try {
-                    new PlaySongController(myFrame , songs.get(findPerviousSong(song , songs)));
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                myFrame.repaint();
-                myFrame.validate();
-            }
-        });
 
         repeat =new JButton("Repeat");
+
         shuffle = new JButton("Shuffle");
+        shuffle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(songs.size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                try {
+                    new PlaySongController(myFrame , songs.get(randomIndex));
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
 
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
-        optionOfPlayPanel.add(previousSong);
         optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(play);
-        optionOfPlayPanel.add(nextSong);
         optionOfPlayPanel.add(addToShare);
         optionOfPlayPanel.add(repeat);
 
@@ -264,7 +248,27 @@ public class PlayerBarPanel extends JPanel {
         });
 
         repeat =new JButton("Repeat");
+
         shuffle = new JButton("Shuffle");
+        shuffle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(album.getAlbumSongs().size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                try {
+                    new PlaySongController(myFrame , album.getAlbumSongs().get(randomIndex) ,album);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
 
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
@@ -368,7 +372,28 @@ public class PlayerBarPanel extends JPanel {
         });
 
         repeat =new JButton("Repeat");
+
+
         shuffle = new JButton("Shuffle");
+        shuffle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(playList.getSongsOfPlayList().size());
+                myFrame.remove(myFrame.getSouth());
+                MainPanel newMainSouth = new MainPanel(myFrame);
+                myFrame.setSouth(newMainSouth);
+                try {
+                    new PlaySongController(myFrame , playList.getSongsOfPlayList().get(randomIndex) , playList);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                myFrame.repaint();
+                myFrame.validate();
+
+            }
+        });
+
 
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
@@ -384,22 +409,6 @@ public class PlayerBarPanel extends JPanel {
 
         setVisible(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

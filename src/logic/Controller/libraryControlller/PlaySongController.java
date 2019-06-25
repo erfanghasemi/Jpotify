@@ -29,7 +29,7 @@ public class PlaySongController {
 
         resetImagePanel(myFrame.getWest().getImagePanel() , getImageFromByte(song.getArtWork()));
 
-//        sortLastPlay(song);
+        sortLastPlay(song);
 
 
         songsList = new ArrayList<>();
@@ -40,6 +40,7 @@ public class PlaySongController {
             Thread thread = new Thread(musicThread);
         if(activeThreads.size() == 2){
             activeThreads.get(0).setExitThread();
+
             activeThreads.remove(0);
         }
 
@@ -97,7 +98,7 @@ public class PlaySongController {
         });
 */
 
-//        new SongsShowController(myFrame.getCenter());
+        new SongsShowController(myFrame.getCenter());
 
     }
 
