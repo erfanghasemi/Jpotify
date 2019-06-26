@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
         add(center , BorderLayout.CENTER);
 
 
-        iconFrame = Toolkit.getDefaultToolkit().getImage("C:\\Users\\01RAYANEH\\Desktop\\iconfinder_spotify_216744.png");
+        iconFrame = Toolkit.getDefaultToolkit().getImage(".\\Icons\\iconfinder_spotify_216744.png");
 
         setTitle("Jpotify");
         setLocation(new Point(300 , 50));

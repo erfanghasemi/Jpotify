@@ -1,6 +1,7 @@
 package graphic.center;
 
 import graphic.MainFrame;
+import graphic.variouspart.ImageIconButton;
 import logic.Controller.libraryControlller.SignInController;
 import logic.Controller.libraryControlller.SignUpController;
 
@@ -34,7 +35,7 @@ public class MainPanel extends JPanel {
             setBackground(Color.WHITE);
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-            north = new JPanel();
+            north = new JPanel(new FlowLayout(1 , 30 , 30));
             center = new JPanel(new GridBagLayout());
             centerSouth = new JPanel(new BorderLayout());
             centerLeft = new JPanel(new BorderLayout());
@@ -50,20 +51,20 @@ public class MainPanel extends JPanel {
             imageWelcome = new JLabel();
             imageWelcome.setBackground(Color.white);
 
+            JLabel jpotifyName = new JLabel("Jpotify");
+            jpotifyName.setFont(new Font("Calibri", Font.BOLD, 65));
 
-            ImageIcon imageIcon = new ImageIcon("C:\\Users\\01RAYANEH\\Desktop\\Download-Welcome-Transparent-Background.png");
-            Image image = imageIcon.getImage();
-            Image newimg = image.getScaledInstance(350, 250, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            imageIcon = new ImageIcon(newimg);
+            imageWelcome.setIcon(new ImageIconButton(".\\Icons\\iconfinder_spotify_216744.png" , 250 , 250));
 
-            imageWelcome.setIcon(imageIcon);
-
-            north.add(imageWelcome, BorderLayout.CENTER);
-
+            north.add(imageWelcome);
+            north.add(jpotifyName);
 
             textField = new JTextField();
             labelText = new JLabel("User Name:  ");
-            submit = new JButton("Submit");
+            submit = new JButton(new ImageIconButton(".\\Icons\\images.png" , 60 , 60));
+            submit.setOpaque(false);
+            submit.setContentAreaFilled(false);
+            submit.setBorderPainted(false);
 
 
             textField.addActionListener(new ActionListener() {
@@ -127,26 +128,30 @@ public class MainPanel extends JPanel {
 
             mainFrame.getNorth().getProfilePanel().setUserName(mainFrame.getUserName());
 
+            setLayout(new FlowLayout(1 , 30 , 160));
+
             setBackground(Color.white);
 
             imageWelcome = new JLabel();
+            labelText = new JLabel("Jpotify");
 
-            ImageIcon imageIcon = new ImageIcon("C:\\Users\\01RAYANEH\\Desktop\\Download-Welcome-Transparent-Background.png");
+            labelText.setFont(new Font("Calibri", Font.BOLD, 45));
+            labelText.setVerticalAlignment(JLabel.CENTER);
+
+            ImageIcon imageIcon = new ImageIcon(".\\Icons\\iconfinder_spotify_216744.png");
             Image image = imageIcon.getImage();
-            Image newimg = image.getScaledInstance(400, 400, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+            Image newimg = image.getScaledInstance(200, 200, Image.SCALE_DEFAULT); // scale it the smooth way
             imageIcon = new ImageIcon(newimg);
 
             imageWelcome.setIcon(imageIcon);
 
-            add(imageWelcome , BorderLayout.CENTER);
+            add(imageWelcome);
+            add(labelText );
 
             mainFrame.add(this ,BorderLayout.CENTER);
             setVisible(true);
 
         }
-
-
-
 
     }
 }

@@ -2,6 +2,7 @@ package graphic.variouspart.singlesong;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
+import graphic.variouspart.ImageIconButton;
 import logic.Album;
 import logic.Controller.libraryControlller.DeleteSongController;
 import logic.Controller.libraryControlller.DeleteSongPlayListController;
@@ -25,11 +26,19 @@ public class OptionOfSongPanel extends JPanel {
         setLayout(new FlowLayout(1 , 25, 42));
         setBackground(Color.white);
 
-        delete = new JButton("Delete");
-        play = new JButton("Play");
+        delete = new JButton(new ImageIconButton(".\\Icons\\button.png" , 30 , 30 ));
+        delete.setOpaque(false);
+        delete.setContentAreaFilled(false);
+        delete.setBorderPainted(false);
 
-        delete.setPreferredSize(new Dimension(70 , 30));
-        play.setPreferredSize(new Dimension(60 , 30));
+
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 30 , 30));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
+
+        delete.setPreferredSize(new Dimension(60 , 40));
+        play.setPreferredSize(new Dimension(60 , 40));
 
 
         add(delete);
@@ -69,11 +78,19 @@ public class OptionOfSongPanel extends JPanel {
         setLayout(new FlowLayout(1 , 25, 42));
         setBackground(Color.white);
 
-        delete = new JButton("Delete");
-        play = new JButton("Play");
+        delete = new JButton(new ImageIconButton(".\\Icons\\button.png" , 30 , 30 ));
+        delete.setOpaque(false);
+        delete.setContentAreaFilled(false);
+        delete.setBorderPainted(false);
 
-        delete.setPreferredSize(new Dimension(70 , 30));
-        play.setPreferredSize(new Dimension(60 , 30));
+
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 30 , 30));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
+
+        delete.setPreferredSize(new Dimension(60 , 40));
+        play.setPreferredSize(new Dimension(60 , 40));
 
 
         add(delete);
@@ -112,11 +129,19 @@ public class OptionOfSongPanel extends JPanel {
         setLayout(new FlowLayout(1 , 25, 42));
         setBackground(Color.white);
 
-        delete = new JButton("Delete");
-        play = new JButton("Play");
+        delete = new JButton(new ImageIconButton(".\\Icons\\button.png" , 30 , 30 ));
+        delete.setOpaque(false);
+        delete.setContentAreaFilled(false);
+        delete.setBorderPainted(false);
 
-        delete.setPreferredSize(new Dimension(70 , 30));
-        play.setPreferredSize(new Dimension(60 , 30));
+
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 30 , 30));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
+
+        delete.setPreferredSize(new Dimension(60 , 40));
+        play.setPreferredSize(new Dimension(60 , 40));
 
 
         add(delete);

@@ -2,6 +2,7 @@ package graphic.south;
 
 import MusicHandler.MuteListener;
 import MusicHandler.VolumeBarListener;
+import graphic.variouspart.ImageIconButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +34,10 @@ public class ValumeBarPanel extends JPanel {
         valumeBar = new JSlider(0 , 100 , 50);
         maximumValue = new JLabel("100");
         minimumValue = new JLabel("0");
-        mute = new JButton("Mute");
+        mute = new JButton(new ImageIconButton(".\\Icons\\1310903-200.png" , 30 , 30));
+        mute.setOpaque(false);
+        mute.setContentAreaFilled(false);
+        mute.setBorderPainted(false);
 
         valumeBar.setMinimumSize(new Dimension(90 ,25));
         mute.setMaximumSize(new Dimension(30 , 25));

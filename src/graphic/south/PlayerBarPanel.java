@@ -2,6 +2,7 @@ package graphic.south;
 
 import MusicHandler.*;
 import graphic.MainFrame;
+import graphic.variouspart.ImageIconButton;
 import logic.Album;
 import logic.Controller.libraryControlller.JsliderController;
 import logic.Controller.libraryControlller.PlaySongController;
@@ -83,17 +84,29 @@ public class PlayerBarPanel extends JPanel {
         playSliderPanel.add(endLabelTime);
 
 
-        play = new JButton("Play");
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 40 , 40));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
         play.addActionListener(new PlayListener(thread , musicThread));
 
 
-        addToFavourite = new JButton("Favourite");
+        addToFavourite = new JButton(new ImageIconButton(".\\Icons\\23243-200.png" , 30 , 30));
+        addToFavourite.setOpaque(false);
+        addToFavourite.setContentAreaFilled(false);
+        addToFavourite.setBorderPainted(false);
         addToFavourite.addActionListener(new FavouriteListener(song));
 
-        addToShare = new JButton("Share");
+        addToShare = new JButton(new ImageIconButton(".\\Icons\\share-512 (1).png" , 30 , 30));
+        addToShare.setOpaque(false);
+        addToShare.setContentAreaFilled(false);
+        addToShare.setBorderPainted(false);
         addToShare.addActionListener(new ShareListener(song));
 
-        pause = new JButton("Pause");
+        pause = new JButton(new ImageIconButton(".\\Icons\\download.png" , 40 , 40));
+        pause.setOpaque(false);
+        pause.setContentAreaFilled(false);
+        pause.setBorderPainted(false);
         pause.addActionListener(new PauseListener(musicThread));
 
         bar.addChangeListener(new ChangeListener() {
@@ -107,9 +120,16 @@ public class PlayerBarPanel extends JPanel {
         });
 
 
-        repeat =new JButton("Repeat");
+        repeat =new JButton(new ImageIconButton(".\\Icons\\274-2743644_refresh-button-repeat-icon-png.png" , 25 , 25));
+        repeat.setOpaque(false);
+        repeat.setContentAreaFilled(false);
+        repeat.setBorderPainted(false);
 
-        shuffle = new JButton("Shuffle");
+
+        shuffle = new JButton(new ImageIconButton(".\\Icons\\media-shuffle.png" , 25 , 25 ));
+        shuffle.setOpaque(false);
+        shuffle.setContentAreaFilled(false);
+        shuffle.setBorderPainted(false);
         shuffle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,8 +152,8 @@ public class PlayerBarPanel extends JPanel {
 
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
-        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(play);
+        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(addToShare);
         optionOfPlayPanel.add(repeat);
 
@@ -191,20 +211,35 @@ public class PlayerBarPanel extends JPanel {
         playSliderPanel.add(endLabelTime);
 
 
-        play = new JButton("Play");
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 40 , 40));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
         play.addActionListener(new PlayListener(thread , musicThread));
 
 
-        addToFavourite = new JButton("Favourite");
+        addToFavourite = new JButton(new ImageIconButton(".\\Icons\\23243-200.png" , 30 , 30));
+        addToFavourite.setOpaque(false);
+        addToFavourite.setContentAreaFilled(false);
+        addToFavourite.setBorderPainted(false);
         addToFavourite.addActionListener(new FavouriteListener(song));
 
-        addToShare = new JButton("Share");
+        addToShare = new JButton(new ImageIconButton(".\\Icons\\share-512 (1).png" , 30 , 30));
+        addToShare.setOpaque(false);
+        addToShare.setContentAreaFilled(false);
+        addToShare.setBorderPainted(false);
         addToShare.addActionListener(new ShareListener(song));
 
-        pause = new JButton("Pause");
+        pause = new JButton(new ImageIconButton(".\\Icons\\download.png" , 40 , 40));
+        pause.setOpaque(false);
+        pause.setContentAreaFilled(false);
+        pause.setBorderPainted(false);
         pause.addActionListener(new PauseListener(musicThread));
 
-        nextSong = new JButton("Next");
+        nextSong = new JButton(new ImageIconButton(".\\Icons\\next-button-png-ahead-button-fastforward-forward-go-next-icon-512.png" ,35 , 35));
+        nextSong.setOpaque(false);
+        nextSong.setContentAreaFilled(false);
+        nextSong.setBorderPainted(false);
         nextSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -225,7 +260,10 @@ public class PlayerBarPanel extends JPanel {
 
 
 
-        previousSong = new JButton("Pervious");
+        previousSong = new JButton(new ImageIconButton(".\\Icons\\previous-button-png-arrow-back-basic-button-control-media-player-previous-512.png" , 40 , 40));
+        previousSong.setOpaque(false);
+        previousSong.setContentAreaFilled(false);
+        previousSong.setBorderPainted(false);
         previousSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -242,9 +280,16 @@ public class PlayerBarPanel extends JPanel {
             }
         });
 
-        repeat =new JButton("Repeat");
+        repeat =new JButton(new ImageIconButton(".\\Icons\\274-2743644_refresh-button-repeat-icon-png.png" , 25 , 25));
+        repeat.setOpaque(false);
+        repeat.setContentAreaFilled(false);
+        repeat.setBorderPainted(false);
 
-        shuffle = new JButton("Shuffle");
+
+        shuffle = new JButton(new ImageIconButton(".\\Icons\\media-shuffle.png" , 25 , 25 ));
+        shuffle.setOpaque(false);
+        shuffle.setContentAreaFilled(false);
+        shuffle.setBorderPainted(false);
         shuffle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -268,8 +313,8 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
         optionOfPlayPanel.add(previousSong);
-        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(play);
+        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(nextSong);
         optionOfPlayPanel.add(addToShare);
         optionOfPlayPanel.add(repeat);
@@ -325,20 +370,37 @@ public class PlayerBarPanel extends JPanel {
         playSliderPanel.add(endLabelTime);
 
 
-        play = new JButton("Play");
+        play = new JButton(new ImageIconButton(".\\Icons\\img_153075.png" , 40 , 40));
+        play.setOpaque(false);
+        play.setContentAreaFilled(false);
+        play.setBorderPainted(false);
         play.addActionListener(new PlayListener(thread , musicThread));
 
 
-        addToFavourite = new JButton("Favourite");
+        addToFavourite = new JButton(new ImageIconButton(".\\Icons\\23243-200.png" , 30 , 30));
+        addToFavourite.setOpaque(false);
+        addToFavourite.setContentAreaFilled(false);
+        addToFavourite.setBorderPainted(false);
         addToFavourite.addActionListener(new FavouriteListener(song));
 
-        addToShare = new JButton("Share");
+
+
+        addToShare = new JButton(new ImageIconButton(".\\Icons\\share-512 (1).png" , 30 , 30));
+        addToShare.setOpaque(false);
+        addToShare.setContentAreaFilled(false);
+        addToShare.setBorderPainted(false);
         addToShare.addActionListener(new ShareListener(song));
 
-        pause = new JButton("Pause");
+        pause = new JButton(new ImageIconButton(".\\Icons\\download.png" , 40 , 40));
+        pause.setOpaque(false);
+        pause.setContentAreaFilled(false);
+        pause.setBorderPainted(false);
         pause.addActionListener(new PauseListener(musicThread));
 
-        nextSong = new JButton("Next");
+        nextSong = new JButton(new ImageIconButton(".\\Icons\\next-button-png-ahead-button-fastforward-forward-go-next-icon-512.png" ,35 , 35));
+        nextSong.setOpaque(false);
+        nextSong.setContentAreaFilled(false);
+        nextSong.setBorderPainted(false);
         nextSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -359,7 +421,10 @@ public class PlayerBarPanel extends JPanel {
 
 
 
-        previousSong = new JButton("Pervious");
+        previousSong = new JButton(new ImageIconButton(".\\Icons\\previous-button-png-arrow-back-basic-button-control-media-player-previous-512.png" , 40 , 40));
+        previousSong.setOpaque(false);
+        previousSong.setContentAreaFilled(false);
+        previousSong.setBorderPainted(false);
         previousSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -376,10 +441,16 @@ public class PlayerBarPanel extends JPanel {
             }
         });
 
-        repeat =new JButton("Repeat");
+        repeat =new JButton(new ImageIconButton(".\\Icons\\274-2743644_refresh-button-repeat-icon-png.png" , 25 , 25));
+        repeat.setOpaque(false);
+        repeat.setContentAreaFilled(false);
+        repeat.setBorderPainted(false);
 
 
-        shuffle = new JButton("Shuffle");
+        shuffle = new JButton(new ImageIconButton(".\\Icons\\media-shuffle.png" , 25 , 25 ));
+        shuffle.setOpaque(false);
+        shuffle.setContentAreaFilled(false);
+        shuffle.setBorderPainted(false);
         shuffle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -403,8 +474,8 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.add(shuffle);
         optionOfPlayPanel.add(addToFavourite);
         optionOfPlayPanel.add(previousSong);
-        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(play);
+        optionOfPlayPanel.add(pause);
         optionOfPlayPanel.add(nextSong);
         optionOfPlayPanel.add(addToShare);
         optionOfPlayPanel.add(repeat);

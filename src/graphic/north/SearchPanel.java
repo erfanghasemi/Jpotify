@@ -2,6 +2,7 @@ package graphic.north;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
+import graphic.variouspart.ImageIconButton;
 import logic.Controller.libraryControlller.SearchSongController;
 
 import javax.swing.*;
@@ -20,7 +21,11 @@ public class SearchPanel extends JPanel {
         setLayout(new BorderLayout());
 
         fieldOfSearch = new JTextField();
-        submitSearch= new JButton("Search");
+
+        submitSearch= new JButton(new ImageIconButton(".\\Icons\\Search-512.png" , 25 , 25));
+        submitSearch.setOpaque(false);
+        submitSearch.setContentAreaFilled(false);
+        submitSearch.setBorderPainted(false);
 
         submitSearch.addActionListener(new ActionListener() {
             @Override
@@ -28,6 +33,7 @@ public class SearchPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(submitSearch);
                 MainPanel mainPanel = myFrame.getCenter();
                 new SearchSongController(mainPanel ,myFrame.getNorth().searchPanel);
+                fieldOfSearch.setText("");
             }
         });
 
@@ -37,11 +43,12 @@ public class SearchPanel extends JPanel {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(submitSearch);
                 MainPanel mainPanel = myFrame.getCenter();
                 new SearchSongController(mainPanel ,myFrame.getNorth().searchPanel);
+                fieldOfSearch.setText("");
             }
         });
 
 
-        submitSearch.setPreferredSize(new Dimension(75,25));
+        submitSearch.setPreferredSize(new Dimension(55,45));
         fieldOfSearch.setPreferredSize(new Dimension(120,25));
 
         fieldOfSearch.setBackground(Color.lightGray);
