@@ -26,6 +26,8 @@ public class MusicThread implements Runnable {
 
     public void run() {
 
+        System.out.println("thread is running");
+
         do {
 
 //
@@ -41,7 +43,7 @@ public class MusicThread implements Runnable {
 
                 while (player.play(1) && !(exit)){
 
-//                    System.out.println("music is playing");
+                    System.out.println("music is playing");
 
                     if (isPaused){
 //                        System.out.println("music stopped");
@@ -51,7 +53,7 @@ public class MusicThread implements Runnable {
                     }
 
                 }
-//                System.out.println("thread is running out of loop");
+                System.out.println("thread is running out of loop");
 
             } catch (JavaLayerException | InterruptedException | IOException e) {
                 e.printStackTrace();
