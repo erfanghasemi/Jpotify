@@ -55,7 +55,7 @@ public class PlaylistPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(newPlayList);
                 MainPanel mainPanel = myFrame.getCenter();
-                new PlayListController(mainPanel);
+                new PlayListController(myFrame , mainPanel);
             }
         });
 

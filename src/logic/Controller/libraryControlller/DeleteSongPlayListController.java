@@ -6,6 +6,7 @@ import logic.Controller.libraryControlller.SongsShowController;
 import logic.PlayList;
 import logic.Song;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class DeleteSongPlayListController {
 
         playList.getSongsOfPlayList().remove(song);
         refreshPlayListTitleBar("D:\\kia.bin" , myFarme.getWest().getPlaylistPanel().getPlayLists());
-        new SongsShowController(myFarme , view , playList);
+        new SongsShowController(myFarme ,view , playList);
     }
 
 

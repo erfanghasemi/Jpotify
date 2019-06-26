@@ -1,5 +1,6 @@
 package logic.Controller.libraryControlller;
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import graphic.variouspart.singleplaylist.SinglePlayListPanel;
 import logic.PlayList;
@@ -18,11 +19,12 @@ public class PlayListController {
     protected ArrayList<PlayList> playLists;
     private static final String FILE_PATH_PLAYLIST = "D:\\kia.bin";
 
-    public PlayListController(MainPanel view) {
+    public PlayListController(MainFrame myFrame , MainPanel view) {
 
-        view.removeAll();
-        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
-
+        myFrame.remove(myFrame.getCenter());
+        myFrame.remove(myFrame.getScrollPane());
+        MainPanel newCenterPanel = new MainPanel();
+        myFrame.setCenter(newCenterPanel);
 
         playLists = new ArrayList<>();
 
@@ -31,14 +33,22 @@ public class PlayListController {
         for (PlayList playList : playLists) {
             if(!(playList.getTitle().equals("Favourite") || playList.getTitle().equals("Share"))) {
                 SinglePlayListPanel singlePlayListPanel = new SinglePlayListPanel(playList.getTitle(), getImageFromByte(playList.getSongsOfPlayList().get(0).getArtWork()), playList);
-                view.add(singlePlayListPanel);
+                newCenterPanel.add(singlePlayListPanel);
             }
 
         }
 
-        view.repaint();
-        view.validate();
-        view.setVisible(true);
+        JScrollPane scrollPane = new JScrollPane(newCenterPanel );
+
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        myFrame.setScrollPane(scrollPane);
+
+        scrollPane.repaint();
+        scrollPane.validate();
+
+        myFrame.repaint();
+        myFrame.validate();
 
     }
 

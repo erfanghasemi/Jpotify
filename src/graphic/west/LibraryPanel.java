@@ -55,7 +55,7 @@ public class LibraryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(songs);
                 MainPanel mainPanel = myFrame.getCenter();
-                new AlbumsController(mainPanel);
+                new AlbumsController(myFrame , mainPanel);
             }
         });
 

@@ -55,7 +55,7 @@ public class OptionOfPlayListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new DeletePlayListController(playList , mainPanel);
+                new DeletePlayListController( playList , mainPanel, myFrame);
                 refreshPlayListTitleBar("D:\\kia.bin" , myFrame.getWest().getPlaylistPanel().getPlayLists());
             }
         });
@@ -77,7 +77,7 @@ public class OptionOfPlayListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(delete);
                 MainPanel mainPanel = myFrame.getCenter();
-                new AddSongPlayListController( mainPanel , playList);
+                new AddSongPlayListController( mainPanel , playList  ,myFrame);
 
             }
         });

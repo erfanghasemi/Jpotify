@@ -50,7 +50,7 @@ public class RenamePlayListController implements ActionListener {
             ex.printStackTrace();
         }
 
-        new PlayListController(view.getCenter());
+        new PlayListController(view , view.getCenter());
         refreshPlayListTitleBar("D:\\kia.bin" , view.getWest().getPlaylistPanel().getPlayLists());
 
     }

@@ -1,5 +1,6 @@
 package logic.Controller.libraryControlller;
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.PlayList;
 import logic.Song;
@@ -16,7 +17,7 @@ public class DeletePlayListController {
     private  ArrayList<PlayList> playLists = null;
     private static final String FILE_PATH_PLAYLIST  = "D:\\kia.bin";
 
-    public DeletePlayListController(PlayList playList , MainPanel view) {
+    public DeletePlayListController(PlayList playList , MainPanel view  , MainFrame myFrame) {
 
         playLists = new ArrayList<>();
 
@@ -34,7 +35,7 @@ public class DeletePlayListController {
             e.printStackTrace();
         }
 
-        new PlayListController(view);
+        new PlayListController(myFrame , view);
     }
 
 

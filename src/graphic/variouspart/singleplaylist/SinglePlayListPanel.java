@@ -30,6 +30,8 @@ public class SinglePlayListPanel extends JPanel {
         playListImagePanel = new ImageItemPanel(artWork);
 
 
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
         add(labelOfPlayListPanel , BorderLayout.CENTER);
         add(optionOfPlayListPanel , BorderLayout.EAST);
         add(playListImagePanel , BorderLayout.WEST);

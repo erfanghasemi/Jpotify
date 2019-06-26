@@ -5,6 +5,7 @@ import graphic.center.MainPanel;
 import logic.Album;
 import logic.Song;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class DeleteSongController {
                 e.printStackTrace();
             }
 
-        new SongsShowController(myFrame , view);
+        new SongsShowController(myFrame ,view);
     }
 
     public DeleteSongController(Song song , Album album , MainPanel view , MainFrame myframe) {
@@ -53,7 +54,7 @@ public class DeleteSongController {
             e.printStackTrace();
         }
 
-        new SongsShowController(myframe ,view,album);
+        new SongsShowController(myframe,view,album);
     }
 
 

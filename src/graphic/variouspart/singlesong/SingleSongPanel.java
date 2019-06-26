@@ -34,6 +34,7 @@ public class SingleSongPanel extends JPanel {
         imageOfSongPanel = new ImageItemPanel(artWork);
         statusOfSongPanel = new OptionOfSongPanel(song , playList);
 
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
         add(imageOfSongPanel , BorderLayout.WEST);
         add(labelOfSongPanel , BorderLayout.CENTER);
@@ -58,6 +59,8 @@ public class SingleSongPanel extends JPanel {
         imageOfSongPanel = new ImageItemPanel(artWork);
         statusOfSongPanel = new OptionOfSongPanel(song , album);
 
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
 
         add(imageOfSongPanel , BorderLayout.WEST);
         add(labelOfSongPanel , BorderLayout.CENTER);
@@ -81,6 +84,8 @@ public class SingleSongPanel extends JPanel {
         labelOfSongPanel = new LabelOfSongPanel(artistName , albumName , titleName);
         imageOfSongPanel = new ImageItemPanel(artWork);
         statusOfSongPanel = new OptionOfSongPanel(song);
+
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
         add(imageOfSongPanel , BorderLayout.WEST);
         add(labelOfSongPanel , BorderLayout.CENTER);

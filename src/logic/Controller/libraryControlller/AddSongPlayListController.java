@@ -1,5 +1,6 @@
 package logic.Controller.libraryControlller;
 
+import graphic.MainFrame;
 import graphic.center.MainPanel;
 import graphic.variouspart.additem.AddSongPanel;
 import logic.PlayList;
@@ -18,18 +19,19 @@ public class AddSongPlayListController implements ActionListener {
     private ArrayList<PlayList> playLists;
     private PlayList playList;
     private MainPanel view;
-
+    private MainFrame myFrame;
 
     private static final String FILE_PATH = "D:\\avi.bin";
     private static final String FILE_PATH_PLAYLIST = "D:\\kia.bin";
 
 
-    public AddSongPlayListController(MainPanel view , PlayList playList) {
+    public AddSongPlayListController(MainPanel view , PlayList playList , MainFrame myFrame) {
 
         addSongPanel = new AddSongPanel(this, "Please Enter Your Song Title: " , view);
 
         this.playList = playList;
         this.view = view;
+        this.myFrame = myFrame;
 
         songs = new ArrayList<>();
         playLists = new ArrayList<>();
@@ -64,7 +66,7 @@ public class AddSongPlayListController implements ActionListener {
             ex.printStackTrace();
         }
 
-        new PlayListController(view);
+        new PlayListController(myFrame , view);
 
     }
 

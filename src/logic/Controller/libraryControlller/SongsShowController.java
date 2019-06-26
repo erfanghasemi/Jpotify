@@ -21,74 +21,75 @@ public class SongsShowController {
     private static final String FILE_PATH = "D:\\avi.bin";
     protected ArrayList<Song> songs = null;
 
-    public SongsShowController() {
-
-        songs = new ArrayList<>();
-        songs = readObjecFromFile(FILE_PATH , songs);
-
-    }
 
 
     public SongsShowController(MainFrame myFrame , MainPanel view , Album album) {
 
-        view.removeAll();
-        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
-        view.setBackground(Color.white);
+        myFrame.remove(myFrame.getCenter());
+        myFrame.remove(myFrame.getScrollPane());
+        MainPanel newCenterPanel = new MainPanel();
+        myFrame.setCenter(newCenterPanel);
 
         songs = album.getAlbumSongs();
 
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song , album);
-            view.add(singleSongPanel);
+            newCenterPanel.add(singleSongPanel);
         }
 
 
-        JScrollPane scrollPane = new JScrollPane(view);
+
+        JScrollPane scrollPane = new JScrollPane(newCenterPanel );
+
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        myFrame.add(scrollPane , BorderLayout.CENTER);
+        myFrame.setScrollPane(scrollPane);
 
         scrollPane.repaint();
         scrollPane.validate();
+
         myFrame.repaint();
         myFrame.validate();
-        scrollPane.setVisible(true);
     }
 
 
     public SongsShowController( MainFrame myFrame, MainPanel view , PlayList playList) {
-        view.removeAll();
-        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
-        view.setBackground(Color.white);
+        myFrame.remove(myFrame.getCenter());
+        myFrame.remove(myFrame.getScrollPane());
+        MainPanel newCenterPanel = new MainPanel();
+        myFrame.setCenter(newCenterPanel);
+
 
 
         songs = playList.getSongsOfPlayList();
 
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song , playList);
-            view.add(singleSongPanel);
+            newCenterPanel.add(singleSongPanel);
         }
 
         view.add(new SortPlayListSong());
 
-        JScrollPane scrollPane = new JScrollPane(view);
+
+        JScrollPane scrollPane = new JScrollPane(newCenterPanel );
+
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        myFrame.add(scrollPane , BorderLayout.CENTER);
+        myFrame.setScrollPane(scrollPane);
 
         scrollPane.repaint();
         scrollPane.validate();
+
         myFrame.repaint();
         myFrame.validate();
-        scrollPane.setVisible(true);
     }
 
 
     public SongsShowController(MainFrame myFrame , MainPanel view) {
-        view.removeAll();
-        view.setLayout(new BoxLayout(view , BoxLayout.Y_AXIS));
-        view.setBackground(Color.white);
-
+        myFrame.remove(myFrame.getCenter());
+        myFrame.remove(myFrame.getScrollPane());
+        MainPanel newCenterPanel = new MainPanel();
+        myFrame.setCenter(newCenterPanel);
 
         songs = new ArrayList<>();
 
@@ -96,18 +97,20 @@ public class SongsShowController {
 
         for (Song song: songs) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song);
-            view.add(singleSongPanel);
+            newCenterPanel.add(singleSongPanel);
         }
 
-        JScrollPane scrollPane = new JScrollPane(view);
+        JScrollPane scrollPane = new JScrollPane(newCenterPanel );
+
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        myFrame.add(scrollPane , BorderLayout.CENTER);
+
+        myFrame.setScrollPane(scrollPane);
 
         scrollPane.repaint();
         scrollPane.validate();
+
         myFrame.repaint();
         myFrame.validate();
-        scrollPane.setVisible(true);
     }
 
 

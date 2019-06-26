@@ -7,6 +7,7 @@ import logic.Controller.libraryControlller.SignUpController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -17,6 +18,15 @@ public class MainPanel extends JPanel {
     JLabel imageWelcome , labelText;
     JTextField textField;
     JButton submit;
+
+    public MainPanel() {
+
+        setBackground(Color.white);
+        setLayout(new BoxLayout(this  , BoxLayout.Y_AXIS));
+
+        setVisible(true);
+
+    }
 
     public MainPanel(MainFrame mainFrame) {
 
@@ -107,7 +117,6 @@ public class MainPanel extends JPanel {
             add(north);
             add(center);
 
-
             mainFrame.add(this, BorderLayout.CENTER);
             setVisible(true);
         }
@@ -131,11 +140,10 @@ public class MainPanel extends JPanel {
 
             add(imageWelcome , BorderLayout.CENTER);
 
-            mainFrame.add(this, BorderLayout.CENTER);
+            mainFrame.add(this ,BorderLayout.CENTER);
             setVisible(true);
 
         }
-
 
 
 

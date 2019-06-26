@@ -5,6 +5,7 @@ import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Song;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

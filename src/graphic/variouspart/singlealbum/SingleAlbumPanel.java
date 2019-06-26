@@ -28,6 +28,8 @@ public class SingleAlbumPanel extends JPanel {
         songsOfAlbumPanel = new OptionOfAlbumPanel(album);
         labelOfAlbumPanel = new LabelOfAlbumPanel(artist , title);
 
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
         add(albumImagePanel , BorderLayout.WEST);
         add(songsOfAlbumPanel , BorderLayout.EAST);
         add(labelOfAlbumPanel , BorderLayout.CENTER);

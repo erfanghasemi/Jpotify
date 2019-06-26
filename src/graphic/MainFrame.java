@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
     private graphic.center.MainPanel center;
     private Image iconFrame;
     private String userName;
-
+    private JScrollPane scrollPane;
 
     public MainFrame(){
 
@@ -23,9 +23,12 @@ public class MainFrame extends JFrame {
         north  = new graphic.north.MainPanel(this);
         south = new graphic.south.MainPanel(this);
         center = new graphic.center.MainPanel(this);
+        scrollPane  = new JScrollPane(center);
+
+        add(center , BorderLayout.CENTER);
 
 
-        iconFrame = Toolkit.getDefaultToolkit().getImage("C:\\\\Users\\\\01RAYANEH\\\\Desktop\\\\iconfinder_spotify_216744.png");
+        iconFrame = Toolkit.getDefaultToolkit().getImage("C:\\Users\\01RAYANEH\\Desktop\\iconfinder_spotify_216744.png");
 
         setTitle("Jpotify");
         setLocation(new Point(300 , 50));
@@ -35,6 +38,15 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(JScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
+        this.add(scrollPane , BorderLayout.CENTER);
+    }
 
     public MainPanel getEast() {
         return east;

@@ -51,7 +51,7 @@ public class OptionOfAlbumPanel extends JPanel {
                 for (Song song : album.getAlbumSongs()) {
                     new DeleteSongController(song , mainPanel , myFrame);
                 }
-                new AlbumsController(mainPanel);
+                new AlbumsController(myFrame , mainPanel);
             }
         });
 
