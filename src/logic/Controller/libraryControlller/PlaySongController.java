@@ -32,7 +32,7 @@ public class PlaySongController {
         songsList = new ArrayList<>();
         songsList = readSongFromFile(FILE_PATH , songsList);
 
-            MusicThread musicThread = new MusicThread(song);
+            MusicThread musicThread = new MusicThread(song , myFrame);
             activeThreads.add(musicThread);
             Thread thread = new Thread(musicThread);
         if(activeThreads.size() == 2){
@@ -109,7 +109,7 @@ public class PlaySongController {
 
 //        sortLastPlay(song);
 
-        MusicThread musicThread = new MusicThread(song);
+        MusicThread musicThread = new MusicThread(song , myFrame);
         Thread thread = new Thread(musicThread);
         activeThreads.add(musicThread);
 
@@ -182,7 +182,7 @@ public class PlaySongController {
 
 //        sortLastPlay(song);
 
-        MusicThread musicThread = new MusicThread(song);
+        MusicThread musicThread = new MusicThread(song , myFrame);
         Thread thread = new Thread(musicThread);
         activeThreads.add(musicThread);
 

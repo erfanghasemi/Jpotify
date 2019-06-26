@@ -68,7 +68,7 @@ public class SongsShowController {
             newCenterPanel.add(singleSongPanel);
         }
 
-        view.add(new SortPlayListSong());
+        view.add(new SortPlayListSong(playList));
 
 
         JScrollPane scrollPane = new JScrollPane(newCenterPanel );

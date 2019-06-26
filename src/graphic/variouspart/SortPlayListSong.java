@@ -1,7 +1,14 @@
 package graphic.variouspart;
 
+import graphic.MainFrame;
+import graphic.center.MainPanel;
+import logic.Controller.libraryControlller.SortPlayListSongController;
+import logic.PlayList;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SortPlayListSong extends JPanel {
 
@@ -10,7 +17,7 @@ public class SortPlayListSong extends JPanel {
     JButton submitChange;
     JLabel textLabel;
 
-    public SortPlayListSong() {
+    public SortPlayListSong(PlayList playList) {
 
         setBackground(Color.white);
         setLayout(new GridBagLayout());
@@ -21,6 +28,15 @@ public class SortPlayListSong extends JPanel {
         submitChange = new JButton("Apply");
         firstSong  = new JTextField();
         secondsSong  = new JTextField();
+
+        submitChange.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(submitChange);
+                MainPanel mainPanel = myFrame.getCenter();
+                new SortPlayListSongController( myFrame ,  mainPanel , playList ,firstSong.getText()  ,secondsSong.getText());
+            }
+        });
 
         submitChange.setMinimumSize(new Dimension(30 , 30));
 

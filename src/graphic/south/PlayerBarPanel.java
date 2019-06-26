@@ -3,11 +3,14 @@ package graphic.south;
 import MusicHandler.*;
 import graphic.MainFrame;
 import logic.Album;
+import logic.Controller.libraryControlller.JsliderController;
 import logic.Controller.libraryControlller.PlaySongController;
 import logic.PlayList;
 import logic.Song;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,6 +111,19 @@ public class PlayerBarPanel extends JPanel {
         bar.setPaintLabels(false);
         bar.setPreferredSize(new Dimension(400 , 25));
 
+
+
+        bar.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(bar);
+                if(bar.getValueIsAdjusting()) {
+                    new JsliderController(myFrame, musicThread);
+                }
+            }
+        });
+
+
         playSliderPanel.add(startlabelTime);
         playSliderPanel.add(bar);
         playSliderPanel.add(endLabelTime);
@@ -126,7 +142,15 @@ public class PlayerBarPanel extends JPanel {
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
 
-        bar.addChangeListener(new SliderListener(musicThread));
+        bar.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(bar);
+                if(bar.getValueIsAdjusting()) {
+                    new JsliderController(myFrame, musicThread);
+                }
+            }
+        });
 
 
         repeat =new JButton("Repeat");
@@ -184,7 +208,7 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel("2:32      ");
-        bar = new JSlider(0 , 100 , 50);
+        bar = new JSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
 
 
@@ -192,6 +216,21 @@ public class PlayerBarPanel extends JPanel {
         bar.setPaintTicks(false);
         bar.setPaintLabels(false);
         bar.setPreferredSize(new Dimension(400 , 25));
+
+
+        bar.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(bar);
+                if(bar.getValueIsAdjusting()) {
+                    new JsliderController(myFrame, musicThread);
+                }
+            }
+        });
+
+
+
+
 
         playSliderPanel.add(startlabelTime);
         playSliderPanel.add(bar);
@@ -308,8 +347,18 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel("2:32      ");
-        bar = new JSlider(0 , 100 , 50);
+        bar = new JSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
+
+        bar.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(bar);
+                if(bar.getValueIsAdjusting()) {
+                    new JsliderController(myFrame, musicThread);
+                }
+            }
+        });
 
 
         bar.setEnabled(true);
