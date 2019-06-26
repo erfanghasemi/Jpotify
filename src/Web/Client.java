@@ -60,6 +60,14 @@ public class Client implements Runnable {
             dos.writeLong(length);
             os.flush();
 
+            while (true){
+                InputStream inputStream = client.getInputStream();
+                objectInputStream = new ObjectInputStream(inputStream);
+                String request = (String) objectInputStream.readObject();
+                if (!request.equals(""))
+                    break;
+            }
+
 
             int packetSize = 1024;
             double nosofpackets = Math.ceil(length / packetSize);

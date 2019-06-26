@@ -9,6 +9,7 @@ import java.net.Socket;
 public class HandleClient implements Runnable{
 
     private Socket client;
+    private String request = "";
     private final static String FRIEND_FILE_PATH = "D:\\friend.bin";
 
     public HandleClient(Socket client){
@@ -48,6 +49,15 @@ public class HandleClient implements Runnable{
             System.out.println(ext);
 
             System.out.println("extension read");
+
+            while (true){
+                OutputStream outputStream = client.getOutputStream();
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                objectOutputStream.writeObject(request);
+                outputStream.flush();
+                if (!request.equals(""))
+                    break;
+            }
 
 
 
@@ -118,6 +128,10 @@ public class HandleClient implements Runnable{
             reset();
         }
 
+    }
+
+    public void setRequest(String request){
+        this.request = request;
     }
 
 
