@@ -19,13 +19,18 @@ public class MainPanel extends JPanel {
 
         setBackground(Color.white);
 
-//        addFriend = new JButton("Add Friend");
+        addFriend = new JButton("Add Friend");
+        addFriend.setPreferredSize(new Dimension(120 , 25));
+        addFriend.setMaximumSize(new Dimension(120 , 25));
+        addFriend.setMinimumSize(new Dimension(120 , 25));
+
+
 
 
         friendPanel = new FriendPanel("Erfan" , "Red" , "Online");
-//        add(addFriend);
         add(friendPanel);
 
+//        add(addFriend);
 
         FriendPanel a = new FriendPanel("Reza" , "Jodaee" ,"44 m");
         add(a);

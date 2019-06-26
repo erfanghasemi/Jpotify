@@ -16,7 +16,7 @@ public class Client implements Runnable {
 
     public void run(){
 
-        File file = new File("C:\\Users\\Mahdi\\Desktop\\bollywood_groove-kevin_macleod.mp3");
+        File file = new File("D:\\Music\\Moein - Donyaye Eshgh\\02 Sayeh.mp3");
         String name=file.getName();
         String n=  name.substring(name.lastIndexOf(".") + 1);
 
@@ -26,26 +26,23 @@ public class Client implements Runnable {
             dos.writeUTF(n);
             os.flush();
 
+            long length = file.length();
+            System.out.println("client file length is:" + length);
+            //String s = length.toString();
 
-            FileInputStream fis = new FileInputStream(file);
-            //BufferedInputStream bis = new BufferedInputStream(fis);
-            int lenght = (int) file.length();
-            byte[] myByteArray = new byte[1024];
-            //bis.read(myByteArray, 0, 1024);
-            os = client.getOutputStream();
-            os.write(myByteArray, 0, 1024);
+            dos.writeLong(length);
             os.flush();
 
 
             int packetSize = 1024;
-            double nosofpackets=Math.ceil(((int) file.length())/packetSize);
+            double nosofpackets = Math.ceil(length / packetSize);
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
             for(double i=0;i<nosofpackets+1;i++) {
                 byte[] mybytearray = new byte[packetSize];
                 bis.read(mybytearray, 0, mybytearray.length);
-                System.out.println("Packet:"+(i+1));
                 os = client.getOutputStream();
-                os.write(mybytearray, 0,mybytearray.length);
+                DataOutputStream dataOutputStream = new DataOutputStream(os);
+                dataOutputStream.write(mybytearray, 0,mybytearray.length);
                 os.flush();
             }
         }
@@ -55,6 +52,8 @@ public class Client implements Runnable {
         }
     }
 
-
+    public void setSong(Song song){
+        this.song = song;
+    }
 
 }

@@ -28,11 +28,13 @@ public class MusicThread implements Runnable {
 
     public MusicThread(Song song) throws FileNotFoundException {
         this.song = song;
-        this.mainFrame = mainFrame;
+       this.mainFrame = mainFrame;
         exit = false;
     }
 
     public void run() {
+
+        System.out.println("thread is running");
 
         do {
 
@@ -50,6 +52,8 @@ public class MusicThread implements Runnable {
                 }
 
                 while (player.play(1) && !(exit)){
+
+                    System.out.println("kir to kalbasi");
 
                     if (isPaused){
                         synchronized (player){
@@ -69,6 +73,8 @@ public class MusicThread implements Runnable {
                     mainFrame.repaint();
                     mainFrame.validate();
                 }
+
+                System.out.println("thread is running out of loop");
 
                 if (currentFrame > song.getFrames() - 10){
                     setExitThread();
