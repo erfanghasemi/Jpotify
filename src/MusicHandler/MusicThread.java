@@ -16,9 +16,11 @@ public class MusicThread implements Runnable {
     private boolean seekTo = false;
     private int frame;
     private Boolean exit;
+    //private MainFrame mainFrame;
 
     public MusicThread(Song song) throws FileNotFoundException {
         this.song = song;
+        //this.mainFrame = mainFrame;
         exit = false;
     }
 
@@ -31,8 +33,11 @@ public class MusicThread implements Runnable {
 
                 player = new AdvancedPlayer(fileInputStream);
 
-                if (seekTo)
+                if (seekTo){
+                    System.out.println("seek");
                     player.play(frame, frame + 1);
+                }
+
 
                 while (player.play(1) && !(exit)){
 
@@ -44,6 +49,7 @@ public class MusicThread implements Runnable {
                             player.wait();
                         }
                     }
+
                 }
 //                System.out.println("thread is running out of loop");
 

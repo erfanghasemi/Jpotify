@@ -1,7 +1,9 @@
 package graphic.south;
 
+import MusicHandler.MuteListener;
+import MusicHandler.VolumeBarListener;
+
 import javax.swing.*;
-import javax.swing.JSlider;
 import java.awt.*;
 
 public class ValumeBarPanel extends JPanel {
@@ -35,10 +37,12 @@ public class ValumeBarPanel extends JPanel {
 
         valumeBar.setMinimumSize(new Dimension(90 ,25));
         mute.setMaximumSize(new Dimension(30 , 25));
+        mute.addActionListener(new MuteListener());
 
         valumeBar.setEnabled(true);
         valumeBar.setPaintTicks(false);
         valumeBar.setPaintLabels(false);
+        valumeBar.addChangeListener(new VolumeBarListener());
 
 
         topPanel.add(minimumValue);

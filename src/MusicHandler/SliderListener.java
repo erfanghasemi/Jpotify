@@ -7,6 +7,7 @@ import javax.swing.event.ChangeListener;
 public class SliderListener implements ChangeListener {
 
     private MusicThread musicThread;
+    //private boolean changeBarListener = false;
 
     public SliderListener(MusicThread musicThread){
         this.musicThread = musicThread;
@@ -15,7 +16,9 @@ public class SliderListener implements ChangeListener {
     public synchronized void stateChanged(ChangeEvent e){
 
         System.out.println("slider changed");
+
         JSlider slider = (JSlider) e.getSource();
+
 
         int frame = musicThread.getSong().getFrames();
 

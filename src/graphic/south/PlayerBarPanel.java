@@ -18,10 +18,11 @@ import java.util.Random;
 public class PlayerBarPanel extends JPanel {
 
     JPanel optionOfPlayPanel , playSliderPanel;
-    JSlider bar;
+    private  JSlider bar;
     JLabel endLabelTime;
     JLabel startlabelTime;
     JButton play , addToShare , addToFavourite , pause , nextSong , previousSong ,shuffle , repeat;
+
 
 
     public PlayerBarPanel() {
@@ -98,7 +99,7 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel("2:32      ");
-        bar = new JSlider(0 , 100 , 50);
+        bar = new JSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
 
 
@@ -124,6 +125,8 @@ public class PlayerBarPanel extends JPanel {
 
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
+
+        bar.addChangeListener(new SliderListener(musicThread));
 
 
         repeat =new JButton("Repeat");
@@ -452,51 +455,6 @@ public class PlayerBarPanel extends JPanel {
             return indexOfThisSong - 1;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public JButton getPlay() {

@@ -1,6 +1,6 @@
 package logic.Controller.libraryControlller;
 
-import MusicHandler.*;
+import MusicHandler.MusicThread;
 import graphic.MainFrame;
 import graphic.south.MainPanel;
 import graphic.south.SongInfoPanel;
@@ -11,11 +11,8 @@ import logic.Song;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class PlaySongController {
