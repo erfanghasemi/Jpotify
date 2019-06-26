@@ -34,7 +34,9 @@ public class PlayListController {
             if(!(playList.getTitle().equals("Favourite") || playList.getTitle().equals("Share"))) {
                 SinglePlayListPanel singlePlayListPanel = new SinglePlayListPanel(playList.getTitle(), getImageFromByte(playList.getSongsOfPlayList().get(0).getArtWork()), playList);
                 newCenterPanel.add(singlePlayListPanel);
+
             }
+
 
         }
 

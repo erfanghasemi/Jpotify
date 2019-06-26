@@ -20,7 +20,7 @@ public class SignUpController {
 
     public SignUpController(String userName , MainPanel view ,MainFrame myFrame) {
         writeObjectToFile(userName);
-        new SongsShowController( myFrame ,view);
+        new SongsShowController( myFrame ,  view);
     }
 
     public void writeObjectToFile(String string) {

@@ -34,13 +34,17 @@ public class MusicThread implements Runnable {
 
     public void run() {
 
-        System.out.println("thread is running");
+
+        String songTime = showTimeString(song.getLengthOfSong());
+        mainFrame.getSouth().getPlayerBar().getEndLabelTime().setText("   " + songTime);
+        mainFrame.getSouth().getPlayerBar().getStartlabelTime().setText("00:00" + "   ");
 
         do {
 
-
             int currentFrame = 0;
-            int framePerUnit = 0;
+            int framePerUnitTick = 0;
+            int framePerSecond = 0;
+            long currentSecond = 0;
 
             try(FileInputStream fileInputStream = new FileInputStream(song.getAddress())){
 
@@ -49,11 +53,11 @@ public class MusicThread implements Runnable {
                 if (seekTo) {
                     player.play(frame, frame + 1);
                     currentFrame = frame;
+                    framePerSecond = 0;
+                    currentSecond = (long) frame / (song.getFrames() / song.getLengthOfSong());
                 }
 
                 while (player.play(1) && !(exit)){
-
-                    System.out.println("kir to kalbasi");
 
                     if (isPaused){
                         synchronized (player){
@@ -62,19 +66,25 @@ public class MusicThread implements Runnable {
                     }
 
                     currentFrame++;
-                    framePerUnit++;
+                    framePerUnitTick++;
+                    framePerSecond++;
 
-                    if(framePerUnit > (song.getFrames() / 100)){
+                    if(framePerSecond > (song.getFrames() / song.getLengthOfSong())){
+                        currentSecond++;
+                        mainFrame.getSouth().getPlayerBar().getStartlabelTime().setText(showTimeString(currentSecond));
+                        framePerSecond = 0;
+                    }
+
+
+                    if(framePerUnitTick > (song.getFrames() / 100)){
                         int i = mainFrame.getSouth().getPlayerBar().getBar().getValue();
                         mainFrame.getSouth().getPlayerBar().getBar().setValue( i + 1);
-                        framePerUnit = 0;
+                        framePerUnitTick = 0;
                     }
 
                     mainFrame.repaint();
                     mainFrame.validate();
                 }
-
-                System.out.println("thread is running out of loop");
 
                 if (currentFrame > song.getFrames() - 10){
                     setExitThread();
@@ -115,5 +125,27 @@ public class MusicThread implements Runnable {
     public Song getSong(){
         return song;
     }
+
+
+
+    public String showTimeString(long second){
+
+        long minutePart = second / 60;
+        long secondPart =  second - (minutePart * 60);
+
+        if(secondPart < 10){
+            return "0" + minutePart  + ":0" + secondPart + "    ";
+        }else {
+            return "0" + minutePart + ":" + secondPart + "    ";
+        }
+
+    }
+
+
+
+
+
+
+
 
 }

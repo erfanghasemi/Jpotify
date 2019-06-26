@@ -2,12 +2,12 @@ package graphic.west;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
-import logic.Controller.libraryControlller.AddPlayListShowController;
-import logic.Controller.libraryControlller.PlayListController;
-import logic.Controller.libraryControlller.SubmitNewPlayListController;
+import logic.Controller.libraryControlller.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +19,7 @@ public class PlaylistPanel extends JPanel {
 
     TitledBorder titledBorder;
     JButton newPlayList , addedPlayList;
-    JList playLists;
+    static  JList playLists;
 
     public PlaylistPanel() {
 
@@ -31,9 +31,21 @@ public class PlaylistPanel extends JPanel {
 
         playLists = new JList();
 
+
         new SubmitNewPlayListController( "Favourite");
         new SubmitNewPlayListController( "Share");
         refreshPlayListTitleBar("D:\\kia.bin" , playLists);
+
+        playLists.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(playLists.getValueIsAdjusting()) {
+                    MainFrame myFrame = (MainFrame) SwingUtilities.getWindowAncestor(newPlayList);
+                    MainPanel mainPanel = myFrame.getCenter();
+                    new JlistListener(myFrame, mainPanel, playLists.getSelectedValue().toString());
+                }
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane(playLists);
 

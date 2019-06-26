@@ -32,7 +32,7 @@ public class FavouriteListener implements ActionListener {
         Song favouriteSong = null;
 
         readObjecFromFile(FILE_PATH_PLAYLIST , playLists);
-        favouritePlayList = findShare(playLists);
+        favouritePlayList = findFavourite(playLists);
 
         songs = readSongFromFile(FILE_PATH , songs);
         favouriteSong = searchSong(songs , addedSong.getTitle());
@@ -77,7 +77,7 @@ public class FavouriteListener implements ActionListener {
 
 
 
-    public PlayList findShare(ArrayList<PlayList> playLists){
+    public PlayList findFavourite(ArrayList<PlayList> playLists){
         for ( PlayList playList : playLists) {
             if(playList.getTitle().equals("Favourite")){
                 return playList;

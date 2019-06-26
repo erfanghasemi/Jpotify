@@ -30,7 +30,7 @@ public class DeleteSongPlayListController {
 
         targetPlayList.getSongsOfPlayList().remove(indexOfSong);
 
-        if(targetPlayList.getSongsOfPlayList().size() == 0){
+        if(targetPlayList.getSongsOfPlayList().size() == 0 && !(targetPlayList.getTitle().equals("Share") && !(targetPlayList.getTitle().equals("Favourite")))){
             playLists.remove(targetPlayList);
         }
 

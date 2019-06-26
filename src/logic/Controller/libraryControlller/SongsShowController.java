@@ -12,6 +12,7 @@ import logic.Song;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
@@ -59,8 +60,6 @@ public class SongsShowController {
         MainPanel newCenterPanel = new MainPanel();
         myFrame.setCenter(newCenterPanel);
 
-
-
         songs = playList.getSongsOfPlayList();
 
         for (Song song: songs) {
@@ -68,7 +67,7 @@ public class SongsShowController {
             newCenterPanel.add(singleSongPanel);
         }
 
-        view.add(new SortPlayListSong(playList));
+        newCenterPanel.add(new SortPlayListSong(playList));
 
 
         JScrollPane scrollPane = new JScrollPane(newCenterPanel );

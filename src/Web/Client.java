@@ -7,7 +7,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Client implements Runnable {
+public class
+Client implements Runnable {
 
     private Socket client;
     private Song song;

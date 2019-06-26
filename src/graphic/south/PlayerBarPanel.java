@@ -33,52 +33,6 @@ public class PlayerBarPanel extends JPanel {
         setPreferredSize(new Dimension(250, 250));
         setBackground(Color.white);
         setLayout(new BoxLayout(this , BoxLayout.Y_AXIS));
-/*
-
-        optionOfPlayPanel = new JPanel();
-        playSliderPanel = new JPanel();
-
-        playSliderPanel.setBackground(Color.white);
-        playSliderPanel.setLayout(new GridBagLayout());
-
-        optionOfPlayPanel.setBackground(Color.white);
-
-        startlabelTime = new JLabel("2:32      ");
-        bar = new JSlider(0 , 100 , 50);
-        endLabelTime = new JLabel("    5:36");
-
-
-        bar.setEnabled(true);
-        bar.setPaintTicks(false);
-        bar.setPaintLabels(false);
-        bar.setPreferredSize(new Dimension(400 , 25));
-
-        playSliderPanel.add(startlabelTime);
-        playSliderPanel.add(bar);
-        playSliderPanel.add(endLabelTime);
-
-
-        play = new JButton("Play");
-        addToFavourite = new JButton("Favourite");
-        addToShare = new JButton("Share");
-        pause = new JButton("Pause");
-        nextSong = new JButton("Next");
-        previousSong = new JButton("Pervious");
-        repeat =new JButton("Repeat");
-        shuffle = new JButton("Shuffle");
-
-        optionOfPlayPanel.add(shuffle);
-        optionOfPlayPanel.add(addToFavourite);
-        optionOfPlayPanel.add(previousSong);
-        optionOfPlayPanel.add(pause);
-        optionOfPlayPanel.add(play);
-        optionOfPlayPanel.add(nextSong);
-        optionOfPlayPanel.add(addToShare);
-        optionOfPlayPanel.add(repeat);
-
-        add(playSliderPanel);
-        add(optionOfPlayPanel);
-*/
 
         setVisible(true);
     }
@@ -101,9 +55,9 @@ public class PlayerBarPanel extends JPanel {
 
         optionOfPlayPanel.setBackground(Color.white);
 
-        startlabelTime = new JLabel("2:32      ");
+        startlabelTime = new JLabel();
         bar = new JSlider(0 , 100 , 0);
-        endLabelTime = new JLabel("    5:36");
+        endLabelTime = new JLabel();
 
 
         bar.setEnabled(true);
@@ -137,7 +91,7 @@ public class PlayerBarPanel extends JPanel {
         addToFavourite.addActionListener(new FavouriteListener(song));
 
         addToShare = new JButton("Share");
-        addToFavourite.addActionListener(new ShareListener(song));
+        addToShare.addActionListener(new ShareListener(song));
 
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
@@ -207,7 +161,7 @@ public class PlayerBarPanel extends JPanel {
 
         optionOfPlayPanel.setBackground(Color.white);
 
-        startlabelTime = new JLabel("2:32      ");
+        startlabelTime = new JLabel( song.getLengthOfSong() + "      ");
         bar = new JSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
 
@@ -245,7 +199,7 @@ public class PlayerBarPanel extends JPanel {
         addToFavourite.addActionListener(new FavouriteListener(song));
 
         addToShare = new JButton("Share");
-        addToFavourite.addActionListener(new ShareListener(song));
+        addToShare.addActionListener(new ShareListener(song));
 
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
@@ -379,7 +333,7 @@ public class PlayerBarPanel extends JPanel {
         addToFavourite.addActionListener(new FavouriteListener(song));
 
         addToShare = new JButton("Share");
-        addToFavourite.addActionListener(new ShareListener(song));
+        addToShare.addActionListener(new ShareListener(song));
 
         pause = new JButton("Pause");
         pause.addActionListener(new PauseListener(musicThread));
@@ -540,5 +494,21 @@ public class PlayerBarPanel extends JPanel {
 
     public JSlider getBar(){
         return bar;
+    }
+
+    public JLabel getEndLabelTime() {
+        return endLabelTime;
+    }
+
+    public void setEndLabelTime(JLabel endLabelTime) {
+        this.endLabelTime = endLabelTime;
+    }
+
+    public JLabel getStartlabelTime() {
+        return startlabelTime;
+    }
+
+    public void setStartlabelTime(JLabel startlabelTime) {
+        this.startlabelTime = startlabelTime;
     }
 }
