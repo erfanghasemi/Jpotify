@@ -11,8 +11,8 @@ public class Server implements Runnable{
     ServerSocket serverSocket;
     private ExecutorService executorService;
 
-    public Server (int port) throws IOException {
-        serverSocket = new ServerSocket(port);
+    public Server () throws IOException {
+        serverSocket = new ServerSocket(1385);
         executorService = Executors.newCachedThreadPool();
     }
 
@@ -25,12 +25,12 @@ public class Server implements Runnable{
 
                 System.out.println("connection from : " + client.getInetAddress().getHostAddress());
 
-                executorService.submit(new HandleClient(client));
+                executorService.submit(new ClientHandler(client));
 
             }
             catch(Exception e)
             {
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
 
