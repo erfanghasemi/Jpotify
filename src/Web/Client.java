@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 public class Client implements Runnable {
 
-    private ArrayList<String> IPs = new ArrayList<>();
+    private ArrayList<String> recentIPs = new ArrayList<>();
+    private ArrayList<String> laterIPs = new ArrayList<>();
     private HashMap<String, ServerHandler> ClientIP = new HashMap<>();
     private Song song;
 
@@ -17,19 +18,15 @@ public class Client implements Runnable {
         this.song = song;
     }
 
-    public Client () throws IOException, ClassNotFoundException {
+    public Client() throws IOException, ClassNotFoundException {
 //        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
 //        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 //        this.IPs = (ArrayList<String>) objectInputStream.readObject();
     }
 
-    public void addIP (String IP) throws IOException {
-        IPs.add(IP);
-        Socket client = new Socket(IP, 1385);
-        ServerHandler serverHandler = new ServerHandler(client);
-        ClientIP.put(IP , serverHandler);
-        Thread thread = new Thread(serverHandler);
-        thread.start();
+    public void addIP(String IP) throws IOException {
+            recentIPs.add(IP);
+            executor(IP);
 //        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
 //        FileOutputStream fileOutputStream = new FileOutputStream(file);
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -40,32 +37,37 @@ public class Client implements Runnable {
     @Override
     public void run() {
 
-        do{
-        //while (true){
+        do {
+            //while (true){
 
             //if (addIP){
-                for (String IP: IPs) {
+            for (String IP : laterIPs) {
+
                     try {
 
-                        Socket client = new Socket(IP, 1385);
-                        ServerHandler serverHandler = new ServerHandler(client);
-                        ClientIP.put(IP, serverHandler);
-                        serverHandler.setSong(this.song);
-                        Thread thread = new Thread(serverHandler);
-                        thread.start();
-
+                        executor(IP);
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     //      }
                     //}
-                }
+            }
+
         }
         while (false);
     }
 
-    public void setRequest(String IP, String request){
+    public void setRequest(String IP, String request) {
         ClientIP.get(IP).setRequest(request);
+    }
+
+    public void executor(String IP) throws IOException {
+        Socket client = new Socket(IP, 1385);
+        ServerHandler serverHandler = new ServerHandler(client);
+        ClientIP.put(IP, serverHandler);
+        serverHandler.setSong(this.song);
+        Thread thread = new Thread(serverHandler);
+        thread.start();
     }
 }
