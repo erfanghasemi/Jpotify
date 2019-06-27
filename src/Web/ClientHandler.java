@@ -85,7 +85,7 @@ public class ClientHandler implements Runnable {
                             os.flush();
                         }
 
-                        System.out.println("Complete !!!");
+                        System.out.println("complete ||||||||||");
 
                         ////
                 }

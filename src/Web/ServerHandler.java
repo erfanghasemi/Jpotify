@@ -13,12 +13,15 @@ public class ServerHandler implements Runnable {
     private String ServerUserNmae;
     private PlayList sharePlayList;
     private Song song;
-    private final static String FOLDER = "C:\\Users\\01RAYANEH\\Desktop\\ReceivedSongs";
+    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\ReceivedSongs";
 
-    public ServerHandler(Socket client, String request){
+    public void setRequest(String request) {
+        this.request = request;
+    }
+
+    public ServerHandler(Socket client){
 
         this.server = client;
-        this.request = request;
 
     }
 
@@ -89,9 +92,7 @@ public class ServerHandler implements Runnable {
                             bos.write(mybytearray, 0, mybytearray.length);
 
                         }
-
-
-                        System.out.println("Complete !!!");
+                        System.out.println("complete");
                         server.close();
                         bos.close();
 
