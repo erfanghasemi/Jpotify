@@ -37,7 +37,22 @@ public class LibraryPanel extends JPanel {
         addSong.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SaveFileController();
+                JFileChooser chooser = new JFileChooser();
+//        chooser.setCurrentDirectory(new java.io.File("."));
+                chooser.setDialogTitle("choosertitle");
+                chooser.setAcceptAllFileFilterUsed(false);
+
+                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+                    System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+                } else {
+                    System.out.println("No Selection ");
+                }
+
+                String address = chooser.getSelectedFile().getPath();
+
+                new SaveFileController(address);
+
             }
         });
 

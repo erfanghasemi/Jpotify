@@ -73,26 +73,6 @@ public class AddSongPanel extends JFrame {
         setVisible(true);
     }
 
-
-
-    public AddSongPanel(SaveFileController controller , String labelText){
-        super();
-        this.setLayout(new BorderLayout());
-        JLabel label = new JLabel(labelText);
-        add(label, BorderLayout.PAGE_START);
-        textField = new JTextField();
-        textField.addActionListener(controller);
-        add(textField, BorderLayout.CENTER);
-        btn = new JButton(BTN_TXT);
-        btn.addActionListener(controller);
-        add(btn, BorderLayout.PAGE_END);
-        setSize(WIDTH, HEIGHT);
-        this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().width / 2 - this.getSize().getWidth() / 2)
-                , (int) (Toolkit.getDefaultToolkit().getScreenSize().height / 2 - this.getSize().getHeight() / 2));
-        setVisible(true);
-    }
-
-
     public String getJTextFieldText() {
         return textField.getText();
     }

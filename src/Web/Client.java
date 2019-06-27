@@ -27,6 +27,7 @@ public class Client implements Runnable {
         IPs.add(IP);
         Socket client = new Socket(IP, 1385);
         ServerHandler serverHandler = new ServerHandler(client);
+        ClientIP.put(IP , serverHandler);
         Thread thread = new Thread(serverHandler);
         thread.start();
 //        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");

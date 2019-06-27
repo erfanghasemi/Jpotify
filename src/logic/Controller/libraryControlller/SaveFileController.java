@@ -9,30 +9,24 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import graphic.variouspart.additem.AddSongPanel;
 import logic.Song;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class SaveFileController  implements  ActionListener {
+public class SaveFileController {
 
-    AddSongPanel fileChooserFrame;
 	private static final String FILE_PATH = "D:\\avi.bin";
 
-    public SaveFileController() {
-        fileChooserFrame = new AddSongPanel(this ,"Please Enter Your File Path: ");
-
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    	String address = fileChooserFrame.getJTextFieldText();
+    public SaveFileController(String address) {
     	Song addedSong = new Song(address);
     	attachInformation(addedSong);
 		writeObjectToFile(addedSong);
 
     }
+
+
+
 
 
     public void attachInformation(Song song){

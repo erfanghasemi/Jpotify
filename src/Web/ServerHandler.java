@@ -9,7 +9,7 @@ import java.net.Socket;
 public class ServerHandler implements Runnable {
 
     private Socket server;
-    private String request;
+    private String request = "";
     private String ServerUserNmae;
     private PlayList sharePlayList;
     private Song song;

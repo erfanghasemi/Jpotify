@@ -167,7 +167,6 @@ public class SubmitNewPlayListController {
     }
 
 
-
     public boolean checkOldPlayList(String path , String playListName){
 
         ArrayList<PlayList> playLists = new ArrayList<>();
