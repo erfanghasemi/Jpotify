@@ -25,7 +25,12 @@ public class SortPlayListSong extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
 
         textLabel = new JLabel("          To  ");
-        submitChange = new JButton("Apply");
+
+        submitChange = new JButton(new ImageIconButton(".\\Icons\\19879.png" , 40 , 40 ));
+        submitChange.setOpaque(false);
+        submitChange.setContentAreaFilled(false);
+        submitChange.setBorderPainted(false);
+
         firstSong  = new JTextField();
         secondsSong  = new JTextField();
 

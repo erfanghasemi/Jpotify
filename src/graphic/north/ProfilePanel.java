@@ -10,8 +10,10 @@ public class ProfilePanel extends JPanel {
     public ProfilePanel() {
         setPreferredSize(new Dimension(120 , 25));
         setBackground(Color.white);
+        setLayout(new FlowLayout(1 , 0 , 25));
 
         userNameLabel = new JLabel();
+        userNameLabel.setFont(new Font("Serif", Font.BOLD, 15));
 
         add(userNameLabel);
         setVisible(true);

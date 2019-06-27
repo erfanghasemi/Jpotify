@@ -3,6 +3,7 @@ package graphic.variouspart.singleplaylist;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 
+import graphic.variouspart.ImageIconButton;
 import graphic.variouspart.additem.AddSongPanel;
 import graphic.variouspart.singlesong.SingleSongPanel;
 import logic.Controller.libraryControlller.*;
@@ -27,10 +28,29 @@ public class OptionOfPlayListPanel extends JPanel {
         setLayout(new GridLayout(2 , 2 , 5 , 5));
         setBackground(Color.white);
 
-        more = new JButton("More");
-        delete = new JButton("Delete");
-        rename = new JButton("Rename");
-        addSong = new JButton("Add Song");
+        more = new JButton(new ImageIconButton(".\\Icons\\img_55392.png" , 30 , 30));
+        more.setOpaque(false);
+        more.setContentAreaFilled(false);
+        more.setBorderPainted(false);
+
+
+
+        delete = new JButton(new ImageIconButton(".\\Icons\\button.png" ,30,30  ));
+        delete.setOpaque(false);
+        delete.setContentAreaFilled(false);
+        delete.setBorderPainted(false);
+
+
+        rename = new JButton(new ImageIconButton(".\\Icons\\edit-button-512.png" , 30 , 30 ));
+        rename.setOpaque(false);
+        rename.setContentAreaFilled(false);
+        rename.setBorderPainted(false);
+
+
+        addSong = new JButton(new ImageIconButton(".\\Icons\\minicons-12-512.png" , 30 , 30 ));
+        addSong.setOpaque(false);
+        addSong.setContentAreaFilled(false);
+        addSong.setBorderPainted(false);
 
 
         more.setPreferredSize(new Dimension(70 , 30));

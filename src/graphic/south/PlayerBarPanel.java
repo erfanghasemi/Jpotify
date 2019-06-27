@@ -3,6 +3,7 @@ package graphic.south;
 import MusicHandler.*;
 import graphic.MainFrame;
 import graphic.variouspart.ImageIconButton;
+import graphic.variouspart.additem.EJSlider;
 import logic.Album;
 import logic.Controller.libraryControlller.JsliderController;
 import logic.Controller.libraryControlller.PlaySongController;
@@ -22,7 +23,7 @@ import java.util.Random;
 public class PlayerBarPanel extends JPanel {
 
     JPanel optionOfPlayPanel , playSliderPanel;
-    private  JSlider bar;
+    private EJSlider bar;
     JLabel endLabelTime;
     JLabel startlabelTime;
     JButton play , addToShare , addToFavourite , pause , nextSong , previousSong ,shuffle , repeat;
@@ -57,7 +58,7 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel();
-        bar = new JSlider(0 , 100 , 0);
+        bar = new EJSlider(0 , 100 , 0);
         endLabelTime = new JLabel();
 
 
@@ -182,7 +183,7 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel( song.getLengthOfSong() + "      ");
-        bar = new JSlider(0 , 100 , 0);
+        bar = new EJSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
 
 
@@ -346,7 +347,7 @@ public class PlayerBarPanel extends JPanel {
         optionOfPlayPanel.setBackground(Color.white);
 
         startlabelTime = new JLabel("2:32      ");
-        bar = new JSlider(0 , 100 , 0);
+        bar = new EJSlider(0 , 100 , 0);
         endLabelTime = new JLabel("    5:36");
 
         bar.addChangeListener(new ChangeListener() {
@@ -563,7 +564,7 @@ public class PlayerBarPanel extends JPanel {
         return repeat;
     }
 
-    public JSlider getBar(){
+    public EJSlider getBar(){
         return bar;
     }
 

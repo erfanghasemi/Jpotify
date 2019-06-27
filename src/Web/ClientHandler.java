@@ -73,7 +73,7 @@ public class ClientHandler implements Runnable {
                         dos.writeLong(length);
                         os.flush();
 
-                        int packetSize = 1024;
+                        int packetSize = 16384;
                         double nosofpackets = Math.ceil(length / packetSize);
                         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
                         for (double i = 0; i < nosofpackets + 1; i++) {
@@ -84,6 +84,8 @@ public class ClientHandler implements Runnable {
                             dataOutputStream.write(mybytearray, 0, mybytearray.length);
                             os.flush();
                         }
+
+                        System.out.println("Complete !!!");
 
                         ////
                 }

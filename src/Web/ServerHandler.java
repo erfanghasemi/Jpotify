@@ -13,7 +13,7 @@ public class ServerHandler implements Runnable {
     private String ServerUserNmae;
     private PlayList sharePlayList;
     private Song song;
-    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\ReceivedSongs";
+    private final static String FOLDER = "C:\\Users\\01RAYANEH\\Desktop\\ReceivedSongs";
 
     public ServerHandler(Socket client, String request){
 
@@ -75,7 +75,7 @@ public class ServerHandler implements Runnable {
                         OutputStream output = new FileOutputStream(f);
 
 
-                        int packetsize = 1024;
+                        int packetsize = 16384;
                         BufferedOutputStream bos = new BufferedOutputStream(output);
                         double nosofpackets = Math.ceil(length / packetsize);
                         for (double i = 0; i < nosofpackets + 1; i++) {
@@ -89,6 +89,9 @@ public class ServerHandler implements Runnable {
                             bos.write(mybytearray, 0, mybytearray.length);
 
                         }
+
+
+                        System.out.println("Complete !!!");
                         server.close();
                         bos.close();
 

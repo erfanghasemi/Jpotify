@@ -2,6 +2,7 @@ package graphic.variouspart.singlealbum;
 
 import graphic.MainFrame;
 import graphic.center.MainPanel;
+import graphic.variouspart.ImageIconButton;
 import logic.Album;
 import logic.Controller.libraryControlller.AlbumsController;
 import logic.Controller.libraryControlller.DeleteSongController;
@@ -23,11 +24,19 @@ public class OptionOfAlbumPanel extends JPanel {
         setBackground(Color.white);
 
 
-        more = new JButton("More");
-        delete = new JButton("Delete");
+        more = new JButton(new ImageIconButton(".\\Icons\\img_55392.png" , 30 , 30));
+        more.setOpaque(false);
+        more.setContentAreaFilled(false);
+        more.setBorderPainted(false);
 
-        more.setPreferredSize(new Dimension(70 , 30));
-        delete.setPreferredSize(new Dimension(73 , 30));
+
+        delete = new JButton(new ImageIconButton(".\\Icons\\button.png" ,30,30  ));
+        delete.setOpaque(false);
+        delete.setContentAreaFilled(false);
+        delete.setBorderPainted(false);
+
+        more.setPreferredSize(new Dimension(60 , 40));
+        delete.setPreferredSize(new Dimension(60 , 40));
 
         add(more);
 

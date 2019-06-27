@@ -18,7 +18,7 @@ public class SearchPanel extends JPanel {
         public SearchPanel() {
         setPreferredSize(new Dimension(200 , 25));
         setBackground(Color.white);
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout(1 , 5 , 15));
 
         fieldOfSearch = new JTextField();
 
@@ -49,16 +49,19 @@ public class SearchPanel extends JPanel {
 
 
         submitSearch.setPreferredSize(new Dimension(55,45));
+
+        fieldOfSearch.setMaximumSize(new Dimension(120 , 25));
         fieldOfSearch.setPreferredSize(new Dimension(120,25));
 
-        fieldOfSearch.setBackground(Color.lightGray);
+        fieldOfSearch.setBackground((new Color(236  ,235,235)));
         fieldOfSearch.setBorder(null);
+        fieldOfSearch.setBorder(BorderFactory.createLineBorder(new Color(129 , 123 , 123), 1));
 
 
 
 
-        add(fieldOfSearch , BorderLayout.CENTER);
-        add(submitSearch , BorderLayout.WEST);
+        add(submitSearch );
+        add(fieldOfSearch);
 
         setVisible(true);
     }

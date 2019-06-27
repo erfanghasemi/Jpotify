@@ -3,6 +3,7 @@ package graphic.south;
 import MusicHandler.MuteListener;
 import MusicHandler.VolumeBarListener;
 import graphic.variouspart.ImageIconButton;
+import graphic.variouspart.additem.EJSlider;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 public class ValumeBarPanel extends JPanel {
 
     JPanel topPanel , bottompanel;
-    JSlider valumeBar;
+    EJSlider valumeBar;
     JLabel minimumValue, maximumValue;
     JButton mute;
 
@@ -31,7 +32,7 @@ public class ValumeBarPanel extends JPanel {
 
         bottompanel.setBackground(Color.WHITE);
 
-        valumeBar = new JSlider(0 , 100 , 50);
+        valumeBar = new EJSlider(0 , 100 , 50);
         maximumValue = new JLabel("100");
         minimumValue = new JLabel("0");
         mute = new JButton(new ImageIconButton(".\\Icons\\1310903-200.png" , 30 , 30));
