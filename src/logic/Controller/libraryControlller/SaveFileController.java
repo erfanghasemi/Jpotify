@@ -13,15 +13,36 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
 
 public class SaveFileController {
 
 	private static final String FILE_PATH = "D:\\avi.bin";
+	ArrayList<Song> songs;
 
     public SaveFileController(String address) {
+
+    	songs = new ArrayList<>();
+    	readSongFromFile( "D:\\avi.bin",songs);
+
     	Song addedSong = new Song(address);
-    	attachInformation(addedSong);
-		writeObjectToFile(addedSong);
+
+
+    	if(songs.size() != 0) {
+			for (Song song : songs) {
+				if (!(song.getAddress().equals(address))) {
+					System.out.println("salam");
+					attachInformation(addedSong);
+					writeObjectToFile(addedSong);
+					break;
+				}
+			}
+		}
+    	else{
+			attachInformation(addedSong);
+			writeObjectToFile(addedSong);
+		}
+
 
     }
 
@@ -87,4 +108,31 @@ public class SaveFileController {
         }
 
     }
+
+
+
+
+	public ArrayList<Song> readSongFromFile(String path , ArrayList<Song> songs) {
+
+		try {
+			FileInputStream fileIn = new FileInputStream(FILE_PATH);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			try {
+				while (1 == 1) {
+					Song song = (Song) objectIn.readObject();
+					songs.add(song);
+				}
+			}
+			catch(EOFException e){
+				return songs;
+			}
+		}
+		catch(IOException | ClassNotFoundException e){
+			e.printStackTrace();
+		}
+
+		return songs;
+	}
+
+
 }

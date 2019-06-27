@@ -3,6 +3,7 @@ package logic.Controller.libraryControlller;
 import graphic.MainFrame;
 import graphic.center.MainPanel;
 import logic.Album;
+import logic.PlayList;
 import logic.Song;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class DeleteSongController {
 
         songs = new ArrayList<>();
 
-        readObjecFromFile(FILE_PATH , songs);
+        readSongFromFile(FILE_PATH , songs);
 
         removeSong(song , songs);
 
@@ -32,6 +33,9 @@ public class DeleteSongController {
                 e.printStackTrace();
             }
 
+
+        delteFromPlayLists(song);
+
         new SongsShowController(myFrame ,view);
     }
 
@@ -39,7 +43,7 @@ public class DeleteSongController {
 
         songs = new ArrayList<>();
 
-        readObjecFromFile(FILE_PATH , songs);
+        readSongFromFile(FILE_PATH , songs);
 
         removeSong(song , songs);
         album.getAlbumSongs().remove(song);
@@ -69,7 +73,7 @@ public class DeleteSongController {
         songs.remove(songs.get(removeIndex));
     }
 
-    public ArrayList<Song> readObjecFromFile(String path , ArrayList<Song> songs) {
+    public ArrayList<Song> readSongFromFile(String path , ArrayList<Song> songs) {
 
         try {
             FileInputStream fileIn = new FileInputStream(FILE_PATH);
@@ -90,5 +94,69 @@ public class DeleteSongController {
 
         return songs;
     }
+
+
+
+
+
+    public void delteFromPlayLists(Song deletdSong){
+
+
+        ArrayList<PlayList>playLists = new ArrayList<>();
+
+        readObjecFromFile("D:\\kia.bin", playLists);
+
+        for (PlayList playLists1: playLists) {
+            Song delSong = null;
+            for (Song song: playLists1.getSongsOfPlayList()) {
+                if(deletdSong.getTitle().equals(song.getTitle())){
+                    delSong = song;
+                }
+            }
+            playLists1.getSongsOfPlayList().remove(delSong);
+        }
+
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream("D:\\kia.bin");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            for (PlayList playList1: playLists) {
+
+                objectOut.writeObject(playList1);
+            }
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+
+    }
+
+
+    public ArrayList<PlayList> readObjecFromFile(String path , ArrayList<PlayList> playLists) {
+
+        try {
+            FileInputStream fileIn = new FileInputStream(path);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            try {
+                while (true) {
+                    PlayList playList = (PlayList) objectIn.readObject();
+                    playLists.add(playList);
+                }
+            }
+            catch(EOFException e){
+                return playLists;
+            }
+        }
+        catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return playLists;
+    }
+
+
+
+
+
 
 }
