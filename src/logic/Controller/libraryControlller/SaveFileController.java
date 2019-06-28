@@ -23,8 +23,9 @@ public class SaveFileController {
     public SaveFileController(String address) {
 
     	songs = new ArrayList<>();
-    	readSongFromFile( "D:\\avi.bin",songs);
-
+    	if(new File("D:\\avi.bin").exists()) {
+			readSongFromFile("D:\\avi.bin", songs);
+		}
     	Song addedSong = new Song(address);
 
 
