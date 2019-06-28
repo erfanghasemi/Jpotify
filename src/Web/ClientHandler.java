@@ -29,8 +29,7 @@ public class ClientHandler implements Runnable {
 
             OutputStream os = client.getOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(os);
-            objectOutputStream.writeObject(UserName);
-            os.flush();
+
 
             ///
 
@@ -54,6 +53,10 @@ public class ClientHandler implements Runnable {
                         os.flush();
                         break;
 
+                    case ("GetUserName"):
+                        objectOutputStream.writeObject(UserName);
+                        os.flush();
+                        break;
 
                     case ("GetSong"):
                         Song song = (Song) objectInputStream.readObject();

@@ -1,11 +1,8 @@
 package graphic.variouspart;
 
 import graphic.MainFrame;
-import logic.Controller.libraryControlller.SongsShowController;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +35,9 @@ public class FriendPanel extends  JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.getClient().connect(IP);
+                System.out.println("salam");
                 mainFrame.getClient().setRequest(IP , "SharePlayList");
+                System.out.println("erfan");
                 
 
 //                new SongsShowController(mainFrame , mainFrame.getCenter() , IP , mainFrame.getClient().getClientIP().get(IP).getSharePlayList());

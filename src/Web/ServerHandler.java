@@ -18,7 +18,7 @@ public class ServerHandler implements Runnable {
     private volatile Song song;
     MainFrame mainFrame;
     // this must be changed in the other computer
-    private final static String FOLDER = "C:\\Users\\01RAYANEH\\Desktop\\";
+    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\";
 
     public synchronized void setRequest(String request) {
         this.request = request;
@@ -43,7 +43,7 @@ public class ServerHandler implements Runnable {
 
             InputStream inputStream = server.getInputStream();
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-            ServerUserNmae = (String) objectInputStream.readObject();
+
 
             ///
             OutputStream outputStream = server.getOutputStream();
@@ -72,6 +72,11 @@ public class ServerHandler implements Runnable {
 
                         new SongsShowController(mainFrame ,mainFrame.getCenter() ,IP  ,sharePlayList );
 
+                        break;
+
+
+                    case ("GetUserName"):
+                        ServerUserNmae = (String) objectInputStream.readObject();
                         break;
 
                     case ("GetSong"):
