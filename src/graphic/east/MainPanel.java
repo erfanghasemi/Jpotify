@@ -4,6 +4,7 @@ import graphic.MainFrame;
 import graphic.variouspart.FriendPanel;
 import graphic.variouspart.ImageIconButton;
 import logic.Controller.libraryControlller.AddFriendController;
+import logic.Friend;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -15,14 +16,17 @@ import java.util.ArrayList;
 public class MainPanel extends JPanel {
 
     JButton addFriend;
-    FriendPanel friendPanel;
-    ArrayList<String> IPs = new ArrayList<>();
+    ArrayList<Friend> friends;
 
     public MainPanel(MainFrame mainFrame) {
 
+        friends = new ArrayList<>();
+
         if(new File("D:\\friend.bin").exists()) {
-            readIPFromFile(IPs);
+            readFriendsFromFile(friends);
         }
+
+
         setPreferredSize(new Dimension(120 , 250));
         setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 
@@ -54,10 +58,10 @@ public class MainPanel extends JPanel {
 
         add(addfriendPanle);
 
+//        System.out.println(friends.get(0).getName());
 
-
-        for (String IP: IPs) {
-            FriendPanel friendPanel = new FriendPanel(mainFrame , "Ghiyasi" , "moein" , "Online" , IP);
+        for (Friend friend: friends) {
+            FriendPanel friendPanel = new FriendPanel(mainFrame , friend.getName() , "taylor swift" , "Online" , friend.getIP());
             add(friendPanel);
         }
 
@@ -74,22 +78,18 @@ public class MainPanel extends JPanel {
 
     }
 
-    public void readIPFromFile(ArrayList<String> IPs) {
+
+
+    public  void  readFriendsFromFile( ArrayList<Friend> friends) {
 
         try {
-            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
+            FileInputStream fileIn = new FileInputStream("D:\\friend.bin");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             try {
-
-
                 while (true) {
-
-                    String IP = (String) objectInputStream.readObject();
-                    IPs.add(IP);
+                    Friend friend = (Friend) objectIn.readObject();
+                    friends.add(friend);
                 }
-
-
             } catch (EOFException e) {
                 return;
             }
@@ -97,6 +97,9 @@ public class MainPanel extends JPanel {
             e.printStackTrace();
         }
 
-
+        return ;
     }
+
+
+
 }

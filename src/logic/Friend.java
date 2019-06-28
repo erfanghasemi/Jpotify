@@ -1,20 +1,23 @@
 package logic;
 
-public class Friend {
+
+import java.io.Serializable;
+
+public class Friend implements Serializable {
 
     private String name;
-    private PlayList playList;
+    private String IP;
 
-    public Friend(String name, PlayList playList) {
+    public Friend(String name, String IP) {
         this.name = name;
-        this.playList = playList;
+        this.IP = IP;
     }
 
     public String getName() {
         return name;
     }
 
-    public PlayList getPlayList() {
-        return playList;
+    public String getIP() {
+        return IP;
     }
 }

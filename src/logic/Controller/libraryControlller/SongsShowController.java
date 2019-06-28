@@ -31,6 +31,7 @@ public class SongsShowController {
         MainPanel newCenterPanel = new MainPanel();
         myFrame.setCenter(newCenterPanel);
 
+
         songs = album.getAlbumSongs();
 
         for (Song song: songs) {

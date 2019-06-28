@@ -10,28 +10,28 @@ import java.util.HashMap;
 
 public class Client implements Runnable {
 
-    private volatile ArrayList<String> recentIPs;
-    private ArrayList<String> laterIPs;
+//    private volatile ArrayList<String> recentIPs;
+//    private ArrayList<String> laterIPs;
     private HashMap<String, ServerHandler> ClientIP;
     MainFrame mainFrame;
     //private Song song;
 
     public Client(MainFrame mainFrame) throws IOException, ClassNotFoundException {
-
-        recentIPs = new ArrayList<>();
-        laterIPs = new ArrayList<>();
+//
+//        recentIPs = new ArrayList<>();
+//        laterIPs = new ArrayList<>();
         ClientIP = new HashMap<>();
         this.mainFrame = mainFrame;
 
 
-        if(new File("D:\\friend.bin").exists()) {
-            readIPFromFile(laterIPs);
-        }
+//        if(new File("D:\\friend.bin").exists()) {
+//            readIPFromFile(laterIPs);
+//        }
     }
 
     public synchronized void addIP(String IP) throws IOException {
-        recentIPs.add(IP);
-        executor(IP);
+//        recentIPs.add(IP);
+//        executor(IP);
 //        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
 //        FileOutputStream fileOutputStream = new FileOutputStream(file);
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -79,32 +79,32 @@ public class Client implements Runnable {
     public synchronized void setSong(Song song, String IP) {
         ClientIP.get(IP).setSong(song);
     }
-
-    public void readIPFromFile(ArrayList<String> IPs) {
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            try {
-
-
-                while (true) {
-
-                    String IP = (String) objectInputStream.readObject();
-                    IPs.add(IP);
-                }
-
-
-            } catch (EOFException e) {
-                return;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+//
+//    public void readIPFromFile(ArrayList<String> IPs) {
+//
+//        try {
+//            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
+//            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+//
+//            try {
+//
+//
+//                while (true) {
+//
+//                    String IP = (String) objectInputStream.readObject();
+//                    IPs.add(IP);
+//                }
+//
+//
+//            } catch (EOFException e) {
+//                return;
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
 
 
     public HashMap<String, ServerHandler> getClientIP() {

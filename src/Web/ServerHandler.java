@@ -3,22 +3,24 @@ package Web;
 import graphic.MainFrame;
 import logic.Controller.libraryControlller.SaveFileController;
 import logic.Controller.libraryControlller.SongsShowController;
+import logic.Friend;
 import logic.PlayList;
 import logic.Song;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.SQLOutput;
 
 public class ServerHandler implements Runnable {
 
     private Socket server;
     private volatile String request = "";
-    private String ServerUserNmae;
+    private String serverUserNmae;
     private PlayList sharePlayList;
     private volatile Song song;
     MainFrame mainFrame;
     // this must be changed in the other computer
-    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\";
+    private final static String FOLDER = "D:\\";
 
     public synchronized void setRequest(String request) {
         this.request = request;
@@ -76,7 +78,20 @@ public class ServerHandler implements Runnable {
 
 
                     case ("GetUserName"):
-                        ServerUserNmae = (String) objectInputStream.readObject();
+                        serverUserNmae = (String) objectInputStream.readObject();
+
+                        IP = null;
+
+                        for ( String key :mainFrame.getClient().getClientIP().keySet()) {
+                            if(this == mainFrame.getClient().getClientIP().get(key)){
+                                IP = key;
+                            }
+                        }
+                        Friend friend = new Friend(serverUserNmae , IP);
+
+
+                        writeObjectToFile(friend);
+
                         break;
 
                     case ("GetSong"):
@@ -149,4 +164,46 @@ public class ServerHandler implements Runnable {
     public void setSharePlayList(PlayList sharePlayList) {
         this.sharePlayList = sharePlayList;
     }
+
+    public void writeObjectToFile(Friend friend) {
+        if(true){
+            try {
+                if((new File("D:\\friend.bin").exists())) {
+                    FileOutputStream fileOut = new FileOutputStream("D:\\friend.bin", true);
+                    AppendingObjectOutputStream objectOut = new AppendingObjectOutputStream(fileOut);
+                    objectOut.writeObject(friend);
+                }
+                else{
+                    FileOutputStream fileOut = new FileOutputStream("D:\\friend.bin", true);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+                    objectOut.writeObject(friend);
+                }
+
+
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+    public class AppendingObjectOutputStream extends ObjectOutputStream {
+
+        public AppendingObjectOutputStream(OutputStream out) throws IOException {
+            super(out);
+        }
+
+        @Override
+        protected void writeStreamHeader() throws IOException {
+            // do not write a header, but reset:
+            // this line added after another question
+            // showed a problem with the original
+            reset();
+        }
+
+    }
+
+
+
 }

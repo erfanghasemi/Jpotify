@@ -54,6 +54,8 @@ public class ClientHandler implements Runnable {
                         break;
 
                     case ("GetUserName"):
+                        String nameOfUser = readObjecFromFile();
+                        setUserName(nameOfUser);
                         objectOutputStream.writeObject(UserName);
                         os.flush();
                         break;
@@ -144,6 +146,23 @@ public class ClientHandler implements Runnable {
         }
 
         return playLists;
+    }
+
+//
+    public String readObjecFromFile() {
+
+        String userName = null;
+
+        try {
+            FileInputStream fileIn = new FileInputStream("D:\\olk.bin");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            userName = (String) objectIn.readObject();
+        }
+        catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return userName;
     }
 
 
