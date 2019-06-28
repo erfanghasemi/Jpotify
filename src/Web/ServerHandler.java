@@ -14,7 +14,7 @@ public class ServerHandler implements Runnable {
     private PlayList sharePlayList;
     private volatile Song song;
     // this must be changed in the other computer
-    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\ReceivedSongs";
+    private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\";
 
     public synchronized void setRequest(String request) {
         this.request = request;
@@ -56,6 +56,8 @@ public class ServerHandler implements Runnable {
                     case ("SharePlayList"):
                         sharePlayList = (PlayList) objectInputStream.readObject();
 
+                        System.out.println(sharePlayList.getSongsOfPlayList().get(0).getTitle());
+
                     case ("GetSong"):
 
                         objectOutputStream.writeObject(song);
@@ -80,7 +82,7 @@ public class ServerHandler implements Runnable {
                         OutputStream output = new FileOutputStream(f);
 
 
-                        int packetsize = 16384;
+                        int packetsize = 256;
                         BufferedOutputStream bos = new BufferedOutputStream(output);
                         double nosofpackets = Math.ceil(length / packetsize);
                         for (double i = 0; i < nosofpackets + 1; i++) {
@@ -117,4 +119,6 @@ public class ServerHandler implements Runnable {
     public synchronized void setSong(Song song){
         this.song = song;
     }
+
+
 }

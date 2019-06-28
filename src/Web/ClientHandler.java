@@ -5,6 +5,7 @@ import logic.Song;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientHandler implements Runnable {
 
@@ -17,9 +18,7 @@ public class ClientHandler implements Runnable {
         // sharePlayList must be handled
     }
 
-    public synchronized void setSharePlayList(PlayList sharePlayList) {
-        this.sharePlayList = sharePlayList;
-    }
+
 
     @Override
     public void run() {
@@ -48,6 +47,10 @@ public class ClientHandler implements Runnable {
 
                 switch (request){
                     case ("SharePlayList"):
+
+                        sharePlayList = findSharePlayList();
+                        setSharePlayList(sharePlayList);
+
                         objectOutputStream.writeObject(sharePlayList);
                         os.flush();
 
@@ -76,7 +79,7 @@ public class ClientHandler implements Runnable {
                         dos.writeLong(length);
                         os.flush();
 
-                        int packetSize = 16384;
+                        int packetSize = 256;
                         double nosofpackets = Math.ceil(length / packetSize);
                         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
                         for (double i = 0; i < nosofpackets + 1; i++) {
@@ -103,5 +106,44 @@ public class ClientHandler implements Runnable {
 
     public void setUserName(String userName) {
         UserName = userName;
+    }
+
+
+    public PlayList findSharePlayList(){
+        ArrayList<PlayList> playLists = new ArrayList<>();
+        playLists = readPlayListFromFile("D:\\Kia.bin" , playLists);
+
+        for (PlayList playList: playLists) {
+            if (playList.getTitle().equals("Share")){
+                return playList;
+            }
+        }
+        return null;
+    }
+
+    ////
+
+    public ArrayList<PlayList> readPlayListFromFile(String path, ArrayList<PlayList> playLists) {
+
+        try {
+            FileInputStream fileIn = new FileInputStream(path);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            try {
+                while (true) {
+                    PlayList playList = (PlayList) objectIn.readObject();
+                    playLists.add(playList);
+                }
+            } catch (EOFException e) {
+                return playLists;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return playLists;
+    }
+
+    public synchronized void setSharePlayList(PlayList sharePlayList) {
+        this.sharePlayList = sharePlayList;
     }
 }
