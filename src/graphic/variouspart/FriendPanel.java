@@ -39,7 +39,9 @@ public class FriendPanel extends  JPanel{
             public void actionPerformed(ActionEvent e) {
                 mainFrame.getClient().connect(IP);
                 mainFrame.getClient().setRequest(IP , "SharePlayList");
-                new SongsShowController(mainFrame , mainFrame.getCenter() , IP , mainFrame.getClient().getClientIP().get(IP).getSharePlayList());
+                
+
+//                new SongsShowController(mainFrame , mainFrame.getCenter() , IP , mainFrame.getClient().getClientIP().get(IP).getSharePlayList());
 
             }
         });

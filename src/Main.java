@@ -22,17 +22,11 @@ public class Main {
 
 
 
-        Server server = new Server();
-        Thread thread = new Thread(server);
-        thread.start();
 
-        Client client = new Client();
-        Thread thread1 = new Thread(client);
-        thread1.start();
 //        client.addIP("192.168.43.63");
 //        client.setRequest("192.168.43.63", "SharePlayList");
 
-        MainFrame mainFrame = new MainFrame(client , server);
+        MainFrame mainFrame = new MainFrame();
 
 
         //System.out.println(new Song("C:\\Users\\Mahdi\\Desktop\\taylor.mp3").getTitle());

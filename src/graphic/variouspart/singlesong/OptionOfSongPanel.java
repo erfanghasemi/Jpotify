@@ -131,14 +131,17 @@ public class OptionOfSongPanel extends JPanel {
 //        download.setContentAreaFilled(false);
 //        download.setBorderPainted(false);
 
-        delete.setPreferredSize(new Dimension(60 , 40));
+        download.setPreferredSize(new Dimension(100 , 40));
 
 
         add(download);
-        play.addActionListener(new ActionListener() {
+        download.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(download);
+                myFrame.getClient().connect(IP);
+                myFrame.getClient().setRequest(IP , "GetSong");
+                myFrame.getClient().setSong(song , IP);
 
             }
         });

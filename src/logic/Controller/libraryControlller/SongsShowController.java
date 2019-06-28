@@ -90,9 +90,8 @@ public class SongsShowController {
         myFrame.remove(myFrame.getScrollPane());
         MainPanel newCenterPanel = new MainPanel();
         myFrame.setCenter(newCenterPanel);
-//        System.out.println(sharePlayList.getSongsOfPlayList().get(0));
 
-        for (Song song: songs) {
+        for (Song song: sharePlayList.getSongsOfPlayList()) {
             SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song , IP);
             newCenterPanel.add(singleSongPanel);
         }

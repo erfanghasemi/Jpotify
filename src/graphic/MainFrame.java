@@ -7,6 +7,7 @@ import graphic.east.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainFrame extends JFrame {
     private graphic.east.MainPanel east;
@@ -20,7 +21,7 @@ public class MainFrame extends JFrame {
     private Server server;
     private Client client;
 
-    public MainFrame(Client client , Server server){
+    public MainFrame(){
 
         east = new graphic.east.MainPanel(this);
         west = new graphic.west.MainPanel(this);
@@ -29,8 +30,34 @@ public class MainFrame extends JFrame {
         center = new graphic.center.MainPanel(this);
         scrollPane  = new JScrollPane(center);
 
-        this.server = server;
-        this.client = client;
+
+//        Server server = null;
+        try {
+            server = new Server();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Thread thread = new Thread(server);
+        thread.start();
+
+
+
+
+//        Client client = null;
+        try {
+            client = new Client(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        Thread thread1 = new Thread(client);
+        thread1.start();
+
+
 
         add(center , BorderLayout.CENTER);
 

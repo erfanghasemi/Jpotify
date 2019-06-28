@@ -1,5 +1,6 @@
 package Web;
 
+import graphic.MainFrame;
 import logic.Song;
 
 import java.io.*;
@@ -12,13 +13,15 @@ public class Client implements Runnable {
     private volatile ArrayList<String> recentIPs;
     private ArrayList<String> laterIPs;
     private HashMap<String, ServerHandler> ClientIP;
+    MainFrame mainFrame;
     //private Song song;
 
-    public Client() throws IOException, ClassNotFoundException {
+    public Client(MainFrame mainFrame) throws IOException, ClassNotFoundException {
 
         recentIPs = new ArrayList<>();
         laterIPs = new ArrayList<>();
         ClientIP = new HashMap<>();
+        this.mainFrame = mainFrame;
 
 
         if(new File("D:\\friend.bin").exists()) {
@@ -66,7 +69,7 @@ public class Client implements Runnable {
 
     public void executor(String IP) throws IOException {
         Socket client = new Socket(IP, 1385);
-        ServerHandler serverHandler = new ServerHandler(client);
+        ServerHandler serverHandler = new ServerHandler(mainFrame , client);
         ClientIP.put(IP, serverHandler);
         //serverHandler.setSong(this.song);
         Thread thread = new Thread(serverHandler);

@@ -1,5 +1,8 @@
 package Web;
 
+import graphic.MainFrame;
+import logic.Controller.libraryControlller.SaveFileController;
+import logic.Controller.libraryControlller.SongsShowController;
 import logic.PlayList;
 import logic.Song;
 
@@ -13,6 +16,7 @@ public class ServerHandler implements Runnable {
     private String ServerUserNmae;
     private PlayList sharePlayList;
     private volatile Song song;
+    MainFrame mainFrame;
     // this must be changed in the other computer
     private final static String FOLDER = "C:\\Users\\01RAYANEH\\Desktop\\";
 
@@ -20,9 +24,10 @@ public class ServerHandler implements Runnable {
         this.request = request;
     }
 
-    public ServerHandler(Socket client){
+    public ServerHandler(MainFrame mainFrame ,Socket client){
 
         this.server = client;
+        this.mainFrame = mainFrame;
 
     }
 
@@ -57,6 +62,17 @@ public class ServerHandler implements Runnable {
                         sharePlayList = (PlayList) objectInputStream.readObject();
                         setSharePlayList(sharePlayList);
 
+                        String IP = null;
+
+                        for ( String key :mainFrame.getClient().getClientIP().keySet()) {
+                                if(this == mainFrame.getClient().getClientIP().get(key)){
+                                    IP = key;
+                                }
+                        }
+
+                        new SongsShowController(mainFrame ,mainFrame.getCenter() ,IP  ,sharePlayList );
+
+                        break;
 
                     case ("GetSong"):
 
@@ -97,6 +113,7 @@ public class ServerHandler implements Runnable {
 
                         }
                         System.out.println("complete");
+                        new SaveFileController(path);
                         //server.close();
                         bos.close();
 

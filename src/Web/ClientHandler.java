@@ -52,6 +52,7 @@ public class ClientHandler implements Runnable {
 
                         objectOutputStream.writeObject(sharePlayList);
                         os.flush();
+                        break;
 
 
                     case ("GetSong"):
