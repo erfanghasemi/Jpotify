@@ -10,13 +10,14 @@ public class ClientHandler implements Runnable {
 
     private Socket client;
     private String UserName;
-    private PlayList sharePlayList;
+    private volatile PlayList sharePlayList;
 
     public ClientHandler(Socket client) {
         this.client = client;
+        // sharePlayList must be handled
     }
 
-    public void setSharePlayList(PlayList sharePlayList) {
+    public synchronized void setSharePlayList(PlayList sharePlayList) {
         this.sharePlayList = sharePlayList;
     }
 
@@ -36,9 +37,11 @@ public class ClientHandler implements Runnable {
 
             /// sending request
 
+            InputStream inputStream = client.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
             while (true){
-                InputStream inputStream = client.getInputStream();
-                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
                 String request = (String) objectInputStream.readObject();
 
                 ///

@@ -9,13 +9,14 @@ import java.net.Socket;
 public class ServerHandler implements Runnable {
 
     private Socket server;
-    private String request = "";
+    private volatile String request = "";
     private String ServerUserNmae;
     private PlayList sharePlayList;
-    private Song song;
+    private volatile Song song;
+    // this must be changed in the other computer
     private final static String FOLDER = "C:\\Users\\Mahdi\\Desktop\\ReceivedSongs";
 
-    public void setRequest(String request) {
+    public synchronized void setRequest(String request) {
         this.request = request;
     }
 
@@ -40,11 +41,12 @@ public class ServerHandler implements Runnable {
             ServerUserNmae = (String) objectInputStream.readObject();
 
             ///
+            OutputStream outputStream = server.getOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
             while (true){
 
-                OutputStream outputStream = server.getOutputStream();
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
                 objectOutputStream.writeObject(request);
                 outputStream.flush();
 
@@ -93,12 +95,14 @@ public class ServerHandler implements Runnable {
 
                         }
                         System.out.println("complete");
-                        server.close();
+                        //server.close();
                         bos.close();
 
                         ///////
 
                 }
+
+                request = "";
             }
 
             /// sending request
@@ -110,7 +114,7 @@ public class ServerHandler implements Runnable {
 
     }
 
-    public void setSong(Song song){
+    public synchronized void setSong(Song song){
         this.song = song;
     }
 }

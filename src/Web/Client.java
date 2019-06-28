@@ -9,13 +9,13 @@ import java.util.HashMap;
 
 public class Client implements Runnable {
 
-    private ArrayList<String> recentIPs = new ArrayList<>();
+    private volatile ArrayList<String> recentIPs = new ArrayList<>();
     private ArrayList<String> laterIPs = new ArrayList<>();
     private HashMap<String, ServerHandler> ClientIP = new HashMap<>();
-    private Song song;
+    //private Song song;
 
-    public void setSong(Song song) {
-        this.song = song;
+    public synchronized void setSong(Song song, String IP) {
+        ClientIP.get(IP).setSong(song);
     }
 
     public Client() throws IOException, ClassNotFoundException {
@@ -24,7 +24,7 @@ public class Client implements Runnable {
 //        this.IPs = (ArrayList<String>) objectInputStream.readObject();
     }
 
-    public void addIP(String IP) throws IOException {
+    public synchronized void addIP(String IP) throws IOException {
             recentIPs.add(IP);
             executor(IP);
 //        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
@@ -66,7 +66,7 @@ public class Client implements Runnable {
         Socket client = new Socket(IP, 1385);
         ServerHandler serverHandler = new ServerHandler(client);
         ClientIP.put(IP, serverHandler);
-        serverHandler.setSong(this.song);
+        //serverHandler.setSong(this.song);
         Thread thread = new Thread(serverHandler);
         thread.start();
     }
