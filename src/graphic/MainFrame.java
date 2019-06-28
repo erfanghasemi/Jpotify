@@ -1,6 +1,8 @@
 package graphic;
 
 
+import Web.Client;
+import Web.Server;
 import graphic.east.MainPanel;
 
 import javax.swing.*;
@@ -15,8 +17,10 @@ public class MainFrame extends JFrame {
     private Image iconFrame;
     private String userName;
     private JScrollPane scrollPane;
+    private Server server;
+    private Client client;
 
-    public MainFrame(){
+    public MainFrame(Client client , Server server){
 
         east = new graphic.east.MainPanel(this);
         west = new graphic.west.MainPanel(this);
@@ -24,6 +28,9 @@ public class MainFrame extends JFrame {
         south = new graphic.south.MainPanel(this);
         center = new graphic.center.MainPanel(this);
         scrollPane  = new JScrollPane(center);
+
+        this.server = server;
+        this.client = client;
 
         add(center , BorderLayout.CENTER);
 
@@ -94,5 +101,21 @@ public class MainFrame extends JFrame {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

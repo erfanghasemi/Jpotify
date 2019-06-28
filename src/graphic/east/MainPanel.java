@@ -30,7 +30,8 @@ public class MainPanel extends JPanel {
         addFriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddFriendController();
+                new AddFriendController(mainFrame);
+
             }
         });
 

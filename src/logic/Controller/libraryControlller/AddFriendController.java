@@ -1,7 +1,7 @@
 package logic.Controller.libraryControlller;
 
+import graphic.MainFrame;
 import graphic.variouspart.additem.AddSongPanel;
-import logic.Song;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,10 +11,11 @@ public class AddFriendController implements ActionListener {
 
     private final static String FILE_FRIEND_PATH = "D:\\friend.bin";
     AddSongPanel addSongPanel;
+    MainFrame myFrame;
 
-    public AddFriendController() {
+    public AddFriendController(MainFrame myFrame) {
         addSongPanel = new AddSongPanel(this , "Please Enter Your Friend IP : ");
-
+        this.myFrame = myFrame;
     }
 
     @Override
@@ -22,6 +23,11 @@ public class AddFriendController implements ActionListener {
 
         String IP = addSongPanel.getJTextFieldText();
         writeObjectToFile(IP);
+        try {
+            myFrame.getClient().addIP(addSongPanel.getJTextFieldText());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
     }
 

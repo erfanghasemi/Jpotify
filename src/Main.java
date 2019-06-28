@@ -7,6 +7,9 @@ import java.io.IOException;
 
 public class Main {
 
+    public Main() throws IOException {
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
@@ -18,7 +21,6 @@ public class Main {
         }
 
 
-        MainFrame mainFrame = new MainFrame();
 
         Server server = new Server();
         Thread thread = new Thread(server);
@@ -27,6 +29,8 @@ public class Main {
         Client client = new Client();
         client.addIP("192.168.43.63");
         client.setRequest("192.168.43.63", "SharePlayList");
+
+        MainFrame mainFrame = new MainFrame(client , server);
 
         Thread thread1 = new Thread(client);
         thread1.start();
