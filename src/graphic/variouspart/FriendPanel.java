@@ -1,16 +1,21 @@
 package graphic.variouspart;
 
+import graphic.MainFrame;
+import logic.Controller.libraryControlller.SongsShowController;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FriendPanel extends  JPanel{
 
     JLabel nameOfFriend , state , titleOfMusic;
     JButton openShare;
 
-    public FriendPanel(String name , String songtitle , String stateOfFriend) {
+    public FriendPanel(MainFrame mainFrame , String name , String songtitle , String stateOfFriend , String IP) {
 
 
         setBackground(Color.white);
@@ -28,6 +33,18 @@ public class FriendPanel extends  JPanel{
         titleOfMusic.setHorizontalAlignment(JLabel.CENTER);
 
         openShare = new JButton("Open");
+
+        openShare.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.getClient().connect(IP);
+                mainFrame.getClient().setRequest(IP , "SharePlayList");
+                new SongsShowController(mainFrame , mainFrame.getCenter() , IP , mainFrame.getClient().getClientIP().get(IP).getSharePlayList());
+
+            }
+        });
+
+
         openShare.setPreferredSize(new Dimension(120  , 25));
         openShare.setMinimumSize(new Dimension(120  , 25));
         openShare.setMaximumSize(new Dimension(120  , 25));

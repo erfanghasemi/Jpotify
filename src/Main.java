@@ -27,13 +27,13 @@ public class Main {
         thread.start();
 
         Client client = new Client();
-        client.addIP("192.168.43.63");
-        client.setRequest("192.168.43.63", "SharePlayList");
+        Thread thread1 = new Thread(client);
+        thread1.start();
+//        client.addIP("192.168.43.63");
+//        client.setRequest("192.168.43.63", "SharePlayList");
 
         MainFrame mainFrame = new MainFrame(client , server);
 
-        Thread thread1 = new Thread(client);
-        thread1.start();
 
         //System.out.println(new Song("C:\\Users\\Mahdi\\Desktop\\taylor.mp3").getTitle());
 

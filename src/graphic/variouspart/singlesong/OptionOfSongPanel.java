@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 
 public class OptionOfSongPanel extends JPanel {
 
-    JButton delete , play;
+    JButton delete , play , download;
 
     public OptionOfSongPanel(Song song) {
 
@@ -119,6 +119,34 @@ public class OptionOfSongPanel extends JPanel {
 
         setVisible(true);
     }
+
+
+    public OptionOfSongPanel(Song song ,  String IP) {
+
+        setLayout(new FlowLayout(1 , 25, 42));
+        setBackground(Color.white);
+
+        download = new JButton("Download");
+//        download.setOpaque(false);
+//        download.setContentAreaFilled(false);
+//        download.setBorderPainted(false);
+
+        delete.setPreferredSize(new Dimension(60 , 40));
+
+
+        add(download);
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame myFrame  = (MainFrame) SwingUtilities.getWindowAncestor(download);
+
+            }
+        });
+
+
+        setVisible(true);
+    }
+
 
 
 

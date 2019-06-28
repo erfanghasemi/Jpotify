@@ -49,7 +49,6 @@ public class ClientHandler implements Runnable {
                     case ("SharePlayList"):
 
                         sharePlayList = findSharePlayList();
-                        setSharePlayList(sharePlayList);
 
                         objectOutputStream.writeObject(sharePlayList);
                         os.flush();
@@ -143,7 +142,5 @@ public class ClientHandler implements Runnable {
         return playLists;
     }
 
-    public synchronized void setSharePlayList(PlayList sharePlayList) {
-        this.sharePlayList = sharePlayList;
-    }
+
 }

@@ -23,11 +23,12 @@ public class AddFriendController implements ActionListener {
 
         String IP = addSongPanel.getJTextFieldText();
         writeObjectToFile(IP);
-        try {
-            myFrame.getClient().addIP(addSongPanel.getJTextFieldText());
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+
+//        try {
+//            myFrame.getClient().addIP(addSongPanel.getJTextFieldText());
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
 
     }
 

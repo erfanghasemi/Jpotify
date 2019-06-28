@@ -54,6 +54,8 @@ public class SongsShowController {
     }
 
 
+
+
     public SongsShowController( MainFrame myFrame, MainPanel view , PlayList playList) {
         myFrame.remove(myFrame.getCenter());
         myFrame.remove(myFrame.getScrollPane());
@@ -82,6 +84,36 @@ public class SongsShowController {
         myFrame.repaint();
         myFrame.validate();
     }
+
+    public SongsShowController( MainFrame myFrame, MainPanel view , String IP , PlayList sharePlayList) {
+        myFrame.remove(myFrame.getCenter());
+        myFrame.remove(myFrame.getScrollPane());
+        MainPanel newCenterPanel = new MainPanel();
+        myFrame.setCenter(newCenterPanel);
+//        System.out.println(sharePlayList.getSongsOfPlayList().get(0));
+
+        for (Song song: songs) {
+            SingleSongPanel singleSongPanel = new SingleSongPanel(song.getArtistName() , song.getAlbumName() , song.getTitle() , getImageFromByte(song.getArtWork()) , song , IP);
+            newCenterPanel.add(singleSongPanel);
+        }
+
+        newCenterPanel.add(new SortPlayListSong(sharePlayList));
+
+
+        JScrollPane scrollPane = new JScrollPane(newCenterPanel );
+
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        myFrame.setScrollPane(scrollPane);
+
+        scrollPane.repaint();
+        scrollPane.validate();
+
+        myFrame.repaint();
+        myFrame.validate();
+    }
+
+
 
 
     public SongsShowController(MainFrame myFrame , MainPanel view) {

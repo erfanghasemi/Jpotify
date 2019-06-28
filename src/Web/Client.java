@@ -2,10 +2,7 @@ package Web;
 
 import logic.Song;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +20,10 @@ public class Client implements Runnable {
         laterIPs = new ArrayList<>();
         ClientIP = new HashMap<>();
 
-        readIPFromFile(laterIPs);
+
+        if(new File("D:\\friend.bin").exists()) {
+            readIPFromFile(laterIPs);
+        }
     }
 
     public synchronized void addIP(String IP) throws IOException {
@@ -39,25 +39,25 @@ public class Client implements Runnable {
     @Override
     public void run() {
 
-        do {
-            //while (true){
-
-            //if (addIP){
-            for (String IP : laterIPs) {
-
-                try {
-
-                    executor(IP);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //      }
-                //}
-            }
-
-        }
-        while (false);
+//        do {
+//            //while (true){
+//
+//            //if (addIP){
+//            for (String IP : laterIPs) {
+//
+//                try {
+//
+//                    executor(IP);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                //      }
+//                //}
+//            }
+//
+//        }
+//        while (false);
     }
 
     public void setRequest(String IP, String request) {
@@ -101,5 +101,18 @@ public class Client implements Runnable {
         }
 
 
+    }
+
+
+    public HashMap<String, ServerHandler> getClientIP() {
+        return ClientIP;
+    }
+
+    public void connect(String IP) {
+        try {
+            executor(IP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

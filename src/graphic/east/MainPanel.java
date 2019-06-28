@@ -9,14 +9,20 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.ArrayList;
 
 public class MainPanel extends JPanel {
 
     JButton addFriend;
     FriendPanel friendPanel;
+    ArrayList<String> IPs = new ArrayList<>();
 
     public MainPanel(MainFrame mainFrame) {
 
+        if(new File("D:\\friend.bin").exists()) {
+            readIPFromFile(IPs);
+        }
         setPreferredSize(new Dimension(120 , 250));
         setLayout(new BoxLayout(this ,BoxLayout.Y_AXIS));
 
@@ -36,6 +42,7 @@ public class MainPanel extends JPanel {
         });
 
 
+
         JPanel addfriendPanle = new JPanel(new BorderLayout());
         addfriendPanle.setBackground(Color.white);
 
@@ -47,15 +54,12 @@ public class MainPanel extends JPanel {
 
         add(addfriendPanle);
 
-        friendPanel = new FriendPanel("Erfan" , "Red" , "Online");
-        add(friendPanel);
 
 
-        FriendPanel a = new FriendPanel("Reza" , "Jodaee" ,"44 m");
-        add(a);
-
-        FriendPanel f = new FriendPanel("ali" , "Stay Stay Stay" , "Online");
-        add(f);
+        for (String IP: IPs) {
+            FriendPanel friendPanel = new FriendPanel(mainFrame , "Ghiyasi" , "moein" , "Online" , IP);
+            add(friendPanel);
+        }
 
 
         TitledBorder titledBorder = new TitledBorder("Friend Activity");
@@ -67,6 +71,32 @@ public class MainPanel extends JPanel {
 
         mainFrame.add(this , BorderLayout.EAST);
         setVisible(true);
+
+    }
+
+    public void readIPFromFile(ArrayList<String> IPs) {
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            try {
+
+
+                while (true) {
+
+                    String IP = (String) objectInputStream.readObject();
+                    IPs.add(IP);
+                }
+
+
+            } catch (EOFException e) {
+                return;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
