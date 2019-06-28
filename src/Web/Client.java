@@ -2,31 +2,33 @@ package Web;
 
 import logic.Song;
 
-import java.io.*;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Client implements Runnable {
 
-    private volatile ArrayList<String> recentIPs = new ArrayList<>();
-    private ArrayList<String> laterIPs = new ArrayList<>();
-    private HashMap<String, ServerHandler> ClientIP = new HashMap<>();
+    private volatile ArrayList<String> recentIPs;
+    private ArrayList<String> laterIPs;
+    private HashMap<String, ServerHandler> ClientIP;
     //private Song song;
 
-    public synchronized void setSong(Song song, String IP) {
-        ClientIP.get(IP).setSong(song);
-    }
-
     public Client() throws IOException, ClassNotFoundException {
-//        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
-//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//        this.IPs = (ArrayList<String>) objectInputStream.readObject();
+
+        recentIPs = new ArrayList<>();
+        laterIPs = new ArrayList<>();
+        ClientIP = new HashMap<>();
+
+        readIPFromFile(laterIPs);
     }
 
     public synchronized void addIP(String IP) throws IOException {
-            recentIPs.add(IP);
-            executor(IP);
+        recentIPs.add(IP);
+        executor(IP);
 //        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
 //        FileOutputStream fileOutputStream = new FileOutputStream(file);
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -43,15 +45,15 @@ public class Client implements Runnable {
             //if (addIP){
             for (String IP : laterIPs) {
 
-                    try {
+                try {
 
-                        executor(IP);
+                    executor(IP);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //      }
-                    //}
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //      }
+                //}
             }
 
         }
@@ -69,5 +71,35 @@ public class Client implements Runnable {
         //serverHandler.setSong(this.song);
         Thread thread = new Thread(serverHandler);
         thread.start();
+    }
+
+    public synchronized void setSong(Song song, String IP) {
+        ClientIP.get(IP).setSong(song);
+    }
+
+    public void readIPFromFile(ArrayList<String> IPs) {
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            try {
+
+
+                while (true) {
+
+                    String IP = (String) objectInputStream.readObject();
+                    IPs.add(IP);
+                }
+
+
+            } catch (EOFException e) {
+                return;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
