@@ -54,11 +54,6 @@ public class MainFrame extends JFrame {
         }
 
 
-        Thread thread1 = new Thread(client);
-        thread1.start();
-
-
-
         add(center , BorderLayout.CENTER);
 
 

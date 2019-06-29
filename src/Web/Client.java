@@ -9,62 +9,19 @@ import java.util.HashMap;
 
 
 
-public class Client implements Runnable {
+public class Client {
 
-//    private volatile ArrayList<String> recentIPs;
-//    private ArrayList<String> laterIPs;
     private HashMap<String, ServerHandler> ClientIP;
     private MainFrame mainFrame;
-    //private Song song;
+
 
     public Client(MainFrame mainFrame) throws IOException, ClassNotFoundException {
-//
-//        recentIPs = new ArrayList<>();
-//        laterIPs = new ArrayList<>();
+
         ClientIP = new HashMap<>();
         this.mainFrame = mainFrame;
 
-
-//        if(new File("D:\\friend.bin").exists()) {
-//            readIPFromFile(laterIPs);
-//        }
     }
 
-    public synchronized void addIP(String IP) throws IOException {
-//        recentIPs.add(IP);
-//        executor(IP);
-//        File file = new File("C:\\Users\\Mahdi\\Desktop\\IPLists.doc");
-//        FileOutputStream fileOutputStream = new FileOutputStream(file);
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-//        objectOutputStream.writeObject(IPs);
-    }
-
-
-    @Override
-    public void run() {
-
-//        do {
-//            //while (true){
-//
-//            //if (addIP){
-//            for (String IP : laterIPs) {
-//
-//                try {
-//
-//                    executor(IP);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                //      }
-//                //}
-//            }
-//
-//        }
-//        while (false);
-    }
-
-    // this method sends the given request for the given IP server
 
     /**
      *
@@ -77,9 +34,6 @@ public class Client implements Runnable {
         ClientIP.get(IP).setRequest(request);
     }
 
-    // this is a hand made thread pool (executor service)
-    // this will provides a connection to the given IP and and run it in a new thread
-
     /**
      *
      * @param IP this is the IP of the system we want to make a contact with
@@ -90,10 +44,12 @@ public class Client implements Runnable {
      */
 
     public void executor(String IP) throws IOException {
+
         Socket client = new Socket(IP, 1385);
         ServerHandler serverHandler = new ServerHandler(mainFrame , client);
+
         ClientIP.put(IP, serverHandler);
-        //serverHandler.setSong(this.song);
+
         Thread thread = new Thread(serverHandler);
         thread.start();
     }
@@ -111,32 +67,6 @@ public class Client implements Runnable {
     public synchronized void setSong(Song song, String IP) {
         ClientIP.get(IP).setSong(song);
     }
-//
-//    public void readIPFromFile(ArrayList<String> IPs) {
-//
-//        try {
-//            FileInputStream fileInputStream = new FileInputStream("D:\\friend.bin");
-//            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//
-//            try {
-//
-//
-//                while (true) {
-//
-//                    String IP = (String) objectInputStream.readObject();
-//                    IPs.add(IP);
-//                }
-//
-//
-//            } catch (EOFException e) {
-//                return;
-//            }
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
 
 
     public HashMap<String, ServerHandler> getClientIP() {

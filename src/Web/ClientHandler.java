@@ -15,7 +15,6 @@ public class ClientHandler implements Runnable {
 
     public ClientHandler(Socket client) {
         this.client = client;
-        // sharePlayList must be handled
     }
 
 
