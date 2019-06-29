@@ -40,12 +40,18 @@ public class ClientHandler implements Runnable {
 
             while (true){
 
+
+                // the client sends us a request continuously
+                // in the flowing line we receive that request continuously as well
+
                 String request = (String) objectInputStream.readObject();
 
-                ///
+                /// in the flowing switch case we will respond to that request
 
                 switch (request){
                     case ("SharePlayList"):
+
+                        // sending my share playList to the client
 
                         sharePlayList = findSharePlayList();
 
@@ -54,6 +60,9 @@ public class ClientHandler implements Runnable {
                         break;
 
                     case ("GetUserName"):
+
+                        // sending my userName to the client
+
                         String nameOfUser = readObjecFromFile();
                         setUserName(nameOfUser);
                         objectOutputStream.writeObject(UserName);
@@ -61,9 +70,12 @@ public class ClientHandler implements Runnable {
                         break;
 
                     case ("GetSong"):
+
+                        // we are receiving the song that client wants to download it
+
                         Song song = (Song) objectInputStream.readObject();
 
-                        //// sending a song
+                        //// sending the song's file
 
                         File file = new File(song.getAddress());
 
@@ -98,7 +110,7 @@ public class ClientHandler implements Runnable {
 
                         System.out.println("complete ||||||||||");
 
-                        ////
+                        //// the file has been completely sent to the client
                 }
             }
 
@@ -113,6 +125,14 @@ public class ClientHandler implements Runnable {
         UserName = userName;
     }
 
+    // this method finds our share playList and sets it
+
+    /**
+     *
+     * @return this is my sharePlayList
+     * this method searches int the playLists for the sharePlayList and returns it
+     */
+
 
     public PlayList findSharePlayList(){
         ArrayList<PlayList> playLists = new ArrayList<>();
@@ -126,7 +146,12 @@ public class ClientHandler implements Runnable {
         return null;
     }
 
-    ////
+    /**
+     *
+     * @param path this is a file's path that we have saved our PlayLists in it
+     * @param playLists
+     * @return
+     */
 
     public ArrayList<PlayList> readPlayListFromFile(String path, ArrayList<PlayList> playLists) {
 
@@ -149,6 +174,13 @@ public class ClientHandler implements Runnable {
     }
 
 //
+
+    /**
+     *
+     * @return this is my userName
+     * this method reads my userName from a file
+     */
+
     public String readObjecFromFile() {
 
         String userName = null;

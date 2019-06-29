@@ -9,7 +9,6 @@ import logic.Song;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.SQLOutput;
 
 public class ServerHandler implements Runnable {
 
@@ -19,7 +18,6 @@ public class ServerHandler implements Runnable {
     private PlayList sharePlayList;
     private volatile Song song;
     MainFrame mainFrame;
-    // this must be changed in the other computer
     private final static String FOLDER = "D:\\";
 
     public synchronized void setRequest(String request) {
@@ -53,6 +51,8 @@ public class ServerHandler implements Runnable {
 
             while (true){
 
+                /// here we send a request continuously to the server so the server can respond appropriately
+
 
                 objectOutputStream.writeObject(request);
                 outputStream.flush();
@@ -61,6 +61,8 @@ public class ServerHandler implements Runnable {
 
                 switch (request){
                     case ("SharePlayList"):
+                        // here we receive our friend's sharePlayList
+
                         sharePlayList = (PlayList) objectInputStream.readObject();
                         setSharePlayList(sharePlayList);
 
@@ -78,6 +80,8 @@ public class ServerHandler implements Runnable {
 
 
                     case ("GetUserName"):
+
+                        // here we receive our friend's userName
                         serverUserNmae = (String) objectInputStream.readObject();
 
                         IP = null;
@@ -95,6 +99,8 @@ public class ServerHandler implements Runnable {
                         break;
 
                     case ("GetSong"):
+
+                        // here we tell server that witch song we are looking for
 
                         objectOutputStream.writeObject(song);
                         outputStream.flush();
@@ -137,14 +143,13 @@ public class ServerHandler implements Runnable {
                         //server.close();
                         bos.close();
 
-                        ///////
+                        /////// receiving process completed
 
                 }
 
                 request = "";
             }
 
-            /// sending request
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -164,6 +169,12 @@ public class ServerHandler implements Runnable {
     public void setSharePlayList(PlayList sharePlayList) {
         this.sharePlayList = sharePlayList;
     }
+
+    /**
+     *
+     * @param friend this is our friend we have connection with
+     *               this method saves my friend in to a file
+     */
 
     public void writeObjectToFile(Friend friend) {
         if(true){
